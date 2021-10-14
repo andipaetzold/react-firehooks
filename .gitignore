@@ -4,5 +4,6 @@
 /test-results/
 
 # modules
+/auth/
 /firestore/
 /storage/

@@ -10,6 +10,10 @@
             "require": "./lib/cjs/index.js",
             "default": "./lib/esm/index.js"
         },
+        "./auth": {
+            "require": "./lib/cjs/auth/index.js",
+            "default": "./lib/esm/auth/index.js"
+        },
         "./firestore": {
             "require": "./lib/cjs/firestore/index.js",
             "default": "./lib/esm/firestore/index.js"
@@ -21,6 +25,7 @@
     },
     "files": [
         "lib",
+        "auth",
         "firestore",
         "storage"
     ],
