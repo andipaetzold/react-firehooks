@@ -2,10 +2,9 @@
     "name": "react-firehooks",
     "version": "1.1.1",
     "description": "Lightweight dependency-free collection of React hooks for Firebase",
-    "main": "lib/cjs/index.js",
-    "browser": "lib/cjs/index.js",
-    "module": "lib/esm/index.js",
-    "types": "lib/types/index.d.ts",
+    "main": "./lib/cjs/index.js",
+    "module": "./lib/esm/index.js",
+    "types": "./lib/types/index.d.ts",
     "exports": {
         ".": {
             "require": "./lib/cjs/index.js",
@@ -21,7 +20,9 @@
         }
     },
     "files": [
-        "lib"
+        "lib",
+        "firestore",
+        "storage"
     ],
     "repository": {
         "type": "git",
@@ -67,9 +68,10 @@
     },
     "scripts": {
         "prepublishOnly": "npm run build",
-        "build": "rimraf lib && npm run build:cjs && npm run build:esm",
+        "build": "rimraf lib && npm run build:cjs && npm run build:esm && npm run build:modules",
         "build:cjs": "rimraf lib/cjs && tsc --module commonjs --outDir lib/cjs",
         "build:esm": "rimraf lib/esm && tsc --module ES2015 --outDir lib/esm",
+        "build:modules": "node ./scripts/create-modules.js",
         "test": "jest",
         "semantic-release": "semantic-release",
         "typedoc": "typedoc"

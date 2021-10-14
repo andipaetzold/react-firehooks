@@ -2,3 +2,7 @@
 /lib/
 /node_modules/
 /test-results/
+
+# modules
+/firestore/
+/storage/
