@@ -1,5 +1,5 @@
 [![npm](https://img.shields.io/npm/v/react-firehooks)](https://www.npmjs.com/package/react-firehooks)
-[![tests](https://github.com/andipaetzold/react-firehooks/actions/workflows/build-release.yml/badge.svg?branch=main)](https://github.com/andipaetzold/react-firehooks/actions/workflows/build-release.yml?query=branch%3Amain)
+[![tests](https://github.com/andipaetzold/react-firehooks/actions/workflows/push.yml/badge.svg?branch=main)](https://github.com/andipaetzold/react-firehooks/actions/workflows/push.yml?query=branch%3Amain)
 [![downloads](https://img.shields.io/npm/dm/react-firehooks)](https://www.npmjs.com/package/react-firehooks)
 [![license](https://img.shields.io/github/license/andipaetzold/react-firehooks)](https://github.com/andipaetzold/react-firehooks/blob/main/LICENSE)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
