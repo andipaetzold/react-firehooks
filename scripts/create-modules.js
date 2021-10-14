@@ -8,6 +8,8 @@ for (const module of modules) {
         types: `../lib/types/${module}/index.d.ts`,
     };
 
-    fs.mkdirSync(module);
+    if (!fs.existsSync(module)) {
+        fs.mkdirSync(module);
+    }
     fs.writeFileSync(`${module}/package.json`, JSON.stringify(packageJson, undefined, 4));
 }
