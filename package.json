@@ -48,6 +48,7 @@
         "semantic-release": "17.4.7",
         "ts-jest": "27.0.5",
         "tslib": "2.3.1",
+        "typedoc": "0.22.5",
         "typescript": "4.4.3"
     },
     "scripts": {
@@ -56,7 +57,8 @@
         "build:cjs": "rimraf lib/cjs && tsc --module commonjs --outDir lib/cjs",
         "build:esm": "rimraf lib/esm && tsc --module ES2015 --outDir lib/esm",
         "test": "jest",
-        "semantic-release": "semantic-release"
+        "semantic-release": "semantic-release",
+        "typedoc": "typedoc"
     },
     "peerDependencies": {
         "firebase": "^9.0.0",
