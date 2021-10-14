@@ -16,7 +16,7 @@ export interface UseDocumentOnceOptions {
 }
 
 export function useDocumentOnce<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined,
+    reference: DocumentReference<Value> | undefined | null,
     { getOptions: { source = "default" } = {} }: UseDocumentOnceOptions = {}
 ): UseDocumentOnceResult<Value> {
     const isMounted = useIsMounted();
@@ -25,7 +25,7 @@ export function useDocumentOnce<Value extends DocumentData = DocumentData>(
         FirestoreError
     >();
 
-    const stableDocRef = useStableDocRef(reference);
+    const stableDocRef = useStableDocRef(reference ?? undefined);
 
     useEffect(() => {
         (async () => {

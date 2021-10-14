@@ -21,7 +21,7 @@ export interface UseDocumentOptions {
 }
 
 export function useDocument<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined,
+    reference: DocumentReference<Value> | undefined | null,
     { snapshotListenOptions = {} }: UseDocumentOptions = {}
 ): UseDocumentResult<Value> {
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<
@@ -29,7 +29,7 @@ export function useDocument<Value extends DocumentData = DocumentData>(
         FirestoreError
     >();
 
-    const stableDocRef = useStableDocRef(reference);
+    const stableDocRef = useStableDocRef(reference ?? undefined);
 
     useEffect(() => {
         if (stableDocRef === undefined) {

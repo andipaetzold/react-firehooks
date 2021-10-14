@@ -14,7 +14,7 @@ export interface UseCollectionOptions {
 }
 
 export function useCollection<Value extends DocumentData = DocumentData>(
-    query: Query<Value> | undefined,
+    query: Query<Value> | undefined | null,
     { snapshotListenOptions = {} }: UseCollectionOptions = {}
 ): UseCollectionResult<Value> {
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<
@@ -22,7 +22,7 @@ export function useCollection<Value extends DocumentData = DocumentData>(
         FirestoreError
     >();
 
-    const stableQuery = useStableQuery(query);
+    const stableQuery = useStableQuery(query ?? undefined);
 
     useEffect(() => {
         if (stableQuery === undefined) {

@@ -16,7 +16,7 @@ export interface UseCollectionOnceOptions {
 }
 
 export function useCollectionOnce<Value extends DocumentData = DocumentData>(
-    query: Query<Value> | undefined,
+    query: Query<Value> | undefined | null,
     { getOptions: { source = "default" } = {} }: UseCollectionOnceOptions = {}
 ): UseCollectionOnceResult<Value> {
     const isMounted = useIsMounted();
@@ -25,7 +25,7 @@ export function useCollectionOnce<Value extends DocumentData = DocumentData>(
         FirestoreError
     >();
 
-    const stableQuery = useStableQuery(query);
+    const stableQuery = useStableQuery(query ?? undefined);
 
     useEffect(() => {
         (async () => {

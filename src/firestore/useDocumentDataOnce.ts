@@ -14,13 +14,13 @@ export interface UseDocumentDataOnceOptions {
 }
 
 export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined,
+    reference: DocumentReference<Value> | undefined | null,
     { getOptions: { source = "default" } = {}, snapshotOptions }: UseDocumentDataOnceOptions = {}
 ): UseDocumentDataOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, FirestoreError>();
 
-    const stableDocRef = useStableDocRef(reference);
+    const stableDocRef = useStableDocRef(reference ?? undefined);
 
     useEffect(() => {
         (async () => {

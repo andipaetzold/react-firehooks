@@ -17,13 +17,13 @@ export interface UseCollectionDataOnceOptions {
 }
 
 export function useCollectionDataOnce<Value extends DocumentData = DocumentData>(
-    query: Query<Value> | undefined,
+    query: Query<Value> | undefined | null,
     { getOptions: { source = "default" } = {}, snapshotOptions = {} }: UseCollectionDataOnceOptions = {}
 ): UseCollectionDataOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value[], FirestoreError>();
 
-    const stableQuery = useStableQuery(query);
+    const stableQuery = useStableQuery(query ?? undefined);
 
     useEffect(() => {
         (async () => {
