@@ -1,3 +1,14 @@
+## [1.1.2-next.1](https://github.com/andipaetzold/react-firehooks/compare/v1.1.1...v1.1.2-next.1) (2021-10-14)
+
+
+### Bug Fixes
+
+* add modules to files of package.json ([a85a39f](https://github.com/andipaetzold/react-firehooks/commit/a85a39fb2a842b74427407c5ce0797df294dfb11))
+* allow importing modules individually ([c6e50f5](https://github.com/andipaetzold/react-firehooks/commit/c6e50f55407865d347a1cefac16af0d1234bd7f7))
+* allow null & undefined as storage reference ([1fa0a6b](https://github.com/andipaetzold/react-firehooks/commit/1fa0a6b9ecc49b425bdfa6977ebdff711e8975ed))
+* do not change pkgRoot ([d7b40ef](https://github.com/andipaetzold/react-firehooks/commit/d7b40ef9a638d2b972acafe326567c54ff2233c3))
+* run build before release ([5a95393](https://github.com/andipaetzold/react-firehooks/commit/5a95393e926a88812e8328f68ed77f25cb72f33a))
+
 # [1.1.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v1.0.1...v1.1.0-next.1) (2021-10-14)
 
 
