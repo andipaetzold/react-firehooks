@@ -3,7 +3,8 @@
     "compilerOptions": {
         "moduleResolution": "Node",
         "declaration": true,
-        "declarationDir": "lib/types"
+        "declarationDir": "lib/types",
+        "outDir": "lib"
     },
     "include": ["src/**/*"],
     "exclude": ["src/**/*.spec.ts"]

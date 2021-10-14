@@ -1,26 +1,31 @@
 {
-  "branches": [
-    "main",
-    {
-      "name": "next",
-      "prerelease": true
-    },
-    {
-      "name": "next-major",
-      "prerelease": true
-    }
-  ],
-  "plugins": [
-    "@semantic-release/commit-analyzer",
-    "@semantic-release/release-notes-generator",
-    "@semantic-release/changelog",
-    "@semantic-release/npm",
-    [
-      "@semantic-release/git",
-      {
-        "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }
+    "branches": [
+        "main",
+        {
+            "name": "next",
+            "prerelease": true
+        },
+        {
+            "name": "next-major",
+            "prerelease": true
+        }
     ],
-    "@semantic-release/github"
-  ]
+    "plugins": [
+        "@semantic-release/commit-analyzer",
+        "@semantic-release/release-notes-generator",
+        "@semantic-release/changelog",
+        [
+            "@semantic-release/npm",
+            {
+                "pkgRoot": "lib"
+            }
+        ],
+        [
+            "@semantic-release/git",
+            {
+                "message": "chore: ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+            }
+        ],
+        "@semantic-release/github"
+    ]
 }
