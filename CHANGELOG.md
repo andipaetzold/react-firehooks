@@ -4,8 +4,16 @@
 ### Bug Fixes
 
 * allow importing modules individually ([c6e50f5](https://github.com/andipaetzold/react-firehooks/commit/c6e50f55407865d347a1cefac16af0d1234bd7f7))
-* allow null & undefined as storage reference ([1fa0a6b](https://github.com/andipaetzold/react-firehooks/commit/1fa0a6b9ecc49b425bdfa6977ebdff711e8975ed))
 * run build before release ([5a95393](https://github.com/andipaetzold/react-firehooks/commit/5a95393e926a88812e8328f68ed77f25cb72f33a))
+
+## [1.1.1](https://github.com/andipaetzold/react-firehooks/compare/v1.1.0...v1.1.1) (2021-10-14)
+
+
+### Bug Fixes
+
+* allow null & undefined as storage reference ([3c95bd5](https://github.com/andipaetzold/react-firehooks/commit/3c95bd58c5b0c972dd26e4334981919b83f7682f))
+
+# [1.1.0](https://github.com/andipaetzold/react-firehooks/compare/v1.0.1...v1.1.0) (2021-10-14)
 
 
 ### Features
