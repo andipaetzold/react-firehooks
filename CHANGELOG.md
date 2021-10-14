@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/andipaetzold/react-firehooks/compare/v1.0.1...v1.1.0) (2021-10-14)
+
+
+### Features
+
+* add one export per module ([c755b75](https://github.com/andipaetzold/react-firehooks/commit/c755b757b451f21072a2a0eb95106576fe706d5d))
+* add storage module ([32a6d4d](https://github.com/andipaetzold/react-firehooks/commit/32a6d4dc9bf205afbc14cdf6077fc8459dd2d805))
+
 ## [1.0.1](https://github.com/andipaetzold/react-firehooks/compare/v1.0.0...v1.0.1) (2021-10-14)
 
 
