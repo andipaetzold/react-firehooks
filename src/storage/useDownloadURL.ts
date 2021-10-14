@@ -34,7 +34,7 @@ export function useDownloadURL(reference: StorageReference | undefined | null): 
                     }
 
                     // We assume this is always a StorageError
-                    setError(e as unknown as StorageError);
+                    setError(e as StorageError);
                 }
             }
         })();

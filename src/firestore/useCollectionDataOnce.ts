@@ -46,7 +46,7 @@ export function useCollectionDataOnce<Value extends DocumentData = DocumentData>
                     }
 
                     // We assume this is always a FirestoreError
-                    setError(e as unknown as FirestoreError);
+                    setError(e as FirestoreError);
                 }
             }
         })();

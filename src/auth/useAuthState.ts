@@ -9,7 +9,12 @@ export function useAuthState(auth: Auth): UseAuthStateResult {
     const { error, loading, setError, setValue, value } = useLoadingValue<User | null, AuthError>(auth.currentUser);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, setValue, (e) => setError(e as AuthError));
+        const unsubscribe = onAuthStateChanged(
+            auth,
+            setValue,
+            // We assume this is always a AuthError
+            (e) => setError(e as AuthError)
+        );
 
         return () => {
             unsubscribe();
