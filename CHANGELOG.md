@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/andipaetzold/react-firehooks/compare/v1.1.0...v1.1.1) (2021-10-14)
+
+
+### Bug Fixes
+
+* allow null & undefined as storage reference ([3c95bd5](https://github.com/andipaetzold/react-firehooks/commit/3c95bd58c5b0c972dd26e4334981919b83f7682f))
+
 # [1.1.0](https://github.com/andipaetzold/react-firehooks/compare/v1.0.1...v1.1.0) (2021-10-14)
 
 
