@@ -1,0 +1,54 @@
+name: Build & Release
+
+on:
+    - push
+
+jobs:
+    build-test:
+        name: Build & Test
+        runs-on: ubuntu-20.04
+
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+            - name: Get node version
+              id: node-version
+              run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+            - name: Use node
+              uses: actions/setup-node@v2.4.1
+              with:
+                  node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+            - name: Build
+              run: npm run build
+            - name: Test
+              run: npm test -- --ci --runInBand --coverage
+
+    release:
+        name: Release
+        runs-on: ubuntu-20.04
+        needs: build-test
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0
+            - name: Get node version
+              id: node-version
+              run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
+            - name: Use node
+              uses: actions/setup-node@v2.4.1
+              with:
+                  node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
+                  cache: "npm"
+
+            - name: Install dependencies
+              run: npm ci
+            - name: Release
+              run: npm run semantic-release
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
