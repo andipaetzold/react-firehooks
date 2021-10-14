@@ -7,7 +7,7 @@ import { useStableStorageRef } from "./internal";
 
 export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
 
-export function useDownloadURL(reference: StorageReference): UseDownloadURLResult {
+export function useDownloadURL(reference: StorageReference | undefined | null): UseDownloadURLResult {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<string, StorageError>();
 
