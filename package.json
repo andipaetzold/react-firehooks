@@ -58,7 +58,6 @@
         "@testing-library/react-hooks": "7.0.2",
         "@tsconfig/recommended": "1.0.1",
         "@types/jest": "27.0.2",
-        "@types/node": "14.14.37",
         "@types/react": "17.0.29",
         "firebase": "9.1.2",
         "jest": "27.2.5",
