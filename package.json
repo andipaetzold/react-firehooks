@@ -6,6 +6,20 @@
     "browser": "lib/cjs/index.js",
     "module": "lib/esm/index.js",
     "types": "lib/types/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./lib/cjs/index.js",
+            "default": "./lib/esm/index.js"
+        },
+        "./firestore": {
+            "require": "./lib/cjs/firestore/index.js",
+            "default": "./lib/esm/firestore/index.js"
+        },
+        "./storage": {
+            "require": "./lib/cjs/storage/index.js",
+            "default": "./lib/esm/storage/index.js"
+        }
+    },
     "files": [
         "lib"
     ],
