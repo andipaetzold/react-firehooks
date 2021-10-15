@@ -53,7 +53,9 @@ npm test
 
 ## Resources
 
-TBD
+### React Firebase Hooks
+
+This library is heavily inspired by [`react-firebase-hooks`](https://www.npmjs.com/package/react-firebase-hooks). Unfortunately, it didn't receive any updates anymore and didn't support Firebase 9. `react-firehooks` is not a fork but a completely new code base exporting almost identical hooks.
 
 ## License
 
