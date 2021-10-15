@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/andipaetzold/react-firehooks/compare/v1.1.2...v1.2.0) (2021-10-15)
+
+
+### Features
+
+* **auth:** add auth module ([12ab9ca](https://github.com/andipaetzold/react-firehooks/commit/12ab9ca5390e81cea63ac7a93d39202cc36da23f))
+* **database:** add database module ([e202767](https://github.com/andipaetzold/react-firehooks/commit/e20276768cca9fa6e3a23b7a34a7f5a3ee81acca))
+
 ## [1.1.2](https://github.com/andipaetzold/react-firehooks/compare/v1.1.1...v1.1.2) (2021-10-14)
 
 
