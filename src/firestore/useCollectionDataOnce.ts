@@ -4,7 +4,7 @@ import type { ValueHookResult } from "../common/types";
 import { useIsMounted } from "../util/useIsMounted";
 import { useLoadingValue } from "../util/useLoadingValue";
 import { getDocsFromSource, useStableQuery } from "./internal";
-import type { GetOptions } from "./types";
+import type { Source } from "./types";
 
 export type UseCollectionDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     Value[],
@@ -12,13 +12,13 @@ export type UseCollectionDataOnceResult<Value extends DocumentData = DocumentDat
 >;
 
 export interface UseCollectionDataOnceOptions {
-    getOptions?: GetOptions;
+    source?: Source;
     snapshotOptions?: SnapshotOptions;
 }
 
 export function useCollectionDataOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    { getOptions: { source = "default" } = {}, snapshotOptions = {} }: UseCollectionDataOnceOptions = {}
+    { source = "default", snapshotOptions = {} }: UseCollectionDataOnceOptions = {}
 ): UseCollectionDataOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value[], FirestoreError>();

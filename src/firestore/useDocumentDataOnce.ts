@@ -4,18 +4,18 @@ import type { ValueHookResult } from "../common/types";
 import { useIsMounted } from "../util/useIsMounted";
 import { useLoadingValue } from "../util/useLoadingValue";
 import { getDocFromSource, useStableDocRef } from "./internal";
-import type { GetOptions } from "./types";
+import type { Source } from "./types";
 
 export type UseDocumentDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value, FirestoreError>;
 
 export interface UseDocumentDataOnceOptions {
-    getOptions?: GetOptions;
+    source?: Source;
     snapshotOptions?: SnapshotOptions;
 }
 
 export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    { getOptions: { source = "default" } = {}, snapshotOptions }: UseDocumentDataOnceOptions = {}
+    { source = "default", snapshotOptions }: UseDocumentDataOnceOptions = {}
 ): UseDocumentDataOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, FirestoreError>();

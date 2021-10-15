@@ -14,7 +14,7 @@ import {
     refEqual,
 } from "firebase/firestore";
 import { useStableValue } from "../util/useStableValue";
-import { Source } from "./types";
+import type { Source } from "./types";
 
 /**
  * @internal

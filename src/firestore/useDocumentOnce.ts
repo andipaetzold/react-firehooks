@@ -4,7 +4,7 @@ import type { ValueHookResult } from "../common/types";
 import { useIsMounted } from "../util/useIsMounted";
 import { useLoadingValue } from "../util/useLoadingValue";
 import { getDocFromSource, useStableDocRef } from "./internal";
-import type { GetOptions } from "./types";
+import type { Source } from "./types";
 
 export type UseDocumentOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     DocumentSnapshot<Value>,
@@ -12,12 +12,12 @@ export type UseDocumentOnceResult<Value extends DocumentData = DocumentData> = V
 >;
 
 export interface UseDocumentOnceOptions {
-    getOptions?: GetOptions;
+    source?: Source;
 }
 
 export function useDocumentOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    { getOptions: { source = "default" } = {} }: UseDocumentOnceOptions = {}
+    { source = "default" }: UseDocumentOnceOptions = {}
 ): UseDocumentOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<

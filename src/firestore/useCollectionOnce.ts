@@ -1,10 +1,10 @@
-import { DocumentData, FirestoreError, Query, QuerySnapshot, SnapshotOptions } from "firebase/firestore";
+import { DocumentData, FirestoreError, Query, QuerySnapshot } from "firebase/firestore";
 import { useEffect, useMemo } from "react";
 import type { ValueHookResult } from "../common/types";
 import { useIsMounted } from "../util/useIsMounted";
 import { useLoadingValue } from "../util/useLoadingValue";
 import { getDocsFromSource, useStableQuery } from "./internal";
-import type { GetOptions } from "./types";
+import type { Source } from "./types";
 
 export type UseCollectionOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     QuerySnapshot<Value>,
@@ -12,12 +12,12 @@ export type UseCollectionOnceResult<Value extends DocumentData = DocumentData> =
 >;
 
 export interface UseCollectionOnceOptions {
-    getOptions?: GetOptions;
+    source?: Source;
 }
 
 export function useCollectionOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    { getOptions: { source = "default" } = {} }: UseCollectionOnceOptions = {}
+    { source = "default" }: UseCollectionOnceOptions = {}
 ): UseCollectionOnceResult<Value> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<
