@@ -60,9 +60,21 @@ import { ... } from 'react-firehooks/auth';
 
 #### useAuthState
 
+Returns and updates the currently authenticated user
+
 ```javascript
 const [user, loading, error] = useAuthState(auth);
 ```
+
+Params:
+
+-   `auth`: Firebase Auth instance
+
+Params:
+
+-   `value`: User; `undefined` if user is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the user; `false` if the user was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 ### Database
 
@@ -72,27 +84,75 @@ import { ... } from 'react-firehooks/database';
 
 #### useObject
 
+Returns and updates the DataSnapshot of the Realtime Database query
+
 ```javascript
 const [dataSnap, loading, error] = useObject(query);
 ```
 
+Params:
+
+-   `query`: Realtime Database query
+
+Returns:
+
+-   `value`: DataSnapshot; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useObjectOnce
+
+Returns the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
 
 ```javascript
 const [dataSnap, loading, error] = useObjectOnce(query);
 ```
 
+Params:
+
+-   `query`: Realtime Database query
+
+Returns:
+
+-   `value`: DataSnapshot; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useObjectValue
+
+Returns and updates the DataSnapshot of the Realtime Database query
 
 ```javascript
 const [objectValue, loading, error] = useObjectValue(query);
 ```
 
+Params:
+
+-   `query`: Realtime Database query
+
+Returns:
+
+-   `value`: Object value; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useObjectValueOnce
+
+Returns the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
 
 ```javascript
 const [objectValue, loading, error] = useObjectValueOnce(query);
 ```
+
+Params:
+
+-   `query`: Realtime Database query
+
+Returns:
+
+-   `value`: Object value; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 ### Firestore
 
@@ -102,51 +162,155 @@ import { ... } from 'react-firehooks/firestore';
 
 #### useCollection
 
+Returns and updates a QuerySnapshot of a Firestore Query
+
 ```javascript
 const [querySnap, loading, error] = useCollection(query, options);
 ```
 
+Params:
+
+-   `query`: Firestore query that will be subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useCollectionData
+
+Returns and updates a the document data of a Firestore Query
 
 ```javascript
 const [data, loading, error] = useCollectionData(query, options);
 ```
 
+Params:
+
+-   `query`: Firestore query that will be subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   `value`: Query data; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useCollectionDataOnce
+
+Returns the data of a Firestore Query. Does not update the data once initially fetched
 
 ```javascript
 const [data, loading, error] = useCollectionDataOnce(query, options);
 ```
 
+Params:
+
+-   `query`: Firestore query that will be fetched
+-   `options`: Options to configure how the query is fetched
+
+Returns:
+
+-   `value`: Query data; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useCollectionOnce
+
+Returns the QuerySnapshot of a Firestore Query. Does not update the QuerySnapshot once initially fetched
 
 ```javascript
 const [querySnap, loading, error] = useCollectionOnce(query, options);
 ```
 
+Params:
+
+-   `query`: Firestore query that will be fetched
+-   `options`: Options to configure how the query is fetched
+
+Returns:
+
+-   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useDocument
+
+Returns and updates a DocumentSnapshot of a Firestore DocumentReference
 
 ```javascript
 const [documentSnap, loading, error] = useDocument(documentReference, options);
 ```
 
+Params:
+
+-   `query`: Firestore DocumentReference that will be subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   `value`: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useDocumentData
+
+Returns and updates the data of a Firestore DocumentReference
 
 ```javascript
 const [data, loading, error] = useDocumentData(documentReference, options);
 ```
 
+Params:
+
+-   `query`: Firestore DocumentReference that will subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   `value`: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useDocumentDataOnce
+
+Returns the data of a Firestore DocumentReference
 
 ```javascript
 const [documentSnap, loading, error] = useDocumentDataOnce(documentReference, options);
 ```
 
+Params:
+
+-   `query`: Firestore DocumentReference that will be fetched
+-   `options`: Options to configure the document will be fetched
+
+Returns:
+
+-   `value`: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useDocumentOnce
+
+Returns the DocumentSnapshot of a Firestore DocumentReference. Does not update the DocumentSnapshot once initially fetched
 
 ```javascript
 const [querySnap, loading, error] = useDocumentData(documentReference, options);
 ```
+
+Params:
+
+-   `query`: Firestore DocumentReference that will be fetched
+-   `options`: Options to configure how the document will be fetched
+
+Returns:
+
+-   `value`: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 ### Storage
 
@@ -156,9 +320,21 @@ import { ... } from 'react-firehooks/storage';
 
 #### useDownloadURL
 
+Returns the download URL of a Google Cloud Storage object
+
 ```javascript
 const [url, loading, error] = useDownloadURL(storageReference);
 ```
+
+Params:
+
+-   `reference`: Reference to a Google Cloud Storage object
+
+Returns:
+
+-   `value`: Download URL; `undefined` if download URL is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the download URL; `false` if the download URL was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 ## Development
 
