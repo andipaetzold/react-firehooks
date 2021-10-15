@@ -1,6 +1,6 @@
 const fs = require("fs");
 
-const modules = ["auth", "firestore", "storage"];
+const modules = ["auth", "database", "firestore", "storage"];
 for (const module of modules) {
     const packageJson = {
         main: `../lib/cjs/${module}/index.js`,
