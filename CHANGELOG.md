@@ -1,3 +1,11 @@
+## [1.2.4](https://github.com/andipaetzold/react-firehooks/compare/v1.2.3...v1.2.4) (2021-10-15)
+
+
+### Bug Fixes
+
+* **database:** correctly name useObject & useObjectOnce ([4c7b83e](https://github.com/andipaetzold/react-firehooks/commit/4c7b83eeb5abe3337663fe65925f1b0372d75347))
+* **database:** export all hooks ([704065c](https://github.com/andipaetzold/react-firehooks/commit/704065c76055580a430ed107c3a52a21a2789004))
+
 ## [1.2.3](https://github.com/andipaetzold/react-firehooks/compare/v1.2.2...v1.2.3) (2021-10-15)
 
 
