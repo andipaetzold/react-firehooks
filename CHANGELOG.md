@@ -1,3 +1,11 @@
+## [1.2.3](https://github.com/andipaetzold/react-firehooks/compare/v1.2.2...v1.2.3) (2021-10-15)
+
+
+### Bug Fixes
+
+* **database:** use new query when changing from/to undefined ([a096c41](https://github.com/andipaetzold/react-firehooks/commit/a096c41223a45c096172a7e7b60fd4e11938aaa4))
+* **firestore:** use new ref/query when changing from/to undefined ([981ec92](https://github.com/andipaetzold/react-firehooks/commit/981ec922daf76fbfb3618c326de76910d306890b))
+
 ## [1.2.2](https://github.com/andipaetzold/react-firehooks/compare/v1.2.1...v1.2.2) (2021-10-15)
 
 
