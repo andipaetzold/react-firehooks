@@ -1,2 +1,2 @@
-export * from './useObject';
-export * from './useObjectOnce';
+export * from "./useObject";
+export * from "./useObjectOnce";

@@ -1,4 +1,13 @@
-import { DocumentReference, getDoc, getDocFromCache, getDocFromServer, getDocs, getDocsFromCache, getDocsFromServer, Query } from "firebase/firestore";
+import {
+    DocumentReference,
+    getDoc,
+    getDocFromCache,
+    getDocFromServer,
+    getDocs,
+    getDocsFromCache,
+    getDocsFromServer,
+    Query,
+} from "firebase/firestore";
 import { getDocFromSource, getDocsFromSource } from "./internal";
 
 jest.mock("firebase/firestore", () => {
@@ -53,7 +62,6 @@ describe("getDocFromSource", () => {
         expect(getDocFromServerMock).toHaveBeenCalledWith(reference);
     });
 });
-
 
 describe("getDocsFromSource", () => {
     const getDocsMock = getDocs as jest.Mock<ReturnType<typeof getDocs>, Parameters<typeof getDocs>>;
