@@ -1,50 +1,34 @@
-import { DataSnapshot, get, Query } from "firebase/database";
+import { DataSnapshot, Query } from "firebase/database";
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common";
-import { useIsMounted } from "../util/useIsMounted";
 import { useLoadingValue } from "../util/useLoadingValue";
 import { useStableQuery } from "./internal";
 
-export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
+export type UseObjectResult = ValueHookResult<DataSnapshot, Error>;
 
 /**
- * Returns and updates the DataSnapshot of the Realtime Database query
+ * Returns the DataSnapshot of the Realtime Database query
  *
  * @param {Query | undefined | null} query Realtime Database query
- * @returns {UseObjectOnceResult} User, loading state, and error
+ * @returns {UseObjectResult} User, loading state, and error
  * * value: DataSnapshot; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useObjectOnce(query: Query | undefined | null): UseObjectOnceResult {
-    const isMounted = useIsMounted();
+export function useObject(query: Query | undefined | null): UseObjectResult {
     const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<DataSnapshot, Error>();
 
     const stableQuery = useStableQuery(query ?? undefined);
 
     useEffect(() => {
-        (async () => {
-            if (stableQuery === undefined) {
-                setValue();
-            } else {
-                setLoading();
+        if (stableQuery === undefined) {
+            setValue();
+        } else {
+            setLoading();
 
-                try {
-                    const snap = await get(stableQuery);
-                    if (!isMounted.current) {
-                        return;
-                    }
-
-                    setValue(snap);
-                } catch (e) {
-                    if (!isMounted.current) {
-                        return;
-                    }
-
-                    setError(e as Error);
-                }
-            }
-        })();
+            const unsubscribe = onValue(stableQuery, setValue, setError);
+            return () => unsubscribe();
+        }
     }, [stableQuery]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);
