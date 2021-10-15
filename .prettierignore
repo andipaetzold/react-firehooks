@@ -1,0 +1,11 @@
+CHANGELOG.md
+/docs/
+/lib/
+/node_modules/
+/test-results/
+
+# modules
+/auth/
+/database/
+/firestore/
+/storage/
