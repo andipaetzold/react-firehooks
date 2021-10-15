@@ -27,9 +27,138 @@ yarn add react-firehooks
 
 ## Usage
 
-TODO
-
 [Type Documentation](https://andipaetzold.github.io/react-firehooks)
+
+This library consists of 4 modules with many hooks:
+
+-   [`auth`](#Auth)
+    -   [`useAuthState`](#useAuthState)
+-   [`database`](#Database)
+    -   [`useObject`](#useObject)
+    -   [`useObjectOnce`](#useObjectOnce)
+    -   [`useObjectValue`](#useObjectValue)
+    -   [`useObjectValueOnce`](#useObjectValueOnce)
+-   [`firestore`](#Firestore)
+    -   [`useCollection`](#useCollection)
+    -   [`useCollectionData`](#useCollectionData)
+    -   [`useCollectionDataOnce`](#useCollectionDataOnce)
+    -   [`useCollectionOnce`](#useCollectionOnce)
+    -   [`useDocument`](#useDocument)
+    -   [`useDocumentData`](#useDocumentData)
+    -   [`useDocumentDataOnce`](#useDocumentataOnce)
+    -   [`useDocumentOnce`](#useDocumentOnce)
+-   [`storage`](#Storage)
+    -   [`useDownloadURL`](#useDownloadURL)
+
+All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
+
+### Auth
+
+```javascript
+import { ... } from 'react-firehooks/auth';
+```
+
+#### useAuthState
+
+```javascript
+const [user, loading, error] = useAuthState(auth);
+```
+
+### Database
+
+```javascript
+import { ... } from 'react-firehooks/database';
+```
+
+#### useObject
+
+```javascript
+const [dataSnap, loading, error] = useObject(query);
+```
+
+#### useObjectOnce
+
+```javascript
+const [dataSnap, loading, error] = useObjectOnce(query);
+```
+
+#### useObjectValue
+
+```javascript
+const [objectValue, loading, error] = useObjectValue(query);
+```
+
+#### useObjectValueOnce
+
+```javascript
+const [objectValue, loading, error] = useObjectValueOnce(query);
+```
+
+### Firestore
+
+```javascript
+import { ... } from 'react-firehooks/firestore';
+```
+
+#### useCollection
+
+```javascript
+const [querySnap, loading, error] = useCollection(query, options);
+```
+
+#### useCollectionData
+
+```javascript
+const [data, loading, error] = useCollectionData(query, options);
+```
+
+#### useCollectionDataOnce
+
+```javascript
+const [data, loading, error] = useCollectionDataOnce(query, options);
+```
+
+#### useCollectionOnce
+
+```javascript
+const [querySnap, loading, error] = useCollectionOnce(query, options);
+```
+
+#### useDocument
+
+```javascript
+const [documentSnap, loading, error] = useDocument(documentReference, options);
+```
+
+#### useDocumentData
+
+```javascript
+const [data, loading, error] = useDocumentData(documentReference, options);
+```
+
+#### useDocumentDataOnce
+
+```javascript
+const [documentSnap, loading, error] = useDocumentDataOnce(documentReference, options);
+```
+
+#### useDocumentOnce
+
+```javascript
+const [querySnap, loading, error] = useDocumentData(documentReference, options);
+```
+
+### Storage
+
+```javascript
+import { ... } from 'react-firehooks/storage';
+```
+
+#### useDownloadURL
+
+```javascript
+const [url, loading, error] = useDownloadURL(storageReference);
+```
 
 ## Development
 
