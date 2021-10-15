@@ -35,7 +35,7 @@ TODO
 
 ### Build
 
-To build the library, first install the dependencies, then run `npm run build` for a single build or `npm run watch` for automatic rebuilds.
+To build the library, first install the dependencies, then run `npm run build`.
 
 ```sh
 npm install
