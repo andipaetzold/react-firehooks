@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/andipaetzold/react-firehooks/compare/v1.2.0...v1.2.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* mark modules as side-effect-free ([235029e](https://github.com/andipaetzold/react-firehooks/commit/235029ef741070d834f16e846a0793e7939148ce))
+
 # [1.2.0](https://github.com/andipaetzold/react-firehooks/compare/v1.1.2...v1.2.0) (2021-10-15)
 
 
