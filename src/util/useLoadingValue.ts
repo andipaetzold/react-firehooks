@@ -24,7 +24,7 @@ export interface UseLoadingValueResult<Value, Error> {
 /**
  * @internal
  */
-export function useLoadingValue<Value, Error>(defaultValue?: Value): UseLoadingValueResult<Value, Error> {
+export function useLoadingValue<Value, Error = unknown>(defaultValue?: Value): UseLoadingValueResult<Value, Error> {
     const [state, setState] = useState<State<Value, Error>>({
         error: undefined,
         loading: defaultValue === undefined ? true : false,
