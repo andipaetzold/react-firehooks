@@ -11,14 +11,29 @@ export type UseCollectionOnceResult<Value extends DocumentData = DocumentData> =
     FirestoreError
 >;
 
+/**
+ * Options to configure how the query is fetched
+ */
 export interface UseCollectionOnceOptions {
     source?: Source;
 }
 
+/**
+ * Returns the QuerySnapshot of a Firestore Query. Does not update the QuerySnapshot once initially fetched
+ *
+ * @param {Query<Value> | undefined | null} query Firestore query that will be fetched
+ * @param {?UseCollectionOnceOptions} options Options to configure how the query is fetched
+ * @returns {UseCollectionOnceResult<Value>} QuerySnapshot, loading state, and error
+ * * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * * error: `undefined` if no error occurred
+ */
 export function useCollectionOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    { source = "default" }: UseCollectionOnceOptions = {}
+    options?: UseCollectionOnceOptions
 ): UseCollectionOnceResult<Value> {
+    const { source = "default" } = options ?? {};
+
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<
         QuerySnapshot<Value>,

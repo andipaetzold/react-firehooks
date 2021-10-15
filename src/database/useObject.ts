@@ -7,6 +7,15 @@ import { useStableQuery } from "./internal";
 
 export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
 
+/**
+ * Returns and updates the DataSnapshot of the Realtime Database query
+ *
+ * @param {Query | undefined | null} query Realtime Database query
+ * @returns {UseObjectOnceResult} User, loading state, and error
+ * * value: DataSnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * * error: `undefined` if no error occurred
+ */
 export function useObjectOnce(query: Query | undefined | null): UseObjectOnceResult {
     const isMounted = useIsMounted();
     const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<DataSnapshot, Error>();

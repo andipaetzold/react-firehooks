@@ -7,6 +7,12 @@ import { useStableStorageRef } from "./internal";
 
 export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
 
+/**
+ * Returns the download URL of a Google Cloud Storage object
+ *
+ * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
+ * @returns {UseDownloadURLResult}
+ */
 export function useDownloadURL(reference: StorageReference | undefined | null): UseDownloadURLResult {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<string, StorageError>();
