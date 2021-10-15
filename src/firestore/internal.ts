@@ -54,7 +54,7 @@ export async function getDocsFromSource<Value extends DocumentData = DocumentDat
  * @internal
  */
 function isDocRefEqual<Value>(a: DocumentReference<Value> | undefined, b: DocumentReference<Value> | undefined): boolean {
-    const areBothUndefined = a === undefined || b === undefined;
+    const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && refEqual(a, b);
     return areBothUndefined || areSameRef;
 }
@@ -72,7 +72,7 @@ export function useStableDocRef<Value>(
  * @internal
  */
 function isQueryEqual<Value>(a: Query<Value> | undefined, b: Query<Value> | undefined): boolean {
-    const areBothUndefined = a === undefined || b === undefined;
+    const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && queryEqual(a, b);
     return areBothUndefined || areSameRef;
 }
