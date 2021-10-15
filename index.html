@@ -29,8 +29,145 @@
 <a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
   <h2>Usage</h2>
 </a>
-<p>TODO</p>
 <p><a href="https://andipaetzold.github.io/react-firehooks">Type Documentation</a></p>
+<p>This library consists of 4 modules with many hooks:</p>
+<ul>
+<li><a href="#Auth"><code>auth</code></a><ul>
+<li><a href="#useAuthState"><code>useAuthState</code></a></li>
+</ul>
+</li>
+<li><a href="#Database"><code>database</code></a><ul>
+<li><a href="#useObject"><code>useObject</code></a></li>
+<li><a href="#useObjectOnce"><code>useObjectOnce</code></a></li>
+<li><a href="#useObjectValue"><code>useObjectValue</code></a></li>
+<li><a href="#useObjectValueOnce"><code>useObjectValueOnce</code></a></li>
+</ul>
+</li>
+<li><a href="#Firestore"><code>firestore</code></a><ul>
+<li><a href="#useCollection"><code>useCollection</code></a></li>
+<li><a href="#useCollectionData"><code>useCollectionData</code></a></li>
+<li><a href="#useCollectionDataOnce"><code>useCollectionDataOnce</code></a></li>
+<li><a href="#useCollectionOnce"><code>useCollectionOnce</code></a></li>
+<li><a href="#useDocument"><code>useDocument</code></a></li>
+<li><a href="#useDocumentData"><code>useDocumentData</code></a></li>
+<li><a href="#useDocumentataOnce"><code>useDocumentDataOnce</code></a></li>
+<li><a href="#useDocumentOnce"><code>useDocumentOnce</code></a></li>
+</ul>
+</li>
+<li><a href="#Storage"><code>storage</code></a><ul>
+<li><a href="#useDownloadURL"><code>useDownloadURL</code></a></li>
+</ul>
+</li>
+</ul>
+<p>All hooks can be imported from <code>react-firehooks</code> directly or via <code>react-firehooks/&lt;module&gt;</code> to improve tree-shaking and bundle size.</p>
+
+<a href="#auth" id="auth" style="color: inherit; text-decoration: none;">
+  <h3>Auth</h3>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> { ... } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-2">&#39;react-firehooks/auth&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#useauthstate" id="useauthstate" style="color: inherit; text-decoration: none;">
+  <h4>useAuthState</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">user</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useAuthState</span><span class="hl-0">(</span><span class="hl-6">auth</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#database" id="database" style="color: inherit; text-decoration: none;">
+  <h3>Database</h3>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> { ... } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-2">&#39;react-firehooks/database&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#useobject" id="useobject" style="color: inherit; text-decoration: none;">
+  <h4>useObject</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">dataSnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useObject</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#useobjectonce" id="useobjectonce" style="color: inherit; text-decoration: none;">
+  <h4>useObjectOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">dataSnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useObjectOnce</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#useobjectvalue" id="useobjectvalue" style="color: inherit; text-decoration: none;">
+  <h4>useObjectValue</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">objectValue</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useObjectValue</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#useobjectvalueonce" id="useobjectvalueonce" style="color: inherit; text-decoration: none;">
+  <h4>useObjectValueOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">objectValue</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useObjectValueOnce</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#firestore" id="firestore" style="color: inherit; text-decoration: none;">
+  <h3>Firestore</h3>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> { ... } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-2">&#39;react-firehooks/firestore&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#usecollection" id="usecollection" style="color: inherit; text-decoration: none;">
+  <h4>useCollection</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">querySnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useCollection</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usecollectiondata" id="usecollectiondata" style="color: inherit; text-decoration: none;">
+  <h4>useCollectionData</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">data</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useCollectionData</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usecollectiondataonce" id="usecollectiondataonce" style="color: inherit; text-decoration: none;">
+  <h4>useCollectionDataOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">data</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useCollectionDataOnce</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usecollectiononce" id="usecollectiononce" style="color: inherit; text-decoration: none;">
+  <h4>useCollectionOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">querySnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useCollectionOnce</span><span class="hl-0">(</span><span class="hl-6">query</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usedocument" id="usedocument" style="color: inherit; text-decoration: none;">
+  <h4>useDocument</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">documentSnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useDocument</span><span class="hl-0">(</span><span class="hl-6">documentReference</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usedocumentdata" id="usedocumentdata" style="color: inherit; text-decoration: none;">
+  <h4>useDocumentData</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">data</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useDocumentData</span><span class="hl-0">(</span><span class="hl-6">documentReference</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usedocumentdataonce" id="usedocumentdataonce" style="color: inherit; text-decoration: none;">
+  <h4>useDocumentDataOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">documentSnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useDocumentDataOnce</span><span class="hl-0">(</span><span class="hl-6">documentReference</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#usedocumentonce" id="usedocumentonce" style="color: inherit; text-decoration: none;">
+  <h4>useDocumentOnce</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">querySnap</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useDocumentData</span><span class="hl-0">(</span><span class="hl-6">documentReference</span><span class="hl-0">, </span><span class="hl-6">options</span><span class="hl-0">);</span>
+</code></pre>
+
+<a href="#storage" id="storage" style="color: inherit; text-decoration: none;">
+  <h3>Storage</h3>
+</a>
+<pre><code class="language-javascript"><span class="hl-1">import</span><span class="hl-0"> { ... } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-2">&#39;react-firehooks/storage&#39;</span><span class="hl-0">;</span>
+</code></pre>
+
+<a href="#usedownloadurl" id="usedownloadurl" style="color: inherit; text-decoration: none;">
+  <h4>useDownloadURL</h4>
+</a>
+<pre><code class="language-javascript"><span class="hl-3">const</span><span class="hl-0"> [</span><span class="hl-4">url</span><span class="hl-0">, </span><span class="hl-4">loading</span><span class="hl-0">, </span><span class="hl-4">error</span><span class="hl-0">] = </span><span class="hl-5">useDownloadURL</span><span class="hl-0">(</span><span class="hl-6">storageReference</span><span class="hl-0">);</span>
+</code></pre>
 
 <a href="#development" id="development" style="color: inherit; text-decoration: none;">
   <h2>Development</h2>
@@ -47,7 +184,7 @@
   <h3>Tests</h3>
 </a>
 <p>To run the tests, first install the dependencies, then run <code>npm test</code>. Watch mode can be started with <code>npm test -- --watch</code>.</p>
-<pre><code class="language-sh"><span class="hl-0">npm install</span><br/><span class="hl-0">npm </span><span class="hl-1">test</span>
+<pre><code class="language-sh"><span class="hl-0">npm install</span><br/><span class="hl-0">npm </span><span class="hl-5">test</span>
 </code></pre>
 
 <a href="#resources" id="resources" style="color: inherit; text-decoration: none;">
