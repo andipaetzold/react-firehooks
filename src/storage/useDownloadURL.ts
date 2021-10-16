@@ -1,8 +1,8 @@
 import { getDownloadURL, StorageError, StorageReference } from "firebase/storage";
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common";
-import { useIsMounted } from "../util/useIsMounted";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useIsMounted } from "../internal/useIsMounted";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import { useStableStorageRef } from "./internal";
 
 export type UseDownloadURLResult = ValueHookResult<string, StorageError>;

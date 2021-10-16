@@ -1,8 +1,8 @@
 import { DocumentData, FirestoreError, Query, SnapshotOptions } from "firebase/firestore";
 import { useEffect, useMemo } from "react";
 import type { ValueHookResult } from "../common/types";
-import { useIsMounted } from "../util/useIsMounted";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useIsMounted } from "../internal/useIsMounted";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import { getDocsFromSource, useStableQuery } from "./internal";
 import type { Source } from "./types";
 

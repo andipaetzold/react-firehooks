@@ -1,7 +1,7 @@
 import { Auth, AuthError, onAuthStateChanged, User } from "firebase/auth";
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useLoadingValue } from "../internal/useLoadingValue";
 
 export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
 

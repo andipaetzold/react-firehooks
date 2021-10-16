@@ -1,5 +1,5 @@
 import { Query } from "firebase/database";
-import { useStableValue } from "../util/useStableValue";
+import { useStableValue } from "../internal/useStableValue";
 
 /**
  * @internal

@@ -1,4 +1,4 @@
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import {
     DocumentData,
     DocumentReference,

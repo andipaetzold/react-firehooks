@@ -1,7 +1,7 @@
 import { DocumentData, FirestoreError, onSnapshot, Query, QuerySnapshot, SnapshotListenOptions } from "firebase/firestore";
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common/types";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import { useStableQuery } from "./internal";
 
 export type UseCollectionResult<Value extends DocumentData = DocumentData> = ValueHookResult<

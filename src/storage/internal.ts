@@ -1,5 +1,5 @@
 import { StorageReference } from "@firebase/storage";
-import { useStableValue } from "../util/useStableValue";
+import { useStableValue } from "../internal/useStableValue";
 
 /**
  * @internal

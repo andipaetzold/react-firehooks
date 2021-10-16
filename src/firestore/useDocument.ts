@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useMemo } from "react";
 import type { ValueHookResult } from "../common/types";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import { useStableDocRef } from "./internal";
 
 export type UseDocumentResult<Value extends DocumentData = DocumentData> = ValueHookResult<

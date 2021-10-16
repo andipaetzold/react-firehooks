@@ -13,7 +13,7 @@ import {
     QuerySnapshot,
     refEqual,
 } from "firebase/firestore";
-import { useStableValue } from "../util/useStableValue";
+import { useStableValue } from "../internal/useStableValue";
 import type { Source } from "./types";
 
 /**

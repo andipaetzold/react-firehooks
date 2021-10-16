@@ -1,7 +1,7 @@
 import { onValue, Query } from "firebase/database";
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common";
-import { useLoadingValue } from "../util/useLoadingValue";
+import { useLoadingValue } from "../internal/useLoadingValue";
 import { useStableQuery } from "./internal";
 
 export type UseObjectValueResult<Value = unknown> = ValueHookResult<Value, Error>;
