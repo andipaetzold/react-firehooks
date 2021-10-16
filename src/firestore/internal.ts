@@ -13,7 +13,6 @@ import {
     QuerySnapshot,
     refEqual,
 } from "firebase/firestore";
-import { useStableValue } from "../internal/useStableValue";
 import type { Source } from "./types";
 
 /**
@@ -53,7 +52,10 @@ export async function getDocsFromSource<Value extends DocumentData = DocumentDat
 /**
  * @internal
  */
-function isDocRefEqual<Value>(a: DocumentReference<Value> | undefined, b: DocumentReference<Value> | undefined): boolean {
+export function isDocRefEqual<Value>(
+    a: DocumentReference<Value> | undefined,
+    b: DocumentReference<Value> | undefined
+): boolean {
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && refEqual(a, b);
     return areBothUndefined || areSameRef;
@@ -62,24 +64,8 @@ function isDocRefEqual<Value>(a: DocumentReference<Value> | undefined, b: Docume
 /**
  * @internal
  */
-export function useStableDocRef<Value>(
-    reference: DocumentReference<Value> | undefined
-): DocumentReference<Value> | undefined {
-    return useStableValue(reference, isDocRefEqual);
-}
-
-/**
- * @internal
- */
-function isQueryEqual<Value>(a: Query<Value> | undefined, b: Query<Value> | undefined): boolean {
+export function isQueryEqual<Value>(a: Query<Value> | undefined, b: Query<Value> | undefined): boolean {
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && queryEqual(a, b);
     return areBothUndefined || areSameRef;
-}
-
-/**
- * @internal
- */
-export function useStableQuery<Value>(query: Query<Value> | undefined): Query<Value> | undefined {
-    return useStableValue(query, isQueryEqual);
 }

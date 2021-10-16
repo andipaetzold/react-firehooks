@@ -1,4 +1,3 @@
-import { useLoadingValue } from "../internal/useLoadingValue";
 import {
     DocumentData,
     DocumentReference,
@@ -7,9 +6,10 @@ import {
     SnapshotListenOptions,
     SnapshotOptions,
 } from "firebase/firestore";
-import { useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types";
-import { useStableDocRef } from "./internal";
+import { useListen, UseListenOnChange } from "../internal/useListen";
+import { isDocRefEqual } from "./internal";
 
 export type UseDocumentDataResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value, FirestoreError>;
 
@@ -38,24 +38,14 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
 ): UseDocumentDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
 
-    const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, FirestoreError>();
+    const onChange: UseListenOnChange<Value, FirestoreError, DocumentReference<Value>> = useCallback(
+        (stableRef, next, error) =>
+            onSnapshot<Value>(stableRef, snapshotListenOptions, {
+                next: (snap) => next(snap.data(snapshotOptions)),
+                error,
+            }),
+        []
+    );
 
-    const stableDocRef = useStableDocRef(reference ?? undefined);
-
-    useEffect(() => {
-        if (stableDocRef === undefined) {
-            setValue();
-        } else {
-            setLoading();
-
-            const unsubscribe = onSnapshot<Value>(stableDocRef, snapshotListenOptions, {
-                next: (snap) => setValue(snap.data(snapshotOptions)),
-                error: setError,
-            });
-
-            return () => unsubscribe();
-        }
-    }, [stableDocRef]);
-
-    return useMemo(() => [value, loading, error], [value, loading, error]);
+    return useListen(reference ?? undefined, onChange, isDocRefEqual);
 }

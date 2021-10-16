@@ -1,8 +1,8 @@
 import { DocumentData, FirestoreError, onSnapshot, Query, SnapshotListenOptions, SnapshotOptions } from "firebase/firestore";
-import { useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import { ValueHookResult } from "../common/types";
-import { useLoadingValue } from "../internal/useLoadingValue";
-import { useStableQuery } from "./internal";
+import { useListen, UseListenOnChange } from "../internal/useListen";
+import { isQueryEqual } from "./internal";
 
 export type UseCollectionDataResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value[], FirestoreError>;
 
@@ -31,24 +31,14 @@ export function useCollectionData<Value extends DocumentData = DocumentData>(
 ): UseCollectionDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
 
-    const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value[], FirestoreError>();
+    const onChange: UseListenOnChange<Value[], FirestoreError, Query<Value>> = useCallback(
+        (stableQuery, next, error) =>
+            onSnapshot<Value>(stableQuery, snapshotListenOptions, {
+                next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
+                error,
+            }),
+        []
+    );
 
-    const stableQuery = useStableQuery(query ?? undefined);
-
-    useEffect(() => {
-        if (stableQuery === undefined) {
-            setValue();
-        } else {
-            setLoading();
-
-            const unsubscribe = onSnapshot<Value>(stableQuery, snapshotListenOptions, {
-                next: (snap) => setValue(snap.docs.map((doc) => doc.data(snapshotOptions))),
-                error: setError,
-            });
-
-            return () => unsubscribe();
-        }
-    }, [stableQuery]);
-
-    return useMemo(() => [value, loading, error], [value, loading, error]);
+    return useListen(query ?? undefined, onChange, isQueryEqual);
 }

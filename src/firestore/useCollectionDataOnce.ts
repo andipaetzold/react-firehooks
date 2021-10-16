@@ -1,9 +1,8 @@
 import { DocumentData, FirestoreError, Query, SnapshotOptions } from "firebase/firestore";
-import { useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types";
-import { useIsMounted } from "../internal/useIsMounted";
-import { useLoadingValue } from "../internal/useLoadingValue";
-import { getDocsFromSource, useStableQuery } from "./internal";
+import { useOnce } from "../internal/useOnce";
+import { getDocsFromSource, isQueryEqual } from "./internal";
 import type { Source } from "./types";
 
 export type UseCollectionDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
@@ -36,37 +35,9 @@ export function useCollectionDataOnce<Value extends DocumentData = DocumentData>
 ): UseCollectionDataOnceResult<Value> {
     const { source = "default", snapshotOptions = {} } = options ?? {};
 
-    const isMounted = useIsMounted();
-    const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value[], FirestoreError>();
-
-    const stableQuery = useStableQuery(query ?? undefined);
-
-    useEffect(() => {
-        (async () => {
-            if (stableQuery === undefined) {
-                setValue();
-            } else {
-                setLoading();
-
-                try {
-                    const snap = await getDocsFromSource<Value>(stableQuery, source);
-
-                    if (!isMounted.current) {
-                        return;
-                    }
-
-                    setValue(snap.docs.map((doc) => doc.data(snapshotOptions)));
-                } catch (e) {
-                    if (!isMounted.current) {
-                        return;
-                    }
-
-                    // We assume this is always a FirestoreError
-                    setError(e as FirestoreError);
-                }
-            }
-        })();
-    }, [stableQuery]);
-
-    return useMemo(() => [value, loading, error], [value, loading, error]);
+    const getData = useCallback(async (stableQuery: Query<Value>) => {
+        const snap = await getDocsFromSource(stableQuery, source);
+        return snap.docs.map((doc) => doc.data(snapshotOptions));
+    }, []);
+    return useOnce(query ?? undefined, getData, isQueryEqual);
 }

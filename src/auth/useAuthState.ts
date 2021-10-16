@@ -1,7 +1,7 @@
 import { Auth, AuthError, onAuthStateChanged, User } from "firebase/auth";
-import { useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import { ValueHookResult } from "../common";
-import { useLoadingValue } from "../internal/useLoadingValue";
+import { useListen, UseListenOnChange } from "../internal/useListen";
 
 export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
 
@@ -15,18 +15,10 @@ export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
  * * error: `undefined` if no error occurred
  */
 export function useAuthState(auth: Auth): UseAuthStateResult {
-    const { error, loading, setError, setValue, value } = useLoadingValue<User | null, AuthError>(auth.currentUser);
+    const onChange: UseListenOnChange<User | null, AuthError, Auth> = useCallback(
+        (stableQuery, next, error) => onAuthStateChanged(stableQuery, next, (e) => error(e as AuthError)),
+        []
+    );
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(
-            auth,
-            setValue,
-            // We assume this is always a AuthError
-            (e) => setError(e as AuthError)
-        );
-
-        return () => unsubscribe();
-    }, [auth]);
-
-    return useMemo(() => [value, loading, error], [value, loading, error]);
+    return useListen(auth, onChange, () => true);
 }
