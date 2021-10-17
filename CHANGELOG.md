@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/andipaetzold/react-firehooks/compare/v1.3.1...v1.4.0) (2021-10-17)
+
+
+### Bug Fixes
+
+* **auth:** don't return loading state if currentUser is set ([fa53819](https://github.com/andipaetzold/react-firehooks/commit/fa53819683852f0546d158fe037a73b86dc4d53c))
+
+
+### Features
+
+* **messaging:** add useMessagingToken ([#9](https://github.com/andipaetzold/react-firehooks/issues/9)) ([8bc1f4e](https://github.com/andipaetzold/react-firehooks/commit/8bc1f4e5443ea4e0189bf054d017c96dcaabb2d2))
+
 ## [1.3.1](https://github.com/andipaetzold/react-firehooks/compare/v1.3.0...v1.3.1) (2021-10-17)
 
 
