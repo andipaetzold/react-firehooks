@@ -1,4 +1,4 @@
-import { StorageReference } from "@firebase/storage";
+import { StorageReference } from "firebase/storage";
 
 /**
  * @internal
