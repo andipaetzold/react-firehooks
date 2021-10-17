@@ -15,7 +15,7 @@ export interface UseObjectValueOptions<Value> {
 /**
  * Returns and updates the DataSnapshot of the Realtime Database query
  *
- * @template {Value} Type of the object value
+ * @template Value Type of the object value
  * @param {Query | undefined | null} query Realtime Database query
  * @param {?UseObjectValueOptions} options Options to configure how the object is fetched
  * * `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
@@ -37,3 +37,5 @@ export function useObjectValue<Value = unknown>(
 
     return useListen(query ?? undefined, onChange, isQueryEqual);
 }
+
+useObjectValue<string>(null);

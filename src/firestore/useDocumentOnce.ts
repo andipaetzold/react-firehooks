@@ -20,7 +20,7 @@ export interface UseDocumentOnceOptions {
 /**
  * Returns the DocumentSnapshot of a Firestore DocumentReference. Does not update the DocumentSnapshot once initially fetched
  *
- * @template {Value} Type of the document data
+ * @template Value Type of the document data
  * @param {DocumentReference<Value> | undefined | null} query Firestore DocumentReference that will be fetched
  * @param {?UseDocumentOnceOptions} options Options to configure how the document is fetched
  * @returns {UseDocumentOnceResult<Value>} DocumentSnapshot, loading state, and error

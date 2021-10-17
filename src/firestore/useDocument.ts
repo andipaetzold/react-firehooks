@@ -26,7 +26,7 @@ export interface UseDocumentOptions {
 /**
  * Returns and updates a DocumentSnapshot of a Firestore DocumentReference
  *
- * @template {Value} Type of the document data
+ * @template Value Type of the document data
  * @param {DocumentReference<Value> | undefined | null} query Firestore DocumentReference that will be subscribed to
  * @param {?UseDocumentOptions} options Options to configure the subscription
  * @returns {UseDocumentResult<Value>} Document snapshot, loading state, and error

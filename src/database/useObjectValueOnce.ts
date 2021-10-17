@@ -15,7 +15,7 @@ export interface UseObjectValueOnceOptions<Value> {
 /**
  * Returns the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
  *
- * @template {Value} Type of the object value
+ * @template Value Type of the object value
  * @param {Query | undefined | null} query Realtime Database query
  * @param {?UseObjectValueOnceOptions} options Options to configure how the object is fetched
  * * `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.

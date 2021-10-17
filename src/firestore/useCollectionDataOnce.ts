@@ -21,7 +21,7 @@ export interface UseCollectionDataOnceOptions {
 /**
  * Returns the data of a Firestore Query. Does not update the data once initially fetched
  *
- * @template {Value} Type of the collection data
+ * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be fetched
  * @param {?UseCollectionDataOnceOptions} options Options to configure how the query is fetched
  * @returns {UseCollectionDataOnceResult<Value>} Query data, loading state, and error

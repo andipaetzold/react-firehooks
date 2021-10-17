@@ -24,7 +24,7 @@ export interface UseDocumentDataOptions {
 /**
  * Returns and updates the data of a Firestore DocumentReference
  *
- * @template {Value} Type of the document data
+ * @template Value Type of the document data
  * @param {DocumentReference<Value> | undefined | null} query Firestore DocumentReference that will be subscribed to
  * @param {?UseDocumentDataOptions} options Options to configure the subscription
  * @returns {UseDocumentDataResult<Value>} Document data, loading state, and error

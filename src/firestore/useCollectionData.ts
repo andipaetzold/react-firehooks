@@ -17,7 +17,7 @@ export interface UseCollectionDataOptions {
 /**
  * Returns and updates a the document data of a Firestore Query
  *
- * @template {Value} Type of the collection data
+ * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be subscribed to
  * @param {?UseCollectionDataOptions} options Options to configure the subscription
  * @returns {UseCollectionDataResult<Value>} Query data, loading state, and error
