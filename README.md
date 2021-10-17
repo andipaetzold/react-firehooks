@@ -130,7 +130,7 @@ Returns:
 Returns and updates the DataSnapshot of the Realtime Database query
 
 ```javascript
-const [objectValue, loading, error] = useObjectValue(query);
+const [objectValue, loading, error] = useObjectValue(query, options);
 ```
 
 Params:
@@ -150,7 +150,7 @@ Returns:
 Returns the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
 
 ```javascript
-const [objectValue, loading, error] = useObjectValueOnce(query);
+const [objectValue, loading, error] = useObjectValueOnce(query, options);
 ```
 
 Params:
