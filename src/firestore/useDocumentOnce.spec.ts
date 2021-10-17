@@ -1,7 +1,8 @@
-import { DocumentReference, DocumentSnapshot } from "@firebase/firestore";
+import { DocumentReference, DocumentSnapshot, FirestoreError } from "@firebase/firestore";
 import { renderHook } from "@testing-library/react-hooks";
 import { getDocFromSource } from "./internal";
 import { useDocumentOnce } from "./useDocumentOnce";
+import { newPromise, newSymbol } from "../__testfixtures__";
 
 jest.mock("firebase/firestore", () => {
     const actual = jest.requireActual("firebase/firestore");
@@ -26,15 +27,15 @@ const getDocFromSourceMock = getDocFromSource as jest.Mock<
     Parameters<typeof getDocFromSource>
 >;
 
-const snap1 = Symbol("Snap 1") as unknown as DocumentSnapshot;
-const snap2 = Symbol("Snap 2") as unknown as DocumentSnapshot;
-const error = Symbol("Error");
+const snap1 = newSymbol<DocumentSnapshot>("Snap 1");
+const snap2 = newSymbol<DocumentSnapshot>("Snap 2");
+const error = newSymbol<FirestoreError>("Error");
 
-const refA1 = Symbol("DocRef A1") as unknown as DocumentReference<Symbol>;
-const refA2 = Symbol("DocRef A2") as unknown as DocumentReference<Symbol>;
+const refA1 = newSymbol<DocumentReference<Symbol>>("DocRef A1");
+const refA2 = newSymbol<DocumentReference<Symbol>>("DocRef A2");
 
-const refB1 = Symbol("DocRef B1") as unknown as DocumentReference<Symbol>;
-const refB2 = Symbol("DocRef B2") as unknown as DocumentReference<Symbol>;
+const refB1 = newSymbol<DocumentReference<Symbol>>("DocRef B1");
+const refB2 = newSymbol<DocumentReference<Symbol>>("DocRef B2");
 
 beforeEach(() => {
     jest.resetAllMocks();
@@ -158,14 +159,3 @@ describe("when ref changes", () => {
         });
     });
 });
-
-function newPromise<T>() {
-    let resolve: (value: T) => void;
-    let reject: (error: unknown) => void;
-    const promise = new Promise<T>((_resolve, _reject) => {
-        resolve = _resolve;
-        reject = _reject;
-    });
-    // @ts-ignore
-    return { promise, resolve, reject };
-}

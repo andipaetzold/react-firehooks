@@ -8,6 +8,7 @@ import {
     getDocsFromServer,
     Query,
 } from "firebase/firestore";
+import { newSymbol } from "../__testfixtures__";
 import { getDocFromSource, getDocsFromSource } from "./internal";
 
 jest.mock("firebase/firestore", () => {
@@ -39,7 +40,7 @@ describe("getDocFromSource", () => {
     >;
 
     it("uses default getDoc method", async () => {
-        const reference = Symbol("Reference") as unknown as DocumentReference;
+        const reference = newSymbol<DocumentReference>("Reference");
 
         await getDocFromSource(reference, "default");
 
@@ -47,7 +48,7 @@ describe("getDocFromSource", () => {
     });
 
     it("uses cache getDoc method", async () => {
-        const reference = Symbol("Reference") as unknown as DocumentReference;
+        const reference = newSymbol<DocumentReference>("Reference");
 
         await getDocFromSource(reference, "cache");
 
@@ -55,7 +56,7 @@ describe("getDocFromSource", () => {
     });
 
     it("uses server getDoc method", async () => {
-        const reference = Symbol("Reference") as unknown as DocumentReference;
+        const reference = newSymbol<DocumentReference>("Reference");
 
         await getDocFromSource(reference, "server");
 
@@ -75,7 +76,7 @@ describe("getDocsFromSource", () => {
     >;
 
     it("uses default getDocs method", async () => {
-        const query = Symbol("Snapshot") as unknown as Query;
+        const query = newSymbol<Query>("Query");
 
         await getDocsFromSource(query, "default");
 
@@ -83,7 +84,7 @@ describe("getDocsFromSource", () => {
     });
 
     it("uses cache getDocs method", async () => {
-        const query = Symbol("Snapshot") as unknown as Query;
+        const query = newSymbol<Query>("Query");
 
         await getDocsFromSource(query, "cache");
 
@@ -91,7 +92,7 @@ describe("getDocsFromSource", () => {
     });
 
     it("uses server getDocs method", async () => {
-        const query = Symbol("Snapshot") as unknown as Query;
+        const query = newSymbol<Query>("Query");
 
         await getDocsFromSource(query, "server");
 

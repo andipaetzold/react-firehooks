@@ -1,8 +1,9 @@
 import { renderHook } from "@testing-library/react-hooks";
+import { newSymbol } from "../__testfixtures__";
 import { useStableValue } from "./useStableValue";
 
-const value1 = Symbol("Value 1");
-const value2 = Symbol("Value 2");
+const value1 = newSymbol("Value 1");
+const value2 = newSymbol("Value 2");
 
 it("should return same value if values are equal", () => {
     const alwaysTrue = () => true;

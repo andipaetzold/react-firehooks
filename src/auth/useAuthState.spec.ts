@@ -1,6 +1,7 @@
 import { Auth, onAuthStateChanged, User } from "firebase/auth";
 import { renderHook } from "@testing-library/react-hooks";
 import { useAuthState } from "./useAuthState";
+import { newSymbol } from "../__testfixtures__";
 
 jest.mock("firebase/auth", () => {
     const actual = jest.requireActual("firebase/auth");
@@ -22,10 +23,8 @@ beforeEach(() => {
 
 describe("initial state", () => {
     it("should return currentUser when defined", () => {
-        const currentUser = Symbol("Current User") as unknown as User;
-        const mockAuth = {
-            currentUser,
-        } as Auth;
+        const currentUser = newSymbol<User>("Current User");
+        const mockAuth = { currentUser } as Auth;
 
         onAuthStateChangedMock.mockImplementation(() => () => {});
 

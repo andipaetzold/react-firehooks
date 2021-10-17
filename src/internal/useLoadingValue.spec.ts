@@ -1,8 +1,9 @@
 import { act, renderHook } from "@testing-library/react-hooks";
+import { newSymbol } from "../__testfixtures__";
 import { useLoadingValue } from "./useLoadingValue";
 
-const value = Symbol("Value");
-const error = Symbol("Error");
+const value = newSymbol("Value");
+const error = newSymbol("Error");
 
 describe("initial state", () => {
     it("without default value", () => {
