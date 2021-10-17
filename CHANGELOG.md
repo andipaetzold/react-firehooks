@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/andipaetzold/react-firehooks/compare/v1.3.0...v1.3.1) (2021-10-17)
+
+
+### Bug Fixes
+
+* **auth:** skip initial load if currentUser is set ([b345137](https://github.com/andipaetzold/react-firehooks/commit/b345137f83bf05e48c9906a887b84b4d744a1315))
+
 # [1.3.0](https://github.com/andipaetzold/react-firehooks/compare/v1.2.4...v1.3.0) (2021-10-17)
 
 
