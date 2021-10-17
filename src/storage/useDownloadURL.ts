@@ -1,5 +1,4 @@
 import { getDownloadURL, StorageError, StorageReference } from "firebase/storage";
-import { useCallback } from "react";
 import { ValueHookResult } from "../common";
 import { useOnce } from "../internal/useOnce";
 import { isStorageRefEqual } from "./internal";
@@ -16,6 +15,5 @@ export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
  * * error: `undefined` if no error occurred
  */
 export function useDownloadURL(reference: StorageReference | undefined | null): UseDownloadURLResult {
-    const getData = useCallback((stableRef: StorageReference) => getDownloadURL(stableRef), []);
-    return useOnce(reference ?? undefined, getData, isStorageRefEqual);
+    return useOnce(reference ?? undefined, getDownloadURL, isStorageRefEqual);
 }
