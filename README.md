@@ -129,6 +129,8 @@ const [objectValue, loading, error] = useObjectValue(query);
 Params:
 
 -   `query`: Realtime Database query
+-   `options`: Options to configure how the object is fetched
+    -   `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
 
 Returns:
 
@@ -147,6 +149,8 @@ const [objectValue, loading, error] = useObjectValueOnce(query);
 Params:
 
 -   `query`: Realtime Database query
+-   `options`: Options to configure how the object is fetched
+    -   `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
 
 Returns:
 
