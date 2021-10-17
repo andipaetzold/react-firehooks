@@ -8,4 +8,5 @@ CHANGELOG.md
 /auth/
 /database/
 /firestore/
+/messaging/
 /storage/
