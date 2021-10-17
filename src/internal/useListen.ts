@@ -18,9 +18,10 @@ export type UseListenOnChange<Value, Error, Reference> = (
 export function useListen<Value, Error, Reference>(
     reference: Reference | undefined,
     onChange: UseListenOnChange<Value, Error, Reference>,
-    isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean
+    isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
+    defaultValue?: Value
 ): ValueHookResult<Value, Error> {
-    const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>();
+    const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>(defaultValue);
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
 
