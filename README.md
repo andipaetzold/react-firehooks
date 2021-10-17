@@ -28,6 +28,10 @@ yarn add react-firehooks
 
 If you are using Firebase 8 or earlier, please use [`react-firebase-hooks`](https://www.npmjs.com/package/react-firebase-hooks).
 
+## Migrate from React Firebase Hooks
+
+If you previously used [`react-firebase-hooks`](https://www.npmjs.com/package/react-firebase-hooks) or [`react-firebase9-hooks`](https://www.npmjs.com/package/react-firebase9-hooks) and want to migrate to `react-firehooks`, please read this [migration document](https://github.com/andipaetzold/react-firehooks/blob/main/migrations/react-firebase-hooks.md) to learn what has changed and how your code needs to be adjusted.
+
 ## Usage
 
 [Type Documentation](https://andipaetzold.github.io/react-firehooks)
