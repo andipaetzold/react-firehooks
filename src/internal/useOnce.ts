@@ -5,7 +5,7 @@ import { useLoadingValue } from "./useLoadingValue";
 import { useStableValue } from "./useStableValue";
 
 /**
- * @interface
+ * @internal
  */
 export function useOnce<Value, Error, Reference>(
     reference: Reference | undefined,
