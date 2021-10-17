@@ -16,7 +16,7 @@ export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
  */
 export function useAuthState(auth: Auth): UseAuthStateResult {
     const onChange: UseListenOnChange<User | null, AuthError, Auth> = useCallback(
-        (stableQuery, next, error) => onAuthStateChanged(stableQuery, next, (e) => error(e as AuthError)),
+        (stableAuth, next, error) => onAuthStateChanged(stableAuth, next, (e) => error(e as AuthError)),
         []
     );
 

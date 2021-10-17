@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ValueHookResult } from "../common";
 import { useLoadingValue } from "./useLoadingValue";
 import { useStableValue } from "./useStableValue";
@@ -24,12 +24,19 @@ export function useListen<Value, Error, Reference>(
     const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>(defaultValue);
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
+    const firstRender = useRef<boolean>(true);
 
     useEffect(() => {
         if (stableRef === undefined) {
             setValue();
         } else {
-            setLoading();
+            // do not set loading state on first render
+            // otherwise, the defaultValue gets overwritten
+            if (firstRender.current) {
+                firstRender.current = false;
+            } else {
+                setLoading();
+            }
 
             const unsubscribe = onChange(stableRef, setValue, setError);
             return () => unsubscribe();
