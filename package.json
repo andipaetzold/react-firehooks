@@ -23,6 +23,10 @@
             "require": "./lib/cjs/firestore/index.js",
             "default": "./lib/esm/firestore/index.js"
         },
+        "./messaging": {
+            "require": "./lib/cjs/messaging/index.js",
+            "default": "./lib/esm/messaging/index.js"
+        },
         "./storage": {
             "require": "./lib/cjs/storage/index.js",
             "default": "./lib/esm/storage/index.js"
@@ -43,9 +47,10 @@
         "react",
         "hooks",
         "firebase",
-        "firestore",
-        "database",
         "auth",
+        "database",
+        "firestore",
+        "messaging",
         "storage"
     ],
     "author": {

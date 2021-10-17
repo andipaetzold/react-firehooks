@@ -7,4 +7,5 @@
 /auth/
 /database/
 /firestore/
+/messaging/
 /storage/
