@@ -32,8 +32,8 @@ describe("initial state", () => {
         expect(result.current).toStrictEqual([currentUser, false, undefined]);
     });
 
-    it("should return undefined when currentUser is undefined", () => {
-        const mockAuth = {} as Auth;
+    it("should return undefined when currentUser is null", () => {
+        const mockAuth = { currentUser: null } as Auth;
 
         onAuthStateChangedMock.mockImplementation(() => () => {});
 

@@ -20,5 +20,5 @@ export function useAuthState(auth: Auth): UseAuthStateResult {
         []
     );
 
-    return useListen(auth, onChange, () => true, auth.currentUser);
+    return useListen(auth, onChange, () => true, auth.currentUser ?? undefined);
 }
