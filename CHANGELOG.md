@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/andipaetzold/react-firehooks/compare/v1.4.0...v1.4.1) (2021-10-20)
+
+
+### Bug Fixes
+
+* **auth:** only use currentUser as default if signed in ([3c9086d](https://github.com/andipaetzold/react-firehooks/commit/3c9086dd845bcc488b942d8e129f8ac046fb1c02))
+
 # [1.4.0](https://github.com/andipaetzold/react-firehooks/compare/v1.3.1...v1.4.0) (2021-10-17)
 
 
