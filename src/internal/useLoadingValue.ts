@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 
-export const LoadingState = Symbol("LoadingState");
+export const LoadingState = Symbol();
 
 /**
  * @internal
