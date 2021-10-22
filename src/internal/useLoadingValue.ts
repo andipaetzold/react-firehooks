@@ -1,5 +1,7 @@
 import { useCallback, useMemo, useState } from "react";
 
+export const LoadingState = Symbol();
+
 /**
  * @internal
  */
@@ -13,7 +15,7 @@ interface State<Value, Error> {
  * @internal
  */
 export interface UseLoadingValueResult<Value, Error> {
-    value?: Value;
+    value: Value | undefined;
     setValue: (value?: Value) => void;
     loading: boolean;
     setLoading: () => void;
@@ -24,11 +26,13 @@ export interface UseLoadingValueResult<Value, Error> {
 /**
  * @internal
  */
-export function useLoadingValue<Value, Error = unknown>(defaultValue?: Value): UseLoadingValueResult<Value, Error> {
+export function useLoadingValue<Value, Error = unknown>(
+    initialState: Value | undefined | typeof LoadingState
+): UseLoadingValueResult<Value, Error> {
     const [state, setState] = useState<State<Value, Error>>({
         error: undefined,
-        loading: defaultValue === undefined ? true : false,
-        value: defaultValue,
+        loading: initialState === LoadingState ? true : false,
+        value: initialState === LoadingState ? undefined : initialState,
     });
 
     const setValue = useCallback((value?: Value) => {

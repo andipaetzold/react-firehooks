@@ -1,13 +1,13 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 import { newSymbol } from "../__testfixtures__";
-import { useLoadingValue } from "./useLoadingValue";
+import { LoadingState, useLoadingValue } from "./useLoadingValue";
 
 const value = newSymbol("Value");
 const error = newSymbol("Error");
 
 describe("initial state", () => {
     it("without default value", () => {
-        const { result } = renderHook(() => useLoadingValue());
+        const { result } = renderHook(() => useLoadingValue(LoadingState));
 
         expect(result.current.value).toBeUndefined();
         expect(result.current.loading).toBe(true);
@@ -18,6 +18,14 @@ describe("initial state", () => {
         const { result } = renderHook(() => useLoadingValue(value));
 
         expect(result.current.value).toBe(value);
+        expect(result.current.loading).toBe(false);
+        expect(result.current.error).toBeUndefined();
+    });
+
+    it("with default value undefined", () => {
+        const { result } = renderHook(() => useLoadingValue(undefined));
+
+        expect(result.current.value).toBe(undefined);
         expect(result.current.loading).toBe(false);
         expect(result.current.error).toBeUndefined();
     });
@@ -34,7 +42,7 @@ describe("setValue", () => {
     });
 
     it("with a value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>());
+        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
         act(() => result.current.setValue(value));
 
         expect(result.current.value).toBe(value);
@@ -43,7 +51,7 @@ describe("setValue", () => {
     });
 
     it("with error", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>());
+        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
         act(() => result.current.setError(error));
 
         act(() => result.current.setValue(value));
@@ -56,7 +64,7 @@ describe("setValue", () => {
 
 describe("setError", () => {
     it("without value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>());
+        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
         act(() => result.current.setError(error));
 
         expect(result.current.value).toBeUndefined();

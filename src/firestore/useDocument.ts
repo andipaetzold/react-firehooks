@@ -9,6 +9,7 @@ import {
 import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types";
 import { useListen, UseListenOnChange } from "../internal/useListen";
+import { LoadingState } from "../internal/useLoadingValue";
 import { isDocRefEqual } from "./internal";
 
 export type UseDocumentResult<Value extends DocumentData = DocumentData> = ValueHookResult<
@@ -49,5 +50,5 @@ export function useDocument<Value extends DocumentData = DocumentData>(
         []
     );
 
-    return useListen(reference ?? undefined, onChange, isDocRefEqual);
+    return useListen(reference ?? undefined, onChange, isDocRefEqual, LoadingState);
 }

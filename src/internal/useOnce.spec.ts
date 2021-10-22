@@ -1,5 +1,7 @@
 import { renderHook } from "@testing-library/react-hooks";
 import { newPromise, newSymbol } from "../__testfixtures__";
+import { useListen } from "./useListen";
+import { LoadingState } from "./useLoadingValue";
 import { useOnce } from "./useOnce";
 
 const result1 = newSymbol("Result 1");
@@ -21,18 +23,21 @@ beforeEach(() => {
 });
 
 describe("initial state", () => {
-    it("should return loading=false for undefined ref", () => {
-        const { result } = renderHook(() => useOnce(undefined, getData, isEqual));
-
-        expect(result.current).toStrictEqual([undefined, false, undefined]);
-    });
-
-    it("should return loading=true for defined ref", () => {
-        getData.mockImplementation(() => newPromise<string>().promise);
-
-        const { result } = renderHook(() => useOnce(refA1, getData, isEqual));
-        expect(result.current).toStrictEqual([undefined, true, undefined]);
-    });
+    it.each`
+        reference    | initialState    | expectedValue | expectedLoading
+        ${undefined} | ${result1}      | ${undefined}  | ${false}
+        ${undefined} | ${undefined}    | ${undefined}  | ${false}
+        ${undefined} | ${LoadingState} | ${undefined}  | ${false}
+        ${refA1}     | ${result1}      | ${result1}    | ${false}
+        ${refA1}     | ${undefined}    | ${undefined}  | ${false}
+        ${refA1}     | ${LoadingState} | ${undefined}  | ${true}
+    `(
+        "reference=$reference initialState=$initialState",
+        ({ reference, initialState, expectedValue, expectedLoading }: any) => {
+            const { result } = renderHook(() => useListen(reference, getData, isEqual, initialState));
+            expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
+        }
+    );
 });
 
 describe("initial load", () => {
