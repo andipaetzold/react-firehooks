@@ -1,6 +1,7 @@
 import { DataSnapshot, onValue, Query } from "firebase/database";
 import { ValueHookResult } from "../common";
 import { useListen } from "../internal/useListen";
+import { LoadingState } from "../internal/useLoadingValue";
 import { isQueryEqual } from "./internal";
 
 export type UseObjectResult = ValueHookResult<DataSnapshot, Error>;
@@ -15,5 +16,5 @@ export type UseObjectResult = ValueHookResult<DataSnapshot, Error>;
  * * error: `undefined` if no error occurred
  */
 export function useObject(query: Query | undefined | null): UseObjectResult {
-    return useListen(query ?? undefined, onValue, isQueryEqual);
+    return useListen(query ?? undefined, onValue, isQueryEqual, LoadingState);
 }

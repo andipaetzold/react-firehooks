@@ -1,6 +1,7 @@
 import { act, renderHook } from "@testing-library/react-hooks";
 import { newSymbol } from "../__testfixtures__";
 import { useListen } from "./useListen";
+import { LoadingState } from "./useLoadingValue";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
@@ -24,35 +25,26 @@ beforeEach(() => {
 });
 
 describe("initial state", () => {
-    it("with undefined reference", () => {
-        const { result } = renderHook(() => useListen(undefined, onChange, isEqual));
-
-        expect(onChange).toHaveBeenCalledTimes(0);
-        expect(result.current).toStrictEqual([undefined, false, undefined]);
-    });
-
-    it("with defined reference", () => {
-        const { result } = renderHook(() => useListen(refA1, onChange, isEqual));
-
-        expect(onChange).toHaveBeenCalledTimes(1);
-        expect(onChange).toHaveBeenCalledWith(refA1, expect.any(Function), expect.any(Function));
-
-        expect(result.current).toStrictEqual([undefined, true, undefined]);
-    });
-
-    it("with default value", () => {
-        const { result } = renderHook(() => useListen(refA1, onChange, isEqual, result1));
-
-        expect(onChange).toHaveBeenCalledTimes(1);
-        expect(onChange).toHaveBeenCalledWith(refA1, expect.any(Function), expect.any(Function));
-
-        expect(result.current).toStrictEqual([result1, false, undefined]);
-    });
+    it.each`
+        reference    | initialState    | expectedValue | expectedLoading
+        ${undefined} | ${result1}      | ${undefined}  | ${false}
+        ${undefined} | ${undefined}    | ${undefined}  | ${false}
+        ${undefined} | ${LoadingState} | ${undefined}  | ${false}
+        ${refA1}     | ${result1}      | ${result1}    | ${false}
+        ${refA1}     | ${undefined}    | ${undefined}  | ${false}
+        ${refA1}     | ${LoadingState} | ${undefined}  | ${true}
+    `(
+        "reference=$reference initialState=$initialState",
+        ({ reference, initialState, expectedValue, expectedLoading }: any) => {
+            const { result } = renderHook(() => useListen(reference, onChange, isEqual, initialState));
+            expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
+        }
+    );
 });
 
 describe("when changing ref", () => {
     it("should not resubscribe for equal ref", () => {
-        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual), {
+        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
             initialProps: { ref: refA1 },
         });
 
@@ -64,7 +56,7 @@ describe("when changing ref", () => {
     });
 
     it("should resubscribe for different ref", () => {
-        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual), {
+        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
             initialProps: { ref: refA1 },
         });
 
@@ -79,7 +71,7 @@ describe("when changing ref", () => {
 });
 
 it("should return emitted values", () => {
-    const { result } = renderHook(() => useListen(refA1, onChange, isEqual));
+    const { result } = renderHook(() => useListen(refA1, onChange, isEqual, LoadingState));
     const setValue = onChange.mock.calls[0][1];
 
     expect(result.current).toStrictEqual([undefined, true, undefined]);
@@ -96,7 +88,7 @@ it("should return emitted values", () => {
 });
 
 it("should return emitted error", () => {
-    const { result } = renderHook(() => useListen(refA1, onChange, isEqual));
+    const { result } = renderHook(() => useListen(refA1, onChange, isEqual, LoadingState));
     const setValue = onChange.mock.calls[0][1];
     const setError = onChange.mock.calls[0][2];
 

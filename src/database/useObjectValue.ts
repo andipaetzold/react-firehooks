@@ -2,6 +2,7 @@ import { DataSnapshot, onValue, Query } from "firebase/database";
 import { useCallback } from "react";
 import { ValueHookResult } from "../common";
 import { useListen, UseListenOnChange } from "../internal/useListen";
+import { LoadingState } from "../internal/useLoadingValue";
 import { isQueryEqual } from "./internal";
 
 export type UseObjectValueResult<Value = unknown> = ValueHookResult<Value, Error>;
@@ -35,7 +36,5 @@ export function useObjectValue<Value = unknown>(
         []
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual);
+    return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
 }
-
-useObjectValue<string>(null);

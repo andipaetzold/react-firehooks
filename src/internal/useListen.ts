@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import { ValueHookResult } from "../common";
-import { useLoadingValue } from "./useLoadingValue";
+import { useLoadingValue, LoadingState } from "./useLoadingValue";
 import { useStableValue } from "./useStableValue";
 
 /**
@@ -19,9 +19,11 @@ export function useListen<Value, Error, Reference>(
     reference: Reference | undefined,
     onChange: UseListenOnChange<Value, Error, Reference>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
-    defaultValue?: Value
+    initialState: Value | typeof LoadingState
 ): ValueHookResult<Value, Error> {
-    const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>(defaultValue);
+    const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>(
+        reference === undefined ? undefined : initialState
+    );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
     const firstRender = useRef<boolean>(true);

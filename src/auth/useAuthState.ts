@@ -2,6 +2,7 @@ import { Auth, AuthError, onAuthStateChanged, User } from "firebase/auth";
 import { useCallback } from "react";
 import { ValueHookResult } from "../common";
 import { useListen, UseListenOnChange } from "../internal/useListen";
+import { LoadingState } from "../internal/useLoadingValue";
 
 export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
 
@@ -20,5 +21,5 @@ export function useAuthState(auth: Auth): UseAuthStateResult {
         []
     );
 
-    return useListen(auth, onChange, () => true, auth.currentUser ?? undefined);
+    return useListen(auth, onChange, () => true, auth.currentUser ? auth.currentUser : LoadingState);
 }

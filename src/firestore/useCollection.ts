@@ -2,6 +2,7 @@ import { DocumentData, FirestoreError, onSnapshot, Query, QuerySnapshot, Snapsho
 import { useCallback } from "react";
 import { ValueHookResult } from "../common/types";
 import { useListen, UseListenOnChange } from "../internal/useListen";
+import { LoadingState } from "../internal/useLoadingValue";
 import { isQueryEqual } from "./internal";
 
 export type UseCollectionResult<Value extends DocumentData = DocumentData> = ValueHookResult<
@@ -42,5 +43,5 @@ export function useCollection<Value extends DocumentData = DocumentData>(
         []
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual);
+    return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
 }

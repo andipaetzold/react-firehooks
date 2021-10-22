@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common";
 import { useIsMounted } from "./useIsMounted";
-import { useLoadingValue } from "./useLoadingValue";
+import { LoadingState, useLoadingValue } from "./useLoadingValue";
 import { useStableValue } from "./useStableValue";
 
 /**
@@ -13,7 +13,9 @@ export function useOnce<Value, Error, Reference>(
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean
 ): ValueHookResult<Value, Error> {
     const isMounted = useIsMounted();
-    const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, Error>();
+    const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, Error>(
+        reference === undefined ? undefined : LoadingState
+    );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
 
