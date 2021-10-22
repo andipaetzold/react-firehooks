@@ -1,3 +1,10 @@
+## [1.4.2](https://github.com/andipaetzold/react-firehooks/compare/v1.4.1...v1.4.2) (2021-10-22)
+
+
+### Bug Fixes
+
+* loading state for undefined refs/queries ([#16](https://github.com/andipaetzold/react-firehooks/issues/16)) ([385a5de](https://github.com/andipaetzold/react-firehooks/commit/385a5def225df12b521b83896495104ea0e9d82f))
+
 ## [1.4.1](https://github.com/andipaetzold/react-firehooks/compare/v1.4.0...v1.4.1) (2021-10-20)
 
 
