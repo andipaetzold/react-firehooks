@@ -43,30 +43,76 @@ describe("initial state", () => {
 });
 
 describe("when changing ref", () => {
-    it("should not resubscribe for equal ref", () => {
-        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
+    it("should not resubscribe for equal ref", async () => {
+        // first ref
+        const { result, rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
             initialProps: { ref: refA1 },
         });
-
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
         expect(onChange).toHaveBeenCalledTimes(1);
 
-        rerender({ ref: refA2 });
+        // emit value
+        act(() => onChange.mock.calls[0][1](result1));
+        expect(result.current).toStrictEqual([result1, false, undefined]);
 
+        // change ref
+        rerender({ ref: refA2 });
+        expect(result.current).toStrictEqual([result1, false, undefined]);
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
         expect(onChange).toHaveBeenCalledTimes(1);
     });
 
     it("should resubscribe for different ref", () => {
-        const { rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
+        // first ref
+        const { result, rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
+            initialProps: { ref: refA1 },
+        });
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
+        expect(onChange).toHaveBeenCalledTimes(1);
+
+        // emit value
+        act(() => onChange.mock.calls[0][1](result1));
+        expect(result.current).toStrictEqual([result1, false, undefined]);
+
+        // change ref
+        rerender({ ref: refB1 });
+        expect(result.current).toStrictEqual([undefined, true, undefined]);
+        expect(onChange).toHaveBeenCalledTimes(2);
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(1);
+
+        // emit value
+        act(() => onChange.mock.calls[1][1](result2));
+        expect(result.current).toStrictEqual([result2, false, undefined]);
+    });
+
+    it("from undefined ref to defined", () => {
+        const { result, rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
+            initialProps: { ref: undefined },
+        });
+
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
+        expect(onChange).toHaveBeenCalledTimes(0);
+
+        rerender({ ref: refA1 });
+        expect(result.current).toStrictEqual([undefined, true, undefined]);
+
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
+        expect(onChange).toHaveBeenCalledTimes(1);
+    });
+
+    it("from defined ref to undefined", () => {
+        const { result, rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
             initialProps: { ref: refA1 },
         });
 
         expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
         expect(onChange).toHaveBeenCalledTimes(1);
 
-        rerender({ ref: refB1 });
+        rerender({ ref: undefined });
+        expect(result.current).toStrictEqual([undefined, false, undefined]);
 
-        expect(onChange).toHaveBeenCalledTimes(2);
         expect(onChangeUnsubscribe).toHaveBeenCalledTimes(1);
+        expect(onChange).toHaveBeenCalledTimes(1);
     });
 });
 

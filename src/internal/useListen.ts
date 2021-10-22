@@ -30,7 +30,12 @@ export function useListen<Value, Error, Reference>(
 
     useEffect(() => {
         if (stableRef === undefined) {
-            setValue();
+            // value doesn't change on first render with undefined ref
+            if (firstRender.current) {
+                firstRender.current = false;
+            } else {
+                setValue();
+            }
         } else {
             // do not set loading state on first render
             // otherwise, the defaultValue gets overwritten
