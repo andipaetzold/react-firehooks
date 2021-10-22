@@ -31,7 +31,7 @@ export function useLoadingValue<Value, Error = unknown>(
 ): UseLoadingValueResult<Value, Error> {
     const [state, setState] = useState<State<Value, Error>>({
         error: undefined,
-        loading: initialState == LoadingState ? true : false,
+        loading: initialState === LoadingState ? true : false,
         value: initialState === LoadingState ? undefined : initialState,
     });
 
