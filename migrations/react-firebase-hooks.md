@@ -21,9 +21,50 @@ This document explains the difference between [`react-firebase-hooks`](https://w
 ## Firestore
 
 -   `options.getOptions.source` was moved to `options.source`
--   `options.idField` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead.
--   `options.refField` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead.
--   `options.transform` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead.
+-   `options.idField` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead:
+
+```javascript
+const ref = doc(firestore, "collection", "doc");
+
+const converter = {
+    toFirestore: (data) => data,
+    fromFirestore: (snap) => ({
+        id: snap.id,
+        ...snap.data(),
+    }),
+};
+
+const [data] = useDocumentData(ref.withConverter(converter));
+```
+
+-   `options.refField` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead:
+
+```javascript
+const ref = doc(firestore, "collection", "doc");
+
+const converter = {
+    toFirestore: (data) => data,
+    fromFirestore: (snap) => ({
+        ref: snap.ref,
+        ...snap.data(),
+    }),
+};
+
+const [data] = useDocumentData(ref.withConverter(converter));
+```
+
+-   `options.transform` was removed. Use [Firestore Converters](https://firebase.google.com/docs/reference/js/firestore_.firestoredataconverter) instead:
+
+```javascript
+const ref = doc(firestore, "collection", "doc");
+
+const converter = {
+    toFirestore: (data) => data,
+    fromFirestore: (snap) => transform(snap.data()),
+};
+
+const [data] = useDocumentData(ref.withConverter(converter));
+```
 
 ## Storage
 
