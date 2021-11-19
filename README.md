@@ -57,6 +57,7 @@ This library consists of 4 modules with many hooks:
 -   [`messaging`](#Messaging)
     -   [`useMessagingToken`](#useMessagingToken)
 -   [`storage`](#Storage)
+    -   [`useBytes`](#useBytes)
     -   [`useDownloadURL`](#useDownloadURL)
 
 All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
@@ -355,6 +356,25 @@ Returns:
 ```javascript
 import { ... } from 'react-firehooks/storage';
 ```
+
+#### useBytes
+
+Returns the data of a Google Cloud Storage object
+
+```javascript
+const [data, loading, error] = useBytes(storageReference);
+```
+
+Params:
+
+-   `reference`: Reference to a Google Cloud Storage object
+-   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+
+Returns:
+
+-   `value`: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
+-   `loading`: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 #### useDownloadURL
 
