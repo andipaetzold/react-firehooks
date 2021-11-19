@@ -1,5 +1,4 @@
 import type { StorageError, StorageReference } from "firebase/storage";
-import * as firebaseStorage from "firebase/storage";
 import { useCallback } from "react";
 import { ValueHookResult } from "../common";
 import { useOnce } from "../internal/useOnce";
@@ -22,6 +21,8 @@ export type UseBytesResult = ValueHookResult<ArrayBuffer, StorageError>;
 export function useBytes(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseBytesResult {
     const fetchBytes = useCallback(
         async (ref: StorageReference) => {
+            // TODO: change to regular import in react-firehooks v2
+            const firebaseStorage = await require("firebase/storage");
             if ("getBytes" in firebaseStorage) {
                 return await firebaseStorage.getBytes(ref, maxDownloadSizeBytes);
             } else {
