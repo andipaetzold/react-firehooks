@@ -1,3 +1,10 @@
+# [1.5.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v1.4.2...v1.5.0-next.1) (2021-11-19)
+
+
+### Features
+
+* **storage:** add `useBytes` ([205869c](https://github.com/andipaetzold/react-firehooks/commit/205869c5b372e69112280400e3a652e4502a7a41))
+
 ## [1.4.2](https://github.com/andipaetzold/react-firehooks/compare/v1.4.1...v1.4.2) (2021-10-22)
 
 
