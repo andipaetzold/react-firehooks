@@ -1,3 +1,10 @@
+# [1.5.0-next.2](https://github.com/andipaetzold/react-firehooks/compare/v1.5.0-next.1...v1.5.0-next.2) (2021-11-19)
+
+
+### Bug Fixes
+
+* **storage:** use `require` in `useBytes` ([9822fa0](https://github.com/andipaetzold/react-firehooks/commit/9822fa03a4c2f1cf0c7809c049073157a2a20bbc))
+
 # [1.5.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v1.4.2...v1.5.0-next.1) (2021-11-19)
 
 
