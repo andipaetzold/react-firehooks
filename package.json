@@ -70,7 +70,7 @@
         "@tsconfig/recommended": "1.0.1",
         "@types/jest": "27.0.3",
         "@types/react": "17.0.35",
-        "firebase": "9.5.0",
+        "firebase": "9.6.0",
         "husky": "7.0.4",
         "jest": "27.3.1",
         "lint-staged": "12.0.3",
