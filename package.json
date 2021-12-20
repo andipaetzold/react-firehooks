@@ -2,34 +2,27 @@
     "name": "react-firehooks",
     "version": "1.6.0",
     "description": "Lightweight dependency-free collection of React hooks for Firebase",
-    "main": "./lib/cjs/index.js",
-    "module": "./lib/esm/index.js",
-    "types": "./lib/types/index.d.ts",
+    "main": "./lib/index.js",
+    "types": "./lib/index.d.ts",
     "sideEffects": false,
     "exports": {
         ".": {
-            "require": "./lib/cjs/index.js",
-            "default": "./lib/esm/index.js"
+            "default": "./lib/index.js"
         },
         "./auth": {
-            "require": "./lib/cjs/auth/index.js",
-            "default": "./lib/esm/auth/index.js"
+            "default": "./lib/auth/index.js"
         },
         "./database": {
-            "require": "./lib/cjs/database/index.js",
-            "default": "./lib/esm/database/index.js"
+            "default": "./lib/database/index.js"
         },
         "./firestore": {
-            "require": "./lib/cjs/firestore/index.js",
-            "default": "./lib/esm/firestore/index.js"
+            "default": "./lib/firestore/index.js"
         },
         "./messaging": {
-            "require": "./lib/cjs/messaging/index.js",
-            "default": "./lib/esm/messaging/index.js"
+            "default": "./lib/messaging/index.js"
         },
         "./storage": {
-            "require": "./lib/cjs/storage/index.js",
-            "default": "./lib/esm/storage/index.js"
+            "default": "./lib/storage/index.js"
         }
     },
     "files": [
@@ -86,9 +79,8 @@
     },
     "scripts": {
         "prepublishOnly": "npm run build",
-        "build": "rimraf lib && npm run build:cjs && npm run build:esm && npm run build:modules",
-        "build:cjs": "rimraf lib/cjs && tsc --module commonjs --outDir lib/cjs",
-        "build:esm": "rimraf lib/esm && tsc --module ES2015 --outDir lib/esm",
+        "build": "npm run build:esm && npm run build:modules",
+        "build:esm": "rimraf lib && tsc",
         "build:modules": "node ./scripts/create-modules.js",
         "test": "jest",
         "semantic-release": "semantic-release",
