@@ -1,3 +1,10 @@
+# [2.0.0-next-major.2](https://github.com/andipaetzold/react-firehooks/compare/v2.0.0-next-major.1...v2.0.0-next-major.2) (2021-12-21)
+
+
+### Bug Fixes
+
+* move default exports condition to end ([0562179](https://github.com/andipaetzold/react-firehooks/commit/05621793c6515426d738bf02d573512ec14e8fdc))
+
 # [2.0.0-next-major.1](https://github.com/andipaetzold/react-firehooks/compare/v1.6.0...v2.0.0-next-major.1) (2021-12-21)
 
 
