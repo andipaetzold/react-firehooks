@@ -1,3 +1,20 @@
+# [2.0.0-next-major.1](https://github.com/andipaetzold/react-firehooks/compare/v1.6.0...v2.0.0-next-major.1) (2021-12-21)
+
+
+* feat!: require firebase 9.5.0 or later ([5dd8110](https://github.com/andipaetzold/react-firehooks/commit/5dd81103bfffc1faf018e7661bddebb066ed4288))
+* feat!: make package ESM only ([8d47128](https://github.com/andipaetzold/react-firehooks/commit/8d47128ceee8a8d1f68977d03230854105592051))
+
+
+### Features
+
+* **storage:** add useBlob & useStream ([f92ca24](https://github.com/andipaetzold/react-firehooks/commit/f92ca246cfd2d12777dd27f5003af6f9246f7018))
+
+
+### BREAKING CHANGES
+
+* require firebase 9.5.0 or later
+* make package ESM only
+
 # [1.6.0](https://github.com/andipaetzold/react-firehooks/compare/v1.5.1...v1.6.0) (2021-12-21)
 
 
