@@ -6,5 +6,5 @@
         "declaration": true,
         "outDir": "lib"
     },
-    "files": ["src/index.ts"]
+    "files": ["src/index.ts", "src/index.browser.ts", "src/index.node.ts"]
 }

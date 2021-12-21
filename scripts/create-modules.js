@@ -6,6 +6,13 @@ for (const module of modules) {
         main: `../lib/${module}/index.js`,
         types: `../lib/${module}/index.d.ts`,
         sideEffects: false,
+        exports: {
+            ".": {
+                default: `../lib/${module}/index.js`,
+                browser: `../lib/${module}/index.browser.js`,
+                node: `../lib/${module}/index.node.js`,
+            },
+        },
     };
 
     if (!fs.existsSync(module)) {
