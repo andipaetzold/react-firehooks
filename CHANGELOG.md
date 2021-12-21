@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/andipaetzold/react-firehooks/compare/v1.5.0...v1.5.1) (2021-12-21)
+
+
+### Bug Fixes
+
+* add missing `messaging` folder to package ([0fbfc6d](https://github.com/andipaetzold/react-firehooks/commit/0fbfc6de903ca359f1d249b3eee57272194305b6))
+
 # [1.5.0](https://github.com/andipaetzold/react-firehooks/compare/v1.4.2...v1.5.0) (2021-11-19)
 
 
