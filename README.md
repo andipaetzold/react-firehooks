@@ -394,6 +394,24 @@ Returns:
 -   `loading`: `true` while fetching the download URL; `false` if the download URL was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
+#### useMetadata
+
+Returns the metadata of a Google Cloud Storage object
+
+```javascript
+const [metadata, loading, error] = useMetadata(storageReference);
+```
+
+Params:
+
+-   `reference`: Reference to a Google Cloud Storage object
+
+Returns:
+
+-   `value`: Metadata; `undefined` if metadata is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the metadata; `false` if the metadata was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 ## Development
 
 ### Build
