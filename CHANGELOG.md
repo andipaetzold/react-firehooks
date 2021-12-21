@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/andipaetzold/react-firehooks/compare/v1.5.1...v1.6.0) (2021-12-21)
+
+
+### Features
+
+* **storage:** add useMetadata ([dbb25e0](https://github.com/andipaetzold/react-firehooks/commit/dbb25e042c57e5cdf1dde36b0aea5ca0d7aeca6e))
+
 ## [1.5.1](https://github.com/andipaetzold/react-firehooks/compare/v1.5.0...v1.5.1) (2021-12-21)
 
 
