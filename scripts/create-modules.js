@@ -8,9 +8,9 @@ for (const module of modules) {
         sideEffects: false,
         exports: {
             ".": {
-                default: `../lib/${module}/index.js`,
                 browser: `../lib/${module}/index.browser.js`,
                 node: `../lib/${module}/index.node.js`,
+                default: `../lib/${module}/index.js`,
             },
         },
     };

@@ -7,29 +7,29 @@
     "sideEffects": false,
     "exports": {
         ".": {
-            "default": "./lib/index.js",
             "browser": "./lib/index.browser.js",
-            "node": "./lib/index.node.js"
+            "node": "./lib/index.node.js",
+            "default": "./lib/index.js"
         },
         "./auth": {
-            "default": "./lib/auth/index.js",
             "browser": "./lib/auth/index.browser.js",
-            "node": "./lib/auth/index.node.js"
+            "node": "./lib/auth/index.node.js",
+            "default": "./lib/auth/index.js"
         },
         "./database": {
-            "default": "./lib/database/index.js",
             "browser": "./lib/database/index.browser.js",
-            "node": "./lib/database/index.node.js"
+            "node": "./lib/database/index.node.js",
+            "default": "./lib/database/index.js"
         },
         "./firestore": {
-            "default": "./lib/firestore/index.js",
             "browser": "./lib/firestore/index.browser.js",
-            "node": "./lib/firestore/index.node.js"
+            "node": "./lib/firestore/index.node.js",
+            "default": "./lib/firestore/index.js"
         },
         "./messaging": {
-            "default": "./lib/messaging/index.js",
             "browser": "./lib/messaging/index.browser.js",
-            "node": "./lib/messaging/index.node.js"
+            "node": "./lib/messaging/index.node.js",
+            "default": "./lib/messaging/index.js"
         },
         "./storage": {
             "default": "./lib/storage/index.js",
