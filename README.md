@@ -23,8 +23,8 @@ yarn add react-firehooks
 
 ## Compatibility
 
--   [firebase](https://www.npmjs.com/package/firebase): 9.0.0 or greater
--   [react](https://www.npmjs.com/package/react): 16.8.0 or greater
+-   [firebase](https://www.npmjs.com/package/firebase): 9.5.0 or later
+-   [react](https://www.npmjs.com/package/react): 16.8.0 or later
 
 If you are using Firebase 8 or earlier, please use [`react-firebase-hooks`](https://www.npmjs.com/package/react-firebase-hooks).
 
