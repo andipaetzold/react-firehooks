@@ -32,9 +32,9 @@
             "default": "./lib/messaging/index.js"
         },
         "./storage": {
-            "default": "./lib/storage/index.js",
             "browser": "./lib/storage/index.browser.js",
-            "node": "./lib/storage/index.node.js"
+            "node": "./lib/storage/index.node.js",
+            "default": "./lib/storage/index.js"
         }
     },
     "files": [
