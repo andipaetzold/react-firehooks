@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/andipaetzold/react-firehooks/compare/v1.6.0...v1.7.0) (2021-12-29)
+
+
+### Features
+
+* **storage:** add useBlob and useStream ([979b798](https://github.com/andipaetzold/react-firehooks/commit/979b7987704bd3731cdd59668b5496adb7c60fa5))
+
 # [1.6.0](https://github.com/andipaetzold/react-firehooks/compare/v1.5.1...v1.6.0) (2021-12-21)
 
 
