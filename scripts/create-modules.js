@@ -1,11 +1,10 @@
-const fs = require("fs");
+import fs from "fs";
 
 const modules = ["auth", "database", "firestore", "messaging", "storage"];
 for (const module of modules) {
     const packageJson = {
-        main: `../lib/cjs/${module}/index.js`,
-        module: `../lib/esm/${module}/index.js`,
-        types: `../lib/types/${module}/index.d.ts`,
+        main: `../lib/${module}/index.js`,
+        types: `../lib/${module}/index.d.ts`,
         sideEffects: false,
     };
 
