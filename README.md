@@ -60,6 +60,7 @@ This library consists of 4 modules with many hooks:
     -   [`useBlob`](#useBlob)
     -   [`useBytes`](#useBytes)
     -   [`useDownloadURL`](#useDownloadURL)
+    -   [`useMetadata`](#useMetadata)
     -   [`useStream`](#useStream)
 
 All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
