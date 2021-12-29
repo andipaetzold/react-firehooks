@@ -1,6 +1,6 @@
 {
     "name": "react-firehooks",
-    "version": "1.7.0",
+    "version": "2.0.0",
     "description": "Lightweight dependency-free collection of React hooks for Firebase",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",

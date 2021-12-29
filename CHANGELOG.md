@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/andipaetzold/react-firehooks/compare/v1.7.0...v2.0.0) (2021-12-29)
+
+
+### Features
+
+* make package ESM only ([2fff54d](https://github.com/andipaetzold/react-firehooks/commit/2fff54dd26264f18a4afaf5ed6dffa4c4be330d3))
+* require firebase 9.5.0 or later ([8bb9ba1](https://github.com/andipaetzold/react-firehooks/commit/8bb9ba1f5e1fd2c20da49f1ea312d81764593470))
+
+
+### BREAKING CHANGES
+
+* make package ESM only
+* require firebase 9.5.0 or later
+
 # [1.7.0](https://github.com/andipaetzold/react-firehooks/compare/v1.6.0...v1.7.0) (2021-12-29)
 
 
