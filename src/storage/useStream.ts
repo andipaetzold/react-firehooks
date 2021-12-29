@@ -1,4 +1,4 @@
-import { StorageError, StorageReference } from "firebase/storage";
+import { getStream, StorageError, StorageReference } from "firebase/storage";
 import { useCallback } from "react";
 import { ValueHookResult } from "../common";
 import { useOnce } from "../internal/useOnce";
@@ -9,7 +9,7 @@ export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageErro
 /**
  * Returns the data of a Google Cloud Storage object as a stream
  *
- * Requires firebase v9.5.0 or later. This hook is only available in Node.
+ * This hook is only available in Node
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
  * @param {?number} maxDownloadSizeBytes If set, the maximum allowed size in bytes to retrieve
@@ -20,15 +20,7 @@ export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageErro
  */
 export function useStream(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseStreamResult {
     const fetchBlob = useCallback(
-        async (ref: StorageReference) => {
-            // TODO: change to regular import in react-firehooks v2
-            const firebaseStorage = await require("firebase/storage");
-            if ("getStream" in firebaseStorage) {
-                return await firebaseStorage.getStream(ref, maxDownloadSizeBytes);
-            } else {
-                throw new Error("`getStream` requires firebase v9.5.0 or later");
-            }
-        },
+        async (ref: StorageReference) => getStream(ref, maxDownloadSizeBytes),
         [maxDownloadSizeBytes]
     );
 

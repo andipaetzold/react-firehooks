@@ -23,8 +23,8 @@ yarn add react-firehooks
 
 ## Compatibility
 
--   [firebase](https://www.npmjs.com/package/firebase): 9.0.0 or greater
--   [react](https://www.npmjs.com/package/react): 16.8.0 or greater
+-   [firebase](https://www.npmjs.com/package/firebase): 9.5.0 or later
+-   [react](https://www.npmjs.com/package/react): 16.8.0 or later
 
 If you are using Firebase 8 or earlier, please use [`react-firebase-hooks`](https://www.npmjs.com/package/react-firebase-hooks).
 
@@ -364,7 +364,7 @@ import { ... } from 'react-firehooks/storage';
 
 Returns the data of a Google Cloud Storage object as a Blob
 
-Requires firebase v9.5.0 or later. This hook is not available in Node.
+This hook is not available in Node.
 
 ```javascript
 const [data, loading, error] = useNode(storageReference);
@@ -384,8 +384,6 @@ Returns:
 #### useBytes
 
 Returns the data of a Google Cloud Storage object
-
-Requires firebase v9.5.0 or later
 
 ```javascript
 const [data, loading, error] = useBytes(storageReference);
@@ -442,7 +440,7 @@ Returns:
 
 Returns the data of a Google Cloud Storage object as a stream
 
-Requires firebase v9.5.0 or later. This hook is only available in Node.
+This hook is only available in Node.
 
 ```javascript
 const [data, loading, error] = useNode(storageReference);
