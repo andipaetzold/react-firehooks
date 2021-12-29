@@ -57,8 +57,10 @@ This library consists of 4 modules with many hooks:
 -   [`messaging`](#Messaging)
     -   [`useMessagingToken`](#useMessagingToken)
 -   [`storage`](#Storage)
+    -   [`useBlob`](#useBlob)
     -   [`useBytes`](#useBytes)
     -   [`useDownloadURL`](#useDownloadURL)
+    -   [`useStream`](#useStream)
 
 All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
 
@@ -357,9 +359,32 @@ Returns:
 import { ... } from 'react-firehooks/storage';
 ```
 
+#### useBlob
+
+Returns the data of a Google Cloud Storage object as a Blob
+
+Requires firebase v9.5.0 or later. This hook is not available in Node.
+
+```javascript
+const [data, loading, error] = useNode(storageReference);
+```
+
+Params:
+
+-   `reference`: Reference to a Google Cloud Storage object
+-   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+
+Returns:
+
+-   `value`: Object data as a Blob; `undefined` if data of the object is currently being downloaded, or an error occurred
+-   `loading`: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useBytes
 
 Returns the data of a Google Cloud Storage object
+
+Requires firebase v9.5.0 or later
 
 ```javascript
 const [data, loading, error] = useBytes(storageReference);
@@ -410,6 +435,27 @@ Returns:
 
 -   `value`: Metadata; `undefined` if metadata is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the metadata; `false` if the metadata was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
+#### useStream
+
+Returns the data of a Google Cloud Storage object as a stream
+
+Requires firebase v9.5.0 or later. This hook is only available in Node.
+
+```javascript
+const [data, loading, error] = useNode(storageReference);
+```
+
+Params:
+
+-   `reference`: Reference to a Google Cloud Storage object
+-   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+
+Returns:
+
+-   `value`: Object data as a stream; `undefined` if data of the object is currently being downloaded, or an error occurred
+-   `loading`: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
 ## Development

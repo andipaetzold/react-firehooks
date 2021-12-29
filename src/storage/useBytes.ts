@@ -9,7 +9,7 @@ export type UseBytesResult = ValueHookResult<ArrayBuffer, StorageError>;
 /**
  * Returns the data of a Google Cloud Storage object
  *
- * Requires firebase v9.5.0 or greater
+ * Requires firebase v9.5.0 or later
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
  * @param {?number} maxDownloadSizeBytes If set, the maximum allowed size in bytes to retrieve
@@ -26,7 +26,7 @@ export function useBytes(reference: StorageReference | undefined | null, maxDown
             if ("getBytes" in firebaseStorage) {
                 return await firebaseStorage.getBytes(ref, maxDownloadSizeBytes);
             } else {
-                throw new Error("`useBytes` requires firebase v9.5.0 or greater");
+                throw new Error("`useBytes` requires firebase v9.5.0 or later");
             }
         },
         [maxDownloadSizeBytes]
