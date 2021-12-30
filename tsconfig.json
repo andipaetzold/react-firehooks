@@ -4,7 +4,8 @@
         "module": "ES2015",
         "moduleResolution": "Node",
         "declaration": true,
-        "outDir": "lib"
+        "outDir": "lib",
+        "plugins": [{ "transform": "typescript-transform-extensions", "extensions": { ".ts": ".js" } }]
     },
     "files": ["src/index.ts"]
 }
