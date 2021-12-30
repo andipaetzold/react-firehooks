@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/andipaetzold/react-firehooks/compare/v2.0.0...v2.0.1) (2021-12-30)
+
+
+### Bug Fixes
+
+* fully specify file paths in imports ([86e1205](https://github.com/andipaetzold/react-firehooks/commit/86e120592bbf89233c23cc416b1f48341962bce2))
+
 ## [2.0.1-next.1](https://github.com/andipaetzold/react-firehooks/compare/v2.0.0...v2.0.1-next.1) (2021-12-30)
 
 
