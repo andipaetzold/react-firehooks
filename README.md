@@ -443,7 +443,7 @@ Returns the data of a Google Cloud Storage object as a stream
 This hook is only available in Node.
 
 ```javascript
-const [data, loading, error] = useNode(storageReference);
+const [data, loading, error] = useStream(storageReference);
 ```
 
 Params:
