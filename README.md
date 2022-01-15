@@ -367,7 +367,7 @@ Returns the data of a Google Cloud Storage object as a Blob
 This hook is not available in Node.
 
 ```javascript
-const [data, loading, error] = useNode(storageReference);
+const [data, loading, error] = useBlob(storageReference);
 ```
 
 Params:
