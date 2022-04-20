@@ -9,4 +9,5 @@ export default {
             tsconfig: "tsconfig.jest.json",
         },
     },
+    testEnvironment: "jsdom"
 };

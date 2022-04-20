@@ -1,6 +1,5 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook, waitFor } from "@testing-library/react";
 import { newPromise, newSymbol } from "../__testfixtures__";
-import { useListen } from "./useListen";
 import { LoadingState } from "./useLoadingValue";
 import { useOnce } from "./useOnce";
 
@@ -23,21 +22,16 @@ beforeEach(() => {
 });
 
 describe("initial state", () => {
-    it.each`
-        reference    | initialState    | expectedValue | expectedLoading
-        ${undefined} | ${result1}      | ${undefined}  | ${false}
-        ${undefined} | ${undefined}    | ${undefined}  | ${false}
-        ${undefined} | ${LoadingState} | ${undefined}  | ${false}
-        ${refA1}     | ${result1}      | ${result1}    | ${false}
-        ${refA1}     | ${undefined}    | ${undefined}  | ${false}
-        ${refA1}     | ${LoadingState} | ${undefined}  | ${true}
-    `(
-        "reference=$reference initialState=$initialState",
-        ({ reference, initialState, expectedValue, expectedLoading }: any) => {
-            const { result } = renderHook(() => useListen(reference, getData, isEqual, initialState));
-            expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
-        }
-    );
+    it("defined reference", () => {
+        getData.mockReturnValue(new Promise(() => {}));
+        const { result } = renderHook(() => useOnce(refA1, getData, isEqual));
+        expect(result.current).toStrictEqual([undefined, true, undefined]);
+    });
+
+    it("undefined reference", () => {
+        const { result } = renderHook(() => useOnce(undefined, getData, isEqual));
+        expect(result.current).toStrictEqual([undefined, false, undefined]);
+    });
 });
 
 describe("initial load", () => {
@@ -45,22 +39,20 @@ describe("initial load", () => {
         const { promise, resolve } = newPromise<string>();
         getData.mockReturnValue(promise);
 
-        const { result, waitForNextUpdate } = renderHook(() => useOnce(refA1, getData, isEqual));
+        const { result } = renderHook(() => useOnce(refA1, getData, isEqual));
         expect(result.current).toStrictEqual([undefined, true, undefined]);
         resolve(result1);
-        await waitForNextUpdate();
-        expect(result.current).toStrictEqual([result1, false, undefined]);
+        await waitFor(() => expect(result.current).toStrictEqual([result1, false, undefined]));
     });
 
     it("should return error result", async () => {
         const { promise, reject } = newPromise<string>();
         getData.mockReturnValue(promise);
 
-        const { result, waitForNextUpdate } = renderHook(() => useOnce(refA1, getData, isEqual));
+        const { result } = renderHook(() => useOnce(refA1, getData, isEqual));
         expect(result.current).toStrictEqual([undefined, true, undefined]);
         reject(error);
-        await waitForNextUpdate();
-        expect(result.current).toStrictEqual([undefined, false, error]);
+        await waitFor(() => expect(result.current).toStrictEqual([undefined, false, error]));
     });
 });
 
@@ -69,13 +61,12 @@ describe("when ref changes", () => {
         it("should not update success result", async () => {
             getData.mockImplementationOnce(() => new Promise((resolve) => resolve(result1)));
 
-            const { result, waitForNextUpdate, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
+            const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
             });
 
             expect(result.current).toStrictEqual([undefined, true, undefined]);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([result1, false, undefined]);
+            await waitFor(() => expect(result.current).toStrictEqual([result1, false, undefined]));
             expect(getData).toHaveBeenCalledTimes(1);
 
             rerender({ ref: refA2 });
@@ -86,13 +77,12 @@ describe("when ref changes", () => {
         it("should not update error result", async () => {
             getData.mockImplementationOnce(() => new Promise((_resolve, reject) => reject(error)));
 
-            const { result, waitForNextUpdate, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
+            const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
             });
 
             expect(result.current).toStrictEqual([undefined, true, undefined]);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([undefined, false, error]);
+            await waitFor(() => expect(result.current).toStrictEqual([undefined, false, error]));
             expect(getData).toHaveBeenCalledTimes(1);
 
             rerender({ ref: refA2 });
@@ -107,19 +97,17 @@ describe("when ref changes", () => {
                 .mockImplementationOnce(() => new Promise((resolve) => resolve(result1)))
                 .mockImplementationOnce(() => new Promise((resolve) => resolve(result2)));
 
-            const { result, waitForNextUpdate, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
+            const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
             });
 
             expect(result.current).toStrictEqual([undefined, true, undefined]);
             expect(getData).toHaveBeenCalledTimes(1);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([result1, false, undefined]);
+            await waitFor(() => expect(result.current).toStrictEqual([result1, false, undefined]));
 
             rerender({ ref: refB1 });
             expect(getData).toHaveBeenCalledTimes(2);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([result2, false, undefined]);
+            await waitFor(() => expect(result.current).toStrictEqual([result2, false, undefined]));
         });
 
         it("should update error result", async () => {
@@ -127,20 +115,18 @@ describe("when ref changes", () => {
                 .mockImplementationOnce(() => new Promise((_resolve, reject) => reject(error)))
                 .mockImplementationOnce(() => new Promise((resolve) => resolve(result2)));
 
-            const { result, waitForNextUpdate, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
+            const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
             });
 
             expect(result.current).toStrictEqual([undefined, true, undefined]);
             expect(getData).toHaveBeenCalledTimes(1);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([undefined, false, error]);
+            await waitFor(() => expect(result.current).toStrictEqual([undefined, false, error]));
 
             rerender({ ref: refB1 });
             expect(result.current).toStrictEqual([undefined, true, undefined]);
             expect(getData).toHaveBeenCalledTimes(2);
-            await waitForNextUpdate();
-            expect(result.current).toStrictEqual([result2, false, undefined]);
+            await waitFor(() => expect(result.current).toStrictEqual([result2, false, undefined]));
         });
     });
 });

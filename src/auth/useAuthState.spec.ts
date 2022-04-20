@@ -1,5 +1,5 @@
 import { Auth, onAuthStateChanged, User } from "firebase/auth";
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { useAuthState } from "./useAuthState";
 import { newSymbol } from "../__testfixtures__";
 

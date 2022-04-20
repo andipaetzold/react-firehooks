@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "@testing-library/react";
 import { useIsMounted } from "./useIsMounted";
 
 it("should return `true` on first render", () => {

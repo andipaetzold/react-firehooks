@@ -1,4 +1,4 @@
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act, renderHook } from "@testing-library/react";
 import { newSymbol } from "../__testfixtures__";
 import { LoadingState, useLoadingValue } from "./useLoadingValue";
 
