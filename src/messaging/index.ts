@@ -1,1 +1,1 @@
-export * from "./useMessagingToken";
+export * from "./useMessagingToken.js";

@@ -1,9 +1,9 @@
 import { DocumentData, FirestoreError, Query, SnapshotOptions } from "firebase/firestore";
 import { useCallback } from "react";
-import type { ValueHookResult } from "../common/types";
-import { useOnce } from "../internal/useOnce";
-import { getDocsFromSource, isQueryEqual } from "./internal";
-import type { Source } from "./types";
+import type { ValueHookResult } from "../common/types.js";
+import { useOnce } from "../internal/useOnce.js";
+import { getDocsFromSource, isQueryEqual } from "./internal.js";
+import type { Source } from "./types.js";
 
 export type UseCollectionDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     Value[],

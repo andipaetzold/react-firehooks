@@ -1,6 +1,6 @@
 import { Messaging, getToken, GetTokenOptions } from "firebase/messaging";
-import { ValueHookResult } from "../common";
-import { useOnce } from "../internal/useOnce";
+import { ValueHookResult } from "../common/index.js";
+import { useOnce } from "../internal/useOnce.js";
 
 export type UseMessagingTokenResult = ValueHookResult<string, Error>;
 

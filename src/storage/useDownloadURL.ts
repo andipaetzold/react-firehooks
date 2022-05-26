@@ -1,7 +1,7 @@
 import { getDownloadURL, StorageError, StorageReference } from "firebase/storage";
-import { ValueHookResult } from "../common";
-import { useOnce } from "../internal/useOnce";
-import { isStorageRefEqual } from "./internal";
+import { ValueHookResult } from "../common/index.js";
+import { useOnce } from "../internal/useOnce.js";
+import { isStorageRefEqual } from "./internal.js";
 
 export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
 

@@ -1,9 +1,9 @@
 import { DocumentData, FirestoreError, onSnapshot, Query, SnapshotListenOptions, SnapshotOptions } from "firebase/firestore";
 import { useCallback } from "react";
-import { ValueHookResult } from "../common/types";
-import { useListen, UseListenOnChange } from "../internal/useListen";
-import { LoadingState } from "../internal/useLoadingValue";
-import { isQueryEqual } from "./internal";
+import { ValueHookResult } from "../common/types.js";
+import { useListen, UseListenOnChange } from "../internal/useListen.js";
+import { LoadingState } from "../internal/useLoadingValue.js";
+import { isQueryEqual } from "./internal.js";
 
 export type UseCollectionDataResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value[], FirestoreError>;
 

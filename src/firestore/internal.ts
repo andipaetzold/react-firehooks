@@ -13,7 +13,7 @@ import {
     QuerySnapshot,
     refEqual,
 } from "firebase/firestore";
-import type { Source } from "./types";
+import type { Source } from "./types.js";
 
 /**
  * @internal

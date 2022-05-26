@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from "react";
-import { ValueHookResult } from "../common";
-import { useIsMounted } from "./useIsMounted";
-import { LoadingState, useLoadingValue } from "./useLoadingValue";
-import { useStableValue } from "./useStableValue";
+import { ValueHookResult } from "../common/index.js";
+import { useIsMounted } from "./useIsMounted.js";
+import { LoadingState, useLoadingValue } from "./useLoadingValue.js";
+import { useStableValue } from "./useStableValue.js";
 
 /**
  * @internal

@@ -7,10 +7,10 @@ import {
     SnapshotListenOptions,
 } from "firebase/firestore";
 import { useCallback } from "react";
-import type { ValueHookResult } from "../common/types";
-import { useListen, UseListenOnChange } from "../internal/useListen";
-import { LoadingState } from "../internal/useLoadingValue";
-import { isDocRefEqual } from "./internal";
+import type { ValueHookResult } from "../common/types.js";
+import { useListen, UseListenOnChange } from "../internal/useListen.js";
+import { LoadingState } from "../internal/useLoadingValue.js";
+import { isDocRefEqual } from "./internal.js";
 
 export type UseDocumentResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     DocumentSnapshot<Value>,
