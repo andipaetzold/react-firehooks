@@ -3,14 +3,9 @@ import { renderHook } from "@testing-library/react";
 import { useAuthState } from "./useAuthState";
 import { newSymbol } from "../__testfixtures__";
 
-jest.mock("firebase/auth", () => {
-    const actual = jest.requireActual("firebase/auth");
-
-    return {
-        ...actual,
-        onAuthStateChanged: jest.fn(),
-    };
-});
+jest.mock("firebase/auth", () => ({
+    onAuthStateChanged: jest.fn(),
+}));
 
 const onAuthStateChangedMock = onAuthStateChanged as jest.Mock<
     ReturnType<typeof onAuthStateChanged>,

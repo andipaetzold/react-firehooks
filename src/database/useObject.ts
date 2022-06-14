@@ -1,8 +1,8 @@
 import { DataSnapshot, onValue, Query } from "firebase/database";
-import { ValueHookResult } from "../common";
-import { useListen } from "../internal/useListen";
-import { LoadingState } from "../internal/useLoadingValue";
-import { isQueryEqual } from "./internal";
+import type { ValueHookResult } from "../common/index.js";
+import { useListen } from "../internal/useListen.js";
+import { LoadingState } from "../internal/useLoadingValue.js";
+import { isQueryEqual } from "./internal.js";
 
 export type UseObjectResult = ValueHookResult<DataSnapshot, Error>;
 

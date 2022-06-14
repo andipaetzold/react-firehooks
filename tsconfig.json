@@ -1,11 +1,9 @@
 {
     "extends": "@tsconfig/recommended/tsconfig.json",
     "compilerOptions": {
-        "module": "ES2015",
-        "moduleResolution": "Node",
+        "module": "Node16",
         "declaration": true,
-        "outDir": "lib",
-        "plugins": [{ "transform": "typescript-transform-extensions", "extensions": { ".ts": ".js" } }]
+        "outDir": "lib"
     },
     "files": ["src/index.ts"]
 }

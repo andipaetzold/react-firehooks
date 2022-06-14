@@ -1,8 +1,8 @@
 import { getStream, StorageError, StorageReference } from "firebase/storage";
 import { useCallback } from "react";
-import { ValueHookResult } from "../common";
-import { useOnce } from "../internal/useOnce";
-import { isStorageRefEqual } from "./internal";
+import type { ValueHookResult } from "../common/index.js";
+import { useOnce } from "../internal/useOnce.js";
+import { isStorageRefEqual } from "./internal.js";
 
 export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageError>;
 

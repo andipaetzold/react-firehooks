@@ -1,8 +1,8 @@
 import { DataSnapshot, get, Query } from "firebase/database";
 import { useCallback } from "react";
-import { ValueHookResult } from "../common";
-import { useOnce } from "../internal/useOnce";
-import { isQueryEqual } from "./internal";
+import type { ValueHookResult } from "../common/index.js";
+import { useOnce } from "../internal/useOnce.js";
+import { isQueryEqual } from "./internal.js";
 
 export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
 

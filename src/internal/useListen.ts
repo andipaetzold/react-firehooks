@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef } from "react";
-import { ValueHookResult } from "../common";
-import { useLoadingValue, LoadingState } from "./useLoadingValue";
-import { useStableValue } from "./useStableValue";
+import { ValueHookResult } from "../common/index.js";
+import { useLoadingValue, LoadingState } from "./useLoadingValue.js";
+import { useStableValue } from "./useStableValue.js";
 
 /**
  * @internal

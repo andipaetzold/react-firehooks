@@ -1,7 +1,7 @@
 import { FullMetadata, getMetadata, StorageError, StorageReference } from "firebase/storage";
-import { ValueHookResult } from "../common";
-import { useOnce } from "../internal/useOnce";
-import { isStorageRefEqual } from "./internal";
+import type { ValueHookResult } from "../common/index.js";
+import { useOnce } from "../internal/useOnce.js";
+import { isStorageRefEqual } from "./internal.js";
 
 export type UseMetadataResult = ValueHookResult<FullMetadata, StorageError>;
 
