@@ -11,18 +11,14 @@ import {
 import { newSymbol } from "../__testfixtures__";
 import { getDocFromSource, getDocsFromSource } from "./internal";
 
-jest.mock("firebase/firestore", () => {
-    const actual = jest.requireActual("firebase/firestore");
-    return {
-        ...actual,
-        getDoc: jest.fn(actual.getDoc),
-        getDocFromServer: jest.fn(actual.getDocFromServer),
-        getDocFromCache: jest.fn(actual.getDocFromCache),
-        getDocs: jest.fn(actual.getDocs),
-        getDocsFromServer: jest.fn(actual.getDocsFromServer),
-        getDocsFromCache: jest.fn(actual.getDocsFromCache),
-    };
-});
+jest.mock("firebase/firestore", () => ({
+    getDoc: jest.fn(),
+    getDocFromServer: jest.fn(),
+    getDocFromCache: jest.fn(),
+    getDocs: jest.fn(),
+    getDocsFromServer: jest.fn(),
+    getDocsFromCache: jest.fn(),
+}));
 
 beforeEach(() => {
     jest.resetAllMocks();
