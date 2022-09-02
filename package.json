@@ -52,7 +52,7 @@
         "@testing-library/react": "13.1.1",
         "@tsconfig/recommended": "1.0.1",
         "@types/jest": "28.1.8",
-        "@types/react": "18.0.12",
+        "@types/react": "18.0.18",
         "firebase": "9.9.4",
         "husky": "8.0.1",
         "jest": "28.1.3",
