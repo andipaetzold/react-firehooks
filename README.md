@@ -320,7 +320,7 @@ Returns:
 
 #### useCountFromServer
 
-Returns the number of documents in the result set of of a Firestore Query. Does not update the data once initially fetched.
+Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
 
 ```javascript
 const [count, loading, error] = useCountFromServer(query);

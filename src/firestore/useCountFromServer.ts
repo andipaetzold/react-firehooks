@@ -11,7 +11,7 @@ async function getData(stableQuery: Query<unknown>) {
 }
 
 /**
- * Returns the number of documents in the result set of of a Firestore Query. Does not update the data once initially fetched.
+ * Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
  *
  * @param {Query<unknown> | undefined | null} query Firestore query whose result set size is calculated
  * @returns {UseCountFromServerResult} Size of the result set, loading state, and error
