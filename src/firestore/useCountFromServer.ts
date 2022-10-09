@@ -15,8 +15,8 @@ async function getData(stableQuery: Query<unknown>) {
  *
  * @param {Query<unknown> | undefined | null} query Firestore query whose result set size is calculated
  * @returns {UseCountFromServerResult} Size of the result set, loading state, and error
- * * value: Size of the result set; `undefined` if query is currently being fetched, or an error occurred
- * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * * value: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
+ * * loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
 export function useCountFromServer(query: Query<unknown> | undefined | null): UseCountFromServerResult {
