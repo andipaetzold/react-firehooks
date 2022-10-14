@@ -75,7 +75,7 @@ All hooks can be imported from `react-firehooks` directly or via `react-firehook
 import { ... } from 'react-firehooks/app-check';
 ```
 
-#### useAuthState
+#### useAppCheckToken
 
 Returns and updates the current App Check token
 
