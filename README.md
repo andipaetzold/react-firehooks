@@ -86,7 +86,7 @@ Params:
 
 Returns:
 
--   `value`: Deserialized JWT; `undefined` if JWT is currently being fetched, or an error occurred
+-   `value`: Deserialized JWT; `undefined` if the JWT is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
@@ -104,7 +104,7 @@ Params:
 
 Params:
 
--   `value`: User; `undefined` if user is currently being fetched, or an error occurred
+-   `value`: User; `undefined` if the user is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the user; `false` if the user was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
