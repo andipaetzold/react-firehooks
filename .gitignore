@@ -5,6 +5,7 @@
 /test-results/
 
 # modules
+/app-check/
 /auth/
 /database/
 /firestore/
