@@ -1,3 +1,12 @@
+# [2.1.0](https://github.com/andipaetzold/react-firehooks/compare/v2.0.1...v2.1.0) (2022-10-14)
+
+
+### Features
+
+* **app-check:** add useAppCheckToken ([#158](https://github.com/andipaetzold/react-firehooks/issues/158)) ([81d95c2](https://github.com/andipaetzold/react-firehooks/commit/81d95c242c1a4af4103249ceb86ec1fabb4ae550))
+* **auth:** add useAuthIdToken ([#156](https://github.com/andipaetzold/react-firehooks/issues/156)) ([f351734](https://github.com/andipaetzold/react-firehooks/commit/f351734ee510c6e4b6f5aa5d39bc542ed3b2f36a))
+* **auth:** add useAuthIdTokenResult ([#157](https://github.com/andipaetzold/react-firehooks/issues/157)) ([654340a](https://github.com/andipaetzold/react-firehooks/commit/654340a4b4c3107b72480a8fd477eed343584c40))
+
 ## [2.0.1](https://github.com/andipaetzold/react-firehooks/compare/v2.0.0...v2.0.1) (2021-12-30)
 
 
