@@ -40,6 +40,7 @@ This library consists of 4 modules with many hooks:
 
 -   [`auth`](#Auth)
     -   [`useAuthIdToken`](#useAuthIdToken)
+    -   [`useAuthIdTokenResult`](#useAuthIdTokenResult)
     -   [`useAuthState`](#useAuthState)
 -   [`database`](#Database)
     -   [`useObject`](#useObject)
@@ -90,6 +91,24 @@ Returns:
 -   `loading`: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
+#### useAuthIdTokenResult
+
+Returns and updates the deserialized JWT of the currently authenticated user
+
+```javascript
+const [idToken, loading, error] = useAuthIdTokenResult(auth);
+```
+
+Params:
+
+-   `auth`: Firebase Auth instance
+
+Returns:
+
+-   `value`: Deserialized JWT; `undefined` if the JWT is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 #### useAuthState
 
 Returns and updates the currently authenticated user
@@ -104,7 +123,7 @@ Params:
 
 Returns:
 
--   `value`: User; `undefined` if user is currently being fetched, or an error occurred
+-   `value`: User; `undefined` if the user is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the user; `false` if the user was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
