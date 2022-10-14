@@ -1,2 +1,2 @@
 export * from "./useAuthState.js";
-export * from "./useIdTokenResult.js";
+export * from "./useAuthIdTokenResult.js";

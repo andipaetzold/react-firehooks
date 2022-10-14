@@ -4,18 +4,18 @@ import { ValueHookResult } from "../common/index.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 
-export type UseIdTokenResultResult = ValueHookResult<IdTokenResult | null, AuthError>;
+export type UseAuthIdTokenResultResult = ValueHookResult<IdTokenResult | null, AuthError>;
 
 /**
  * Returns and updates the deserialized JWT of the currently authenticated user
  *
  * @param {Auth} auth Firebase Auth instance
- * @returns {UseIdTokenResultResult} JWT, loading state, and error
+ * @returns {UseAuthIdTokenResultResult} JWT, loading state, and error
  * * value: Deserialized JWT; `undefined` if JWT is currently being fetched, or an error occurred
  * * loading: `true` while fetching JWT; `false` if the JWT was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useAuthIdTokenResult(auth: Auth): UseIdTokenResultResult {
+export function useAuthIdTokenResult(auth: Auth): UseAuthIdTokenResultResult {
     const onChange: UseListenOnChange<IdTokenResult | null, AuthError, Auth> = useCallback(
         (stableAuth, next, error) =>
             onIdTokenChanged(stableAuth, async (user) => {
