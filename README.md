@@ -86,7 +86,7 @@ Params:
 
 Returns:
 
--   `value`: JWT; `undefined` if JWT is currently being fetched, or an error occurred
+-   `value`: JWT; `undefined` if the JWT is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
