@@ -1,6 +1,6 @@
 import fs from "fs";
 
-const modules = ["auth", "database", "firestore", "messaging", "storage"];
+const modules = ["app-check", "auth", "database", "firestore", "messaging", "storage"];
 for (const module of modules) {
     const packageJson = {
         main: `../lib/${module}/index.js`,

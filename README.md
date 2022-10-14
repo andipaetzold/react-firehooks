@@ -38,6 +38,8 @@ If you previously used [`react-firebase-hooks`](https://www.npmjs.com/package/re
 
 This library consists of 4 modules with many hooks:
 
+-   [`app-check`](#AppCheck)
+    -   [`useAppCheckToken`](#useAppCheckToken)
 -   [`auth`](#Auth)
     -   [`useAuthIdToken`](#useAuthIdToken)
     -   [`useAuthIdTokenResult`](#useAuthIdTokenResult)
@@ -66,6 +68,30 @@ This library consists of 4 modules with many hooks:
     -   [`useStream`](#useStream)
 
 All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
+
+### App Check
+
+```javascript
+import { ... } from 'react-firehooks/app-check';
+```
+
+#### useAuthState
+
+Returns and updates the current App Check token
+
+```javascript
+const [user, loading, error] = useAppCheckToken(auth);
+```
+
+Params:
+
+-   `appCheck`: Firebase App Check instance
+
+Returns:
+
+-   `value`: App Check token; `undefined` if the token is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the token; `false` if the token was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 ### Auth
 
