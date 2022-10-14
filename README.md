@@ -39,6 +39,7 @@ If you previously used [`react-firebase-hooks`](https://www.npmjs.com/package/re
 This library consists of 4 modules with many hooks:
 
 -   [`auth`](#Auth)
+    -   [`useAuthIdTokenResult`](#useAuthIdTokenResult)
     -   [`useAuthState`](#useAuthState)
 -   [`database`](#Database)
     -   [`useObject`](#useObject)
@@ -70,6 +71,24 @@ All hooks can be imported from `react-firehooks` directly or via `react-firehook
 ```javascript
 import { ... } from 'react-firehooks/auth';
 ```
+
+#### useAuthIdTokenResult
+
+Returns and updates the deserialized JWT of the currently authenticated user
+
+```javascript
+const [idToken, loading, error] = useAuthIdTokenResult(auth);
+```
+
+Params:
+
+-   `auth`: Firebase Auth instance
+
+Returns:
+
+-   `value`: Deserialized JWT; `undefined` if JWT is currently being fetched, or an error occurred
+-   `loading`: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
 
 #### useAuthState
 
