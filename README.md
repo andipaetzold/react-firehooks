@@ -54,6 +54,7 @@ This library consists of 4 modules with many hooks:
     -   [`useCollectionData`](#useCollectionData)
     -   [`useCollectionDataOnce`](#useCollectionDataOnce)
     -   [`useCollectionOnce`](#useCollectionOnce)
+    -   [`useCountFromServer`](#useCountFromServer)
     -   [`useDocument`](#useDocument)
     -   [`useDocumentData`](#useDocumentData)
     -   [`useDocumentDataOnce`](#useDocumentataOnce)
@@ -315,6 +316,26 @@ Returns:
 
 -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
+#### useCountFromServer
+
+Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
+
+Requires firebase 9.11.0 or later.
+
+```javascript
+const [count, loading, error] = useCountFromServer(query);
+```
+
+Params:
+
+-   `query`: Firestore query whose result set size is calculated
+
+Returns:
+
+-   `value`: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
+-   `loading`: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
 #### useDocument
