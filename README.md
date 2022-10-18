@@ -322,7 +322,7 @@ Returns:
 
 Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
 
-Requires firebase 7.11.0 or later.
+Requires firebase 9.11.0 or later.
 
 ```javascript
 const [count, loading, error] = useCountFromServer(query);
