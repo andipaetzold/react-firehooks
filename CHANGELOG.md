@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/andipaetzold/react-firehooks/compare/v2.1.0...v2.2.0) (2022-10-18)
+
+
+### Features
+
+* **firestore:** add useCountFromServer ([#147](https://github.com/andipaetzold/react-firehooks/issues/147)) ([b04a692](https://github.com/andipaetzold/react-firehooks/commit/b04a692094676b3f99bdbc303d807b71946f067c))
+
 # [2.2.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v2.1.0...v2.2.0-next.1) (2022-10-18)
 
 
