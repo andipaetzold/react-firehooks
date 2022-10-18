@@ -1,4 +1,4 @@
-import type { FirestoreError, Query } from "firebase/firestore";
+import { FirestoreError, Query, getCountFromServer } from "firebase/firestore";
 import type { ValueHookResult } from "../common/types.js";
 import { useOnce } from "../internal/useOnce.js";
 import { isQueryEqual } from "./internal.js";
@@ -6,19 +6,12 @@ import { isQueryEqual } from "./internal.js";
 export type UseCountFromServerResult = ValueHookResult<number, FirestoreError>;
 
 async function getData(stableQuery: Query<unknown>) {
-    const firestoreModule = await import("firebase/firestore");
-
-    // @ts-expect-error `getCountFromServer` is only available from 9.11.0
-    const { getCountFromServer } = firestoreModule;
-
     const snap = await getCountFromServer(stableQuery);
     return snap.data().count;
 }
 
 /**
  * Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
- *
- * Requires firebase 9.11.0 or later
  *
  * @param {Query<unknown> | undefined | null} query Firestore query whose result set size is calculated
  * @returns {UseCountFromServerResult} Size of the result set, loading state, and error
