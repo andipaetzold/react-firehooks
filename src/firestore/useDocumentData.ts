@@ -17,9 +17,10 @@ export type UseDocumentDataResult<Value extends DocumentData = DocumentData> = V
 /**
  * Options to configure the subscription
  */
-export interface UseDocumentDataOptions {
+export interface UseDocumentDataOptions<Value extends DocumentData = DocumentData> {
     snapshotListenOptions?: SnapshotListenOptions;
     snapshotOptions?: SnapshotOptions;
+    initialValue?: Value;
 }
 
 /**
@@ -35,7 +36,7 @@ export interface UseDocumentDataOptions {
  */
 export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOptions
+    options?: UseDocumentDataOptions<Value>
 ): UseDocumentDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
 
@@ -48,5 +49,5 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
         []
     );
 
-    return useListen(reference ?? undefined, onChange, isDocRefEqual, LoadingState);
+    return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);
 }

@@ -11,6 +11,7 @@ export type UseObjectValueConverter<Value> = (snap: DataSnapshot) => Value;
 
 export interface UseObjectValueOptions<Value> {
     converter?: UseObjectValueConverter<Value>;
+    initialValue?: Value;
 }
 
 /**
@@ -36,5 +37,5 @@ export function useObjectValue<Value = unknown>(
         []
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
+    return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
 }
