@@ -1,3 +1,15 @@
+# [2.3.0](https://github.com/andipaetzold/react-firehooks/compare/v2.2.0...v2.3.0) (2022-10-24)
+
+
+### Bug Fixes
+
+* **app-check:** hook was not properly published ([#166](https://github.com/andipaetzold/react-firehooks/issues/166)) ([061acc8](https://github.com/andipaetzold/react-firehooks/commit/061acc8175824862076c596d2fc653a6f1113f24))
+
+
+### Features
+
+* **database/firestore:** add `initialValue` option ([#165](https://github.com/andipaetzold/react-firehooks/issues/165)) ([8c2905c](https://github.com/andipaetzold/react-firehooks/commit/8c2905c8094de9953327143eba84fdf440c2fbc1))
+
 # [2.2.0](https://github.com/andipaetzold/react-firehooks/compare/v2.1.0...v2.2.0) (2022-10-18)
 
 
