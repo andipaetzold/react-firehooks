@@ -19,7 +19,7 @@ export interface UseDocumentDataOnceOptions {
  * Returns the data of a Firestore DocumentReference
  *
  * @template Value Type of the document data
- * @param {DocumentReference<Value> | undefined | null} query Firestore DocumentReference that will be subscribed to
+ * @param {DocumentReference<Value> | undefined | null} reference Firestore DocumentReference that will be subscribed to
  * @param {?UseDocumentDataOnceOptions} options  Options to configure how the document is fetched
  * @returns {UseDocumentDataOnceResult<Value>} Document data, loading state, and error
  * * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
