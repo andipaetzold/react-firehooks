@@ -17,9 +17,10 @@ export type UseDocumentDataResult<Value extends DocumentData = DocumentData> = V
 /**
  * Options to configure the subscription
  */
-export interface UseDocumentDataOptions {
+export interface UseDocumentDataOptions<Value extends DocumentData = DocumentData> {
     snapshotListenOptions?: SnapshotListenOptions;
     snapshotOptions?: SnapshotOptions;
+    initialValue?: Value;
 }
 
 /**
@@ -28,6 +29,7 @@ export interface UseDocumentDataOptions {
  * @template Value Type of the document data
  * @param {DocumentReference<Value> | undefined | null} reference Firestore DocumentReference that will be subscribed to
  * @param {?UseDocumentDataOptions} options Options to configure the subscription
+ * * `initialValue`: Value that is returned while the document is being fetched.
  * @returns {UseDocumentDataResult<Value>} Document data, loading state, and error
  * * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
  * * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
@@ -35,7 +37,7 @@ export interface UseDocumentDataOptions {
  */
 export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOptions
+    options?: UseDocumentDataOptions<Value>
 ): UseDocumentDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
 
@@ -48,5 +50,5 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
         []
     );
 
-    return useListen(reference ?? undefined, onChange, isDocRefEqual, LoadingState);
+    return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);
 }
