@@ -36,7 +36,7 @@ If you previously used [`react-firebase-hooks`](https://www.npmjs.com/package/re
 
 [Type Documentation](https://andipaetzold.github.io/react-firehooks)
 
-This library consists of 4 modules with many hooks:
+This library consists of 6 modules with many hooks:
 
 -   [`app-check`](#AppCheck)
     -   [`useAppCheckToken`](#useAppCheckToken)
