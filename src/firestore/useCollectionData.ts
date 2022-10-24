@@ -22,6 +22,7 @@ export interface UseCollectionDataOptions<Value extends DocumentData = DocumentD
  * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be subscribed to
  * @param {?UseCollectionDataOptions} options Options to configure the subscription
+ * * `initialValue`: Value that is returned while the query is being fetched.
  * @returns {UseCollectionDataResult<Value>} Query data, loading state, and error
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred

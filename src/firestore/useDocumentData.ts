@@ -29,6 +29,7 @@ export interface UseDocumentDataOptions<Value extends DocumentData = DocumentDat
  * @template Value Type of the document data
  * @param {DocumentReference<Value> | undefined | null} query Firestore DocumentReference that will be subscribed to
  * @param {?UseDocumentDataOptions} options Options to configure the subscription
+ * * `initialValue`: Value that is returned while the document is being fetched.
  * @returns {UseDocumentDataResult<Value>} Document data, loading state, and error
  * * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
  * * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
