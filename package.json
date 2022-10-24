@@ -8,6 +8,7 @@
     "type": "module",
     "exports": {
         ".": "./lib/index.js",
+        "./app-check": "./lib/app-check/index.js",
         "./auth": "./lib/auth/index.js",
         "./database": "./lib/database/index.js",
         "./firestore": "./lib/firestore/index.js",
@@ -17,6 +18,7 @@
     "files": [
         "lib",
         "auth",
+        "app-check",
         "database",
         "firestore",
         "messaging",
@@ -30,6 +32,7 @@
         "react",
         "hooks",
         "firebase",
+        "app-check",
         "auth",
         "database",
         "firestore",
