@@ -1,19 +1,15 @@
-import { Auth, onAuthStateChanged, User } from "firebase/auth";
 import { renderHook } from "@testing-library/react";
-import { useAuthState } from "./useAuthState";
+import { Auth, onAuthStateChanged, User } from "firebase/auth";
+import { beforeEach, describe, expect, it, vi } from "vitest";
 import { newSymbol } from "../__testfixtures__";
+import { useAuthState } from "./useAuthState";
 
-jest.mock("firebase/auth", () => ({
-    onAuthStateChanged: jest.fn(),
+vi.mock("firebase/auth", () => ({
+    onAuthStateChanged: vi.fn(),
 }));
 
-const onAuthStateChangedMock = onAuthStateChanged as jest.Mock<
-    ReturnType<typeof onAuthStateChanged>,
-    Parameters<typeof onAuthStateChanged>
->;
-
 beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
 });
 
 describe("initial state", () => {
@@ -21,7 +17,7 @@ describe("initial state", () => {
         const currentUser = newSymbol<User>("Current User");
         const mockAuth = { currentUser } as Auth;
 
-        onAuthStateChangedMock.mockImplementation(() => () => {});
+        vi.mocked(onAuthStateChanged).mockImplementation(() => () => {});
 
         const { result } = renderHook(() => useAuthState(mockAuth));
         expect(result.current).toStrictEqual([currentUser, false, undefined]);
@@ -30,7 +26,7 @@ describe("initial state", () => {
     it("should return undefined when currentUser is null", () => {
         const mockAuth = { currentUser: null } as Auth;
 
-        onAuthStateChangedMock.mockImplementation(() => () => {});
+        vi.mocked(onAuthStateChanged).mockImplementation(() => () => {});
 
         const { result } = renderHook(() => useAuthState(mockAuth));
         expect(result.current).toStrictEqual([undefined, true, undefined]);

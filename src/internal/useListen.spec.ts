@@ -2,6 +2,7 @@ import { act, renderHook } from "@testing-library/react";
 import { newSymbol } from "../__testfixtures__";
 import { useListen } from "./useListen";
 import { LoadingState } from "./useLoadingValue";
+import { it, expect, beforeEach, describe, vi } from "vitest";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
@@ -13,33 +14,30 @@ const refA2 = newSymbol("Ref A2");
 const refB1 = newSymbol("Ref B1");
 const refB2 = newSymbol("Ref B2");
 
-const onChangeUnsubscribe = jest.fn();
-const onChange = jest.fn();
+const onChangeUnsubscribe = vi.fn();
+const onChange = vi.fn();
 
 const isEqual = (a: any, b: any) =>
     [a, b].every((x) => [refA1, refA2].includes(x)) || [a, b].every((x) => [refB1, refB2].includes(x));
 
 beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
     onChange.mockReturnValue(onChangeUnsubscribe);
 });
 
 describe("initial state", () => {
-    it.each`
-        reference    | initialState    | expectedValue | expectedLoading
-        ${undefined} | ${result1}      | ${undefined}  | ${false}
-        ${undefined} | ${undefined}    | ${undefined}  | ${false}
-        ${undefined} | ${LoadingState} | ${undefined}  | ${false}
-        ${refA1}     | ${result1}      | ${result1}    | ${false}
-        ${refA1}     | ${undefined}    | ${undefined}  | ${false}
-        ${refA1}     | ${LoadingState} | ${undefined}  | ${true}
-    `(
-        "reference=$reference initialState=$initialState",
-        ({ reference, initialState, expectedValue, expectedLoading }: any) => {
-            const { result } = renderHook(() => useListen(reference, onChange, isEqual, initialState));
-            expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
-        }
-    );
+    // reference, initialState, expectedValue, expectedLoading
+    it.each([
+        [undefined, result1, undefined, false],
+        [undefined, undefined, undefined, false],
+        [undefined, LoadingState, undefined, false],
+        [refA1, result1, result1, false],
+        [refA1, undefined, undefined, false],
+        [refA1, LoadingState, undefined, true],
+    ])("reference=%s initialState=%s", (reference, initialState, expectedValue, expectedLoading) => {
+        const { result } = renderHook(() => useListen(reference, onChange, isEqual, initialState));
+        expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
+    });
 });
 
 describe("when changing ref", () => {
