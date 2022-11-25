@@ -8,7 +8,6 @@ export type UseCountFromServerResult = ValueHookResult<number, FirestoreError>;
 async function getData(stableQuery: Query<unknown>) {
     const firestoreModule = await import("firebase/firestore");
 
-    // @ts-expect-error `getCountFromServer` is only available from 9.11.0
     const { getCountFromServer } = firestoreModule;
 
     const snap = await getCountFromServer(stableQuery);
