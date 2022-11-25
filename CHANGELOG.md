@@ -1,3 +1,15 @@
+# [3.0.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v2.3.0...v3.0.0-next.1) (2022-11-25)
+
+
+### Features
+
+* target es2017 instead of es2015 ([#163](https://github.com/andipaetzold/react-firehooks/issues/163)) ([be187d0](https://github.com/andipaetzold/react-firehooks/commit/be187d03301b156eb032eecb9076b94395bd69e2))
+
+
+### BREAKING CHANGES
+
+* package targets es2017
+
 # [2.3.0](https://github.com/andipaetzold/react-firehooks/compare/v2.2.0...v2.3.0) (2022-10-24)
 
 
