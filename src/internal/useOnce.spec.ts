@@ -1,7 +1,7 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { newPromise, newSymbol } from "../__testfixtures__";
-import { LoadingState } from "./useLoadingValue";
 import { useOnce } from "./useOnce";
+import { it, expect, beforeEach, describe, vi } from "vitest";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
@@ -13,12 +13,12 @@ const refA2 = newSymbol("Ref A2");
 const refB1 = newSymbol("Ref B1");
 const refB2 = newSymbol("Ref B2");
 
-const getData = jest.fn();
+const getData = vi.fn();
 const isEqual = (a: any, b: any) =>
     [a, b].every((x) => [refA1, refA2].includes(x)) || [a, b].every((x) => [refB1, refB2].includes(x));
 
 beforeEach(() => {
-    jest.resetAllMocks();
+    vi.resetAllMocks();
 });
 
 describe("initial state", () => {

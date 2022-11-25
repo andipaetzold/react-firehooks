@@ -1,3 +1,27 @@
+# [3.0.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v2.3.0...v3.0.0-next.1) (2022-11-25)
+
+
+### Features
+
+* target es2017 instead of es2015 ([#163](https://github.com/andipaetzold/react-firehooks/issues/163)) ([be187d0](https://github.com/andipaetzold/react-firehooks/commit/be187d03301b156eb032eecb9076b94395bd69e2))
+
+
+### BREAKING CHANGES
+
+* package targets es2017
+
+# [2.3.0](https://github.com/andipaetzold/react-firehooks/compare/v2.2.0...v2.3.0) (2022-10-24)
+
+
+### Bug Fixes
+
+* **app-check:** hook was not properly published ([#166](https://github.com/andipaetzold/react-firehooks/issues/166)) ([061acc8](https://github.com/andipaetzold/react-firehooks/commit/061acc8175824862076c596d2fc653a6f1113f24))
+
+
+### Features
+
+* **database/firestore:** add `initialValue` option ([#165](https://github.com/andipaetzold/react-firehooks/issues/165)) ([8c2905c](https://github.com/andipaetzold/react-firehooks/commit/8c2905c8094de9953327143eba84fdf440c2fbc1))
+
 # [2.2.0](https://github.com/andipaetzold/react-firehooks/compare/v2.1.0...v2.2.0) (2022-10-18)
 
 

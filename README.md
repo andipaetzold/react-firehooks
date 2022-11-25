@@ -36,7 +36,7 @@ If you previously used [`react-firebase-hooks`](https://www.npmjs.com/package/re
 
 [Type Documentation](https://andipaetzold.github.io/react-firehooks)
 
-This library consists of 4 modules with many hooks:
+This library consists of 6 modules with many hooks:
 
 -   [`app-check`](#AppCheck)
     -   [`useAppCheckToken`](#useAppCheckToken)
@@ -346,7 +346,7 @@ const [documentSnap, loading, error] = useDocument(documentReference, options);
 
 Params:
 
--   `query`: Firestore DocumentReference that will be subscribed to
+-   `documentReference`: Firestore DocumentReference that will be subscribed to
 -   `options`: Options to configure the subscription
 
 Returns:
@@ -365,7 +365,7 @@ const [data, loading, error] = useDocumentData(documentReference, options);
 
 Params:
 
--   `query`: Firestore DocumentReference that will subscribed to
+-   `documentReference`: Firestore DocumentReference that will subscribed to
 -   `options`: Options to configure the subscription
 
 Returns:
@@ -384,7 +384,7 @@ const [documentSnap, loading, error] = useDocumentDataOnce(documentReference, op
 
 Params:
 
--   `query`: Firestore DocumentReference that will be fetched
+-   `documentReference`: Firestore DocumentReference that will be fetched
 -   `options`: Options to configure the document will be fetched
 
 Returns:
@@ -403,7 +403,7 @@ const [querySnap, loading, error] = useDocumentData(documentReference, options);
 
 Params:
 
--   `query`: Firestore DocumentReference that will be fetched
+-   `documentReference`: Firestore DocumentReference that will be fetched
 -   `options`: Options to configure how the document will be fetched
 
 Returns:

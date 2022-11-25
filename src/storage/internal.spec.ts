@@ -1,4 +1,5 @@
 import { StorageReference } from "@firebase/storage";
+import { describe, expect, it } from "vitest";
 import { isStorageRefEqual } from "./internal";
 
 describe("isStorageRefEqual", () => {

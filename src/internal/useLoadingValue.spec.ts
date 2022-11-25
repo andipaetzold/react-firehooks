@@ -1,6 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
 import { newSymbol } from "../__testfixtures__";
 import { LoadingState, useLoadingValue } from "./useLoadingValue";
+import { it, expect, describe } from "vitest";
 
 const value = newSymbol("Value");
 const error = newSymbol("Error");

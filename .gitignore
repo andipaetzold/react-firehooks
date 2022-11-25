@@ -1,8 +1,8 @@
 /.vscode/
+/coverage/
 /docs/
 /lib/
 /node_modules/
-/test-results/
 
 # modules
 /app-check/

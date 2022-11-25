@@ -11,6 +11,7 @@ export type UseObjectValueConverter<Value> = (snap: DataSnapshot) => Value;
 
 export interface UseObjectValueOptions<Value> {
     converter?: UseObjectValueConverter<Value>;
+    initialValue?: Value;
 }
 
 /**
@@ -20,6 +21,7 @@ export interface UseObjectValueOptions<Value> {
  * @param {Query | undefined | null} query Realtime Database query
  * @param {?UseObjectValueOptions} options Options to configure how the object is fetched
  * * `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
+ * * `initialValue`: Value that is returned while the object is being fetched.
  * @returns {UseObjectValueResult} User, loading state, and error
  * * value: Object value; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
@@ -36,5 +38,5 @@ export function useObjectValue<Value = unknown>(
         []
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
+    return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
 }

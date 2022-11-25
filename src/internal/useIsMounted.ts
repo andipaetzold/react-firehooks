@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
 
+/**
+ * @internal
+ */
 export function useIsMounted() {
     const isMounted = useRef(false);
 

@@ -1,4 +1,5 @@
 import { renderHook } from "@testing-library/react";
+import { expect, it } from "vitest";
 import { useIsMounted } from "./useIsMounted";
 
 it("should return `true` on first render", () => {
