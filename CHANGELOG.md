@@ -1,3 +1,15 @@
+# [3.0.0-next.2](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.1...v3.0.0-next.2) (2022-11-25)
+
+
+### Features
+
+* require firebase 9.11.0 or later ([#148](https://github.com/andipaetzold/react-firehooks/issues/148)) ([7da01b0](https://github.com/andipaetzold/react-firehooks/commit/7da01b003caeaa82fd293549c821fc9c5bc3997e))
+
+
+### BREAKING CHANGES
+
+* require firebase 9.11.0 or later
+
 # [3.0.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v2.3.0...v3.0.0-next.1) (2022-11-25)
 
 
