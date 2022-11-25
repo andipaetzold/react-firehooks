@@ -10,9 +10,10 @@ export type UseCollectionDataResult<Value extends DocumentData = DocumentData> =
 /**
  * Options to configure the subscription
  */
-export interface UseCollectionDataOptions {
+export interface UseCollectionDataOptions<Value extends DocumentData = DocumentData> {
     snapshotListenOptions?: SnapshotListenOptions;
     snapshotOptions?: SnapshotOptions;
+    initialValue?: Value[];
 }
 
 /**
@@ -21,6 +22,7 @@ export interface UseCollectionDataOptions {
  * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be subscribed to
  * @param {?UseCollectionDataOptions} options Options to configure the subscription
+ * * `initialValue`: Value that is returned while the query is being fetched.
  * @returns {UseCollectionDataResult<Value>} Query data, loading state, and error
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
@@ -28,7 +30,7 @@ export interface UseCollectionDataOptions {
  */
 export function useCollectionData<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseCollectionDataOptions
+    options?: UseCollectionDataOptions<Value>
 ): UseCollectionDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
 
@@ -41,5 +43,5 @@ export function useCollectionData<Value extends DocumentData = DocumentData>(
         []
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
+    return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
 }
