@@ -1,3 +1,10 @@
+# [3.0.0-next.3](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.2...v3.0.0-next.3) (2022-11-25)
+
+
+### Bug Fixes
+
+* **firestore:** remove dynamic import from useCountFromServer ([#162](https://github.com/andipaetzold/react-firehooks/issues/162)) ([47a03f6](https://github.com/andipaetzold/react-firehooks/commit/47a03f60baa82768d7fc95b703a14493ca588f3b))
+
 # [3.0.0-next.2](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.1...v3.0.0-next.2) (2022-11-25)
 
 
