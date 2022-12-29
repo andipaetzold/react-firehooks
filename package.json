@@ -57,7 +57,7 @@
         "@types/react": "18.0.25",
         "@vitest/coverage-c8": "0.25.3",
         "firebase": "9.11.0",
-        "happy-dom": "7.7.0",
+        "happy-dom": "8.1.1",
         "husky": "8.0.2",
         "lint-staged": "13.0.4",
         "prettier": "2.8.0",
