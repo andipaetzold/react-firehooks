@@ -1,4 +1,5 @@
 import {
+    AggregateSpec,
     DocumentData,
     DocumentReference,
     DocumentSnapshot,
@@ -68,4 +69,15 @@ export function isQueryEqual<Value>(a: Query<Value> | undefined, b: Query<Value>
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && queryEqual(a, b);
     return areBothUndefined || areSameRef;
+}
+
+/**
+ * @internal
+ */
+export function isAggregateSpecEqual<T extends AggregateSpec>(a: T, b: T): boolean {
+    if (Object.keys(a).length === Object.keys(b).length) {
+        return false;
+    }
+
+    return Object.entries(a).every(([key, value]) => value === b[key]);
 }

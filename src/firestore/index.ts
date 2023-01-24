@@ -1,4 +1,5 @@
 export * from "./types.js";
+export * from "./useAggregateFromServer.js";
 export * from "./useCollection.js";
 export * from "./useCollectionData.js";
 export * from "./useCollectionDataOnce.js";
