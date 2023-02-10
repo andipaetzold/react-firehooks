@@ -4,7 +4,7 @@
 import { ... } from 'react-firehooks/database';
 ```
 
-#### useObject
+## useObject
 
 Returns and updates the DataSnapshot of the Realtime Database query
 

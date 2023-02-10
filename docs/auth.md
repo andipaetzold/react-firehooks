@@ -4,7 +4,7 @@
 import { ... } from 'react-firehooks/auth';
 ```
 
-#### useAuthIdToken
+## useAuthIdToken
 
 Returns and updates the JWT of the currently authenticated user
 
