@@ -50,10 +50,10 @@ This library consists of 6 modules with many hooks:
     -   [`useObjectValue`](#useObjectValue)
     -   [`useObjectValueOnce`](#useObjectValueOnce)
 -   [`firestore`](#Firestore)
-    -   [`useCollection`](#useCollection)
-    -   [`useCollectionData`](#useCollectionData)
-    -   [`useCollectionDataOnce`](#useCollectionDataOnce)
-    -   [`useCollectionOnce`](#useCollectionOnce)
+    -   [`useQuery`](#useQuery)
+    -   [`useQueryData`](#useQueryData)
+    -   [`useQueryDataOnce`](#useQueryDataOnce)
+    -   [`useQueryOnce`](#useQueryOnce)
     -   [`useCountFromServer`](#useCountFromServer)
     -   [`useDocument`](#useDocument)
     -   [`useDocumentData`](#useDocumentData)
@@ -242,12 +242,12 @@ Returns:
 import { ... } from 'react-firehooks/firestore';
 ```
 
-#### useCollection
+#### useQuery
 
 Returns and updates a QuerySnapshot of a Firestore Query
 
 ```javascript
-const [querySnap, loading, error] = useCollection(query, options);
+const [querySnap, loading, error] = useQuery(query, options);
 ```
 
 Params:
@@ -261,12 +261,12 @@ Returns:
 -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
-#### useCollectionData
+#### useQueryData
 
 Returns and updates a the document data of a Firestore Query
 
 ```javascript
-const [data, loading, error] = useCollectionData(query, options);
+const [data, loading, error] = useQueryData(query, options);
 ```
 
 Params:
@@ -280,12 +280,12 @@ Returns:
 -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
-#### useCollectionDataOnce
+#### useQueryDataOnce
 
 Returns the data of a Firestore Query. Does not update the data once initially fetched
 
 ```javascript
-const [data, loading, error] = useCollectionDataOnce(query, options);
+const [data, loading, error] = useQueryDataOnce(query, options);
 ```
 
 Params:
@@ -299,12 +299,12 @@ Returns:
 -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
 
-#### useCollectionOnce
+#### useQueryOnce
 
 Returns the QuerySnapshot of a Firestore Query. Does not update the QuerySnapshot once initially fetched
 
 ```javascript
-const [querySnap, loading, error] = useCollectionOnce(query, options);
+const [querySnap, loading, error] = useQueryOnce(query, options);
 ```
 
 Params:
