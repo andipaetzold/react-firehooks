@@ -1,12 +1,4 @@
 {
     "extends": ["config:js-lib"],
-    "packageRules": [
-        {
-            "matchDepTypes": ["devDependencies"],
-            "matchUpdateTypes": ["patch", "minor"],
-            "groupName": "dev dependencies (non-major)",
-            "groupSlug": "dev-dependencies"
-        }
-    ],
     "ignoreDeps": ["firebase"]
 }
