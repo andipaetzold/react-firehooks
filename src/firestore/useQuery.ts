@@ -5,7 +5,7 @@ import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 import { isQueryEqual } from "./internal.js";
 
-export type UseCollectionResult<Value extends DocumentData = DocumentData> = ValueHookResult<
+export type UseQueryResult<Value extends DocumentData = DocumentData> = ValueHookResult<
     QuerySnapshot<Value>,
     FirestoreError
 >;
@@ -13,7 +13,7 @@ export type UseCollectionResult<Value extends DocumentData = DocumentData> = Val
 /**
  * Options to configure the subscription
  */
-export interface UseCollectionOptions {
+export interface UseQueryOptions {
     snapshotListenOptions?: SnapshotListenOptions;
 }
 
@@ -22,16 +22,16 @@ export interface UseCollectionOptions {
  *
  * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be subscribed to
- * @param {?UseCollectionOptions} options Options to configure the subscription
- * @returns {UseCollectionResult<Value>} QuerySnapshot, loading, and error
+ * @param {?UseQueryOptions} options Options to configure the subscription
+ * @returns {UseQueryResult<Value>} QuerySnapshot, loading, and error
  * * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useCollection<Value extends DocumentData = DocumentData>(
+export function useQuery<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseCollectionOptions
-): UseCollectionResult<Value> {
+    options?: UseQueryOptions
+): UseQueryResult<Value> {
     const { snapshotListenOptions = {} } = options ?? {};
 
     const onChange: UseListenOnChange<QuerySnapshot<Value>, FirestoreError, Query<Value>> = useCallback(

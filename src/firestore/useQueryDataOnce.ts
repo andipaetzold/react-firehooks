@@ -5,15 +5,12 @@ import { useOnce } from "../internal/useOnce.js";
 import { getDocsFromSource, isQueryEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
-export type UseCollectionDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
-    Value[],
-    FirestoreError
->;
+export type UseQueryDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value[], FirestoreError>;
 
 /**
  * Options to configure the subscription
  */
-export interface UseCollectionDataOnceOptions {
+export interface UseQueryDataOnceOptions {
     source?: Source;
     snapshotOptions?: SnapshotOptions;
 }
@@ -23,16 +20,16 @@ export interface UseCollectionDataOnceOptions {
  *
  * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be fetched
- * @param {?UseCollectionDataOnceOptions} options Options to configure how the query is fetched
- * @returns {UseCollectionDataOnceResult<Value>} Query data, loading state, and error
+ * @param {?UseQueryDataOnceOptions} options Options to configure how the query is fetched
+ * @returns {UseQueryDataOnceResult<Value>} Query data, loading state, and error
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useCollectionDataOnce<Value extends DocumentData = DocumentData>(
+export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseCollectionDataOnceOptions
-): UseCollectionDataOnceResult<Value> {
+    options?: UseQueryDataOnceOptions
+): UseQueryDataOnceResult<Value> {
     const { source = "default", snapshotOptions = {} } = options ?? {};
 
     const getData = useCallback(async (stableQuery: Query<Value>) => {
