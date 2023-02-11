@@ -173,3 +173,43 @@ Returns:
 -   `value`: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
 -   `loading`: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
 -   `error`: `undefined` if no error occurred
+
+## useQueries
+
+Returns and updates a QuerySnapshot of multiple Firestore queries
+
+```javascript
+const [querySnap, loading, error] = useQueries(queries, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   Array with tuple for each query:
+    -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
+
+## useQueriesData
+
+Returns and updates a the document data of multiple Firestore queries
+
+```javascript
+const [querySnap, loading, error] = useQueriesData(query, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be subscribed to
+-   `options`: Options to configure the subscription
+
+Returns:
+
+-   Array with tuple for each query:
+    -   `value`: Query data; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading` :`true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
