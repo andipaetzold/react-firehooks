@@ -1,3 +1,10 @@
+# [3.0.0-next.5](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.4...v3.0.0-next.5) (2023-02-11)
+
+
+### Features
+
+* useQueries & useQueriesData ([#193](https://github.com/andipaetzold/react-firehooks/issues/193)) ([03be7c8](https://github.com/andipaetzold/react-firehooks/commit/03be7c8054d7e1b2ed4716a6af807a35ab267057))
+
 # [3.0.0-next.4](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.3...v3.0.0-next.4) (2023-02-10)
 
 
