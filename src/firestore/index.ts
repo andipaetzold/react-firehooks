@@ -8,3 +8,5 @@ export * from "./useDocument.js";
 export * from "./useDocumentData.js";
 export * from "./useDocumentDataOnce.js";
 export * from "./useDocumentOnce.js";
+export * from "./useQueries.js";
+export * from "./useQueriesData.js";
