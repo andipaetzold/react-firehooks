@@ -21,7 +21,7 @@ export function useMultiListen<Value, Error, Reference>(
 ): ValueHookResult<Value, Error>[] {
     const { states, setError, setLoading, setValue } = useMultiLoadingValue<Value, Error>(references.length);
 
-    const prevReferences = useRef<ReadonlyArray<Reference>>([]);
+    const prevReferences = useRef<Reference[]>([]);
     const subscriptions = useRef<(() => void)[]>([]);
 
     useEffect(() => {
@@ -29,27 +29,32 @@ export function useMultiListen<Value, Error, Reference>(
         subscriptions.current.slice(references.length).forEach((unsubscribe) => unsubscribe());
         subscriptions.current = subscriptions.current.slice(0, references.length);
 
-        // subscribe to new references and unsubscribe to changed references
-        references
-            .map((ref, refIndex) => [ref, refIndex] as const)
-            .filter(([ref, refIndex]) => !isEqualRef(ref, prevReferences.current[refIndex]))
-            .forEach(([ref, refIndex]) => {
-                subscriptions.current[refIndex]?.();
+        // shorten `prevReferences` size if number of references was reduced
+        prevReferences.current = prevReferences.current.slice(0, references.length);
 
-                setLoading(refIndex);
-                subscriptions.current[refIndex] = onChange(
-                    ref,
-                    (snap) => setValue(refIndex, snap),
-                    (error) => setError(refIndex, error)
-                );
-            });
+        // subscribe to new references and unsubscribe to changed references
+        const changedReferences = references
+            .map((ref, refIndex) => [ref, refIndex] as const)
+            .filter(([ref, refIndex]) => !isEqualRef(ref, prevReferences.current[refIndex]));
+
+        for (const [ref, refIndex] of changedReferences) {
+            subscriptions.current[refIndex]?.();
+
+            prevReferences.current[refIndex] = ref;
+            setLoading(refIndex);
+            subscriptions.current[refIndex] = onChange(
+                ref,
+                (snap) => setValue(refIndex, snap),
+                (error) => setError(refIndex, error)
+            );
+        }
     }, [references]);
 
-    // unsubscribe on unmount
+    // // unsubscribe on unmount
     useEffect(() => () => subscriptions.current.forEach((unsubscribe) => unsubscribe()), []);
 
     return useMemo(
         () => states.map((state) => [state.value, state.loading, state.error] as ValueHookResult<Value, Error>),
-        states
+        [states]
     );
 }
