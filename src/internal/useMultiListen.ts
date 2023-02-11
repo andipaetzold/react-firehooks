@@ -50,8 +50,16 @@ export function useMultiListen<Value, Error, Reference>(
         }
     }, [references]);
 
-    // // unsubscribe on unmount
-    useEffect(() => () => subscriptions.current.forEach((unsubscribe) => unsubscribe()), []);
+    // unsubscribe and cleanup on unmount
+    useEffect(
+        () => () => {
+            subscriptions.current.forEach((unsubscribe) => unsubscribe());
+            subscriptions.current = [];
+
+            prevReferences.current = [];
+        },
+        []
+    );
 
     return useMemo(
         () => states.map((state) => [state.value, state.loading, state.error] as ValueHookResult<Value, Error>),
