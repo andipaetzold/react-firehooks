@@ -22,7 +22,7 @@ export interface UseQueriesDataOptions {
  * @template Values Tuple of types of the collection data
  * @param {Query[]} queries Firestore queries that will be subscribed to
  * @param {?UseQueriesDataOptions} options Options to configure the subscription
- * @returns {ValueHookResult[]} Array of query data, loading, and error for each query
+ * @returns {ValueHookResult[]} Array with tuple for each query:
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
