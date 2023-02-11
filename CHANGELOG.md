@@ -1,3 +1,10 @@
+# [3.0.0-next.6](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.5...v3.0.0-next.6) (2023-02-11)
+
+
+### Bug Fixes
+
+* properly cleanup `useQueries*` on unmount ([b77becc](https://github.com/andipaetzold/react-firehooks/commit/b77becc381f41c633455f9b7d8d5bc5b0c7db469))
+
 # [3.0.0-next.5](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.4...v3.0.0-next.5) (2023-02-11)
 
 
