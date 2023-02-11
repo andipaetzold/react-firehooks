@@ -16,7 +16,7 @@ export interface UseQueriesOptions {
 }
 
 /**
- * Returns and updates a QuerySnapshot of a Firestore Query
+ * Returns and updates a QuerySnapshot of multiple Firestore queries
  *
  * @template Values Tuple of types of the collection data
  * @param {Query[]} queries Firestore queries that will be subscribed to
