@@ -1,6 +1,6 @@
 {
     "name": "react-firehooks",
-    "version": "3.0.0-next.5",
+    "version": "3.0.0-next.7",
     "description": "Lightweight dependency-free collection of React hooks for Firebase",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
@@ -50,7 +50,7 @@
     },
     "homepage": "https://github.com/andipaetzold/react-firehooks#readme",
     "devDependencies": {
-        "@semantic-release/changelog": "6.0.1",
+        "@semantic-release/changelog": "6.0.2",
         "@semantic-release/git": "10.0.1",
         "@testing-library/react": "13.4.0",
         "@tsconfig/recommended": "1.0.1",
@@ -63,11 +63,11 @@
         "prettier": "2.8.0",
         "react": "18.2.0",
         "react-test-renderer": "18.2.0",
-        "rimraf": "3.0.2",
-        "semantic-release": "19.0.5",
-        "typedoc": "0.23.21",
-        "typescript": "4.9.3",
-        "vitest": "0.25.3"
+        "rimraf": "4.1.2",
+        "semantic-release": "20.1.0",
+        "typedoc": "0.23.25",
+        "typescript": "4.9.5",
+        "vitest": "0.28.5"
     },
     "scripts": {
         "prepublishOnly": "npm run build",

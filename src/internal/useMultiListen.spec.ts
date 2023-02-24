@@ -104,7 +104,7 @@ describe("changing size", () => {
         ]);
     });
 
-    it("decreate", () => {
+    it("decrease", () => {
         const { result, rerender } = renderHook(({ refs }) => useMultiListen(refs, onChange, isEqual), {
             initialProps: { refs: [refA1, refB1] },
         });
@@ -119,6 +119,7 @@ describe("changing size", () => {
         ]);
 
         rerender({ refs: [refA1] });
+        expect(onChangeUnsubscribe).toHaveBeenCalledTimes(1);
         expect(result.current).toStrictEqual([[result1, false, undefined]]);
 
         act(() => setValue1(result3));
@@ -182,4 +183,12 @@ it("should return emitted error", () => {
         [undefined, false, error1],
         [undefined, false, error2],
     ]);
+});
+
+it("unmount", () => {
+    const { unmount } = renderHook(() => useMultiListen([refA1, refB1], onChange, isEqual));
+
+    unmount();
+
+    expect(onChangeUnsubscribe).toHaveBeenCalledTimes(2);
 });
