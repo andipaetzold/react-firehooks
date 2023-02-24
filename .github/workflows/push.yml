@@ -27,6 +27,8 @@ jobs:
               run: npm run build
             - name: Test
               run: npm test -- --run --coverage
+            - name: Typecheck
+              run: npm run typecheck -- --run
 
     release:
         name: Release
