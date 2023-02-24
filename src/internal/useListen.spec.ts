@@ -120,14 +120,10 @@ it("should return emitted values", () => {
 
     expect(result.current).toStrictEqual([undefined, true, undefined]);
 
-    act(() => {
-        setValue(result1);
-    });
+    act(() => setValue(result1));
     expect(result.current).toStrictEqual([result1, false, undefined]);
 
-    act(() => {
-        setValue(result2);
-    });
+    act(() => setValue(result2));
     expect(result.current).toStrictEqual([result2, false, undefined]);
 });
 
@@ -138,13 +134,9 @@ it("should return emitted error", () => {
 
     expect(result.current).toStrictEqual([undefined, true, undefined]);
 
-    act(() => {
-        setError(error);
-    });
+    act(() => setError(error));
     expect(result.current).toStrictEqual([undefined, false, error]);
 
-    act(() => {
-        setValue(result2);
-    });
+    act(() => setValue(result2));
     expect(result.current).toStrictEqual([result2, false, undefined]);
 });
