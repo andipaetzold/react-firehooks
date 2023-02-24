@@ -1,3 +1,15 @@
+# [2.4.0](https://github.com/andipaetzold/react-firehooks/compare/v2.3.0...v2.4.0) (2023-02-24)
+
+
+### Bug Fixes
+
+* rename `useCollection*` hooks to `useQuery*` ([#198](https://github.com/andipaetzold/react-firehooks/issues/198)) ([47e58ef](https://github.com/andipaetzold/react-firehooks/commit/47e58ef51685a0bc38ddae1d348c6d0f2f4a4267))
+
+
+### Features
+
+* useQueries & useQueriesData ([#199](https://github.com/andipaetzold/react-firehooks/issues/199)) ([e3a832d](https://github.com/andipaetzold/react-firehooks/commit/e3a832d1ecae91795954a5cf10663c46949facb5))
+
 # [3.0.0-next.6](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.5...v3.0.0-next.6) (2023-02-11)
 
 
