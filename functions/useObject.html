@@ -20,13 +20,6 @@
 <li class="tsd-signature tsd-anchor-link" id="useObject"><span class="tsd-kind-call-signature">use<wbr/>Object</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">query</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/UseObjectResult.html" class="tsd-signature-type tsd-kind-type-alias">UseObjectResult</a><a href="#useObject" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the DataSnapshot of the Realtime Database query</p>
-
-<h3>Returns</h3><p>User, loading state, and error</p>
-<ul>
-<li>value: DataSnapshot; <code>undefined</code> if query is currently being fetched, or an error occurred</li>
-<li>loading: <code>true</code> while fetching the query; <code>false</code> if the query was fetched successfully or an error occurred</li>
-<li>error: <code>undefined</code> if no error occurred</li>
-</ul>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -35,9 +28,15 @@
 <h5><span class="tsd-kind-parameter">query</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Query</span></h5>
 <div class="tsd-comment tsd-typography"><p>Realtime Database query</p>
 </div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="../types/UseObjectResult.html" class="tsd-signature-type tsd-kind-type-alias">UseObjectResult</a></h4><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <a href="../types/UseObjectResult.html" class="tsd-signature-type tsd-kind-type-alias">UseObjectResult</a></h4><p>User, loading state, and error</p>
 <ul>
-<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/33e9a41/src/database/useObject.ts#L18">database/useObject.ts:18</a></li></ul></aside></li></ul></section></div>
+<li>value: DataSnapshot; <code>undefined</code> if query is currently being fetched, or an error occurred</li>
+<li>loading: <code>true</code> while fetching the query; <code>false</code> if the query was fetched successfully or an error occurred</li>
+<li>error: <code>undefined</code> if no error occurred</li>
+</ul>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/474ab22/src/database/useObject.ts#L18">database/useObject.ts:18</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">

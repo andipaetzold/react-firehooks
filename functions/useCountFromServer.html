@@ -21,13 +21,6 @@
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.</p>
 <p>Requires firebase 9.11.0 or later</p>
-
-<h3>Returns</h3><p>Size of the result set, loading state, and error</p>
-<ul>
-<li>value: Size of the result set; <code>undefined</code> if the result set size is currently being calculated, or an error occurred</li>
-<li>loading: <code>true</code> while calculating the result size set; <code>false</code> if the result size set was calculated successfully or an error occurred</li>
-<li>error: <code>undefined</code> if no error occurred</li>
-</ul>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -36,9 +29,15 @@
 <h5><span class="tsd-kind-parameter">query</span>: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type ">Query</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">unknown</span><span class="tsd-signature-symbol">&gt;</span></h5>
 <div class="tsd-comment tsd-typography"><p>Firestore query whose result set size is calculated</p>
 </div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="../types/UseCountFromServerResult.html" class="tsd-signature-type tsd-kind-type-alias">UseCountFromServerResult</a></h4><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <a href="../types/UseCountFromServerResult.html" class="tsd-signature-type tsd-kind-type-alias">UseCountFromServerResult</a></h4><p>Size of the result set, loading state, and error</p>
 <ul>
-<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/33e9a41/src/firestore/useCountFromServer.ts#L29">firestore/useCountFromServer.ts:29</a></li></ul></aside></li></ul></section></div>
+<li>value: Size of the result set; <code>undefined</code> if the result set size is currently being calculated, or an error occurred</li>
+<li>loading: <code>true</code> while calculating the result size set; <code>false</code> if the result size set was calculated successfully or an error occurred</li>
+<li>error: <code>undefined</code> if no error occurred</li>
+</ul>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/474ab22/src/firestore/useCountFromServer.ts#L29">firestore/useCountFromServer.ts:29</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">

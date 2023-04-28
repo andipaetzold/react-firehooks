@@ -20,13 +20,6 @@
 <li class="tsd-signature tsd-anchor-link" id="useAuthState"><span class="tsd-kind-call-signature">use<wbr/>Auth<wbr/>State</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">auth</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/UseAuthStateResult.html" class="tsd-signature-type tsd-kind-type-alias">UseAuthStateResult</a><a href="#useAuthState" aria-label="Permalink" class="tsd-anchor-icon"><svg class="icon icon-tabler icon-tabler-link" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none" id="icon-anchor-a"></path><path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" id="icon-anchor-b"></path><path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" id="icon-anchor-c"></path></svg></a></li>
 <li class="tsd-description">
 <div class="tsd-comment tsd-typography"><p>Returns and updates the currently authenticated user</p>
-
-<h3>Returns</h3><p>User, loading state, and error</p>
-<ul>
-<li>value: User; <code>undefined</code> if user is currently being fetched, or an error occurred</li>
-<li>loading: <code>true</code> while fetching the user; <code>false</code> if the user was fetched successfully or an error occurred</li>
-<li>error: <code>undefined</code> if no error occurred</li>
-</ul>
 </div>
 <div class="tsd-parameters">
 <h4 class="tsd-parameters-title">Parameters</h4>
@@ -35,9 +28,15 @@
 <h5><span class="tsd-kind-parameter">auth</span>: <span class="tsd-signature-type ">Auth</span></h5>
 <div class="tsd-comment tsd-typography"><p>Firebase Auth instance</p>
 </div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="../types/UseAuthStateResult.html" class="tsd-signature-type tsd-kind-type-alias">UseAuthStateResult</a></h4><aside class="tsd-sources">
+<h4 class="tsd-returns-title">Returns <a href="../types/UseAuthStateResult.html" class="tsd-signature-type tsd-kind-type-alias">UseAuthStateResult</a></h4><p>User, loading state, and error</p>
 <ul>
-<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/33e9a41/src/auth/useAuthState.ts#L18">auth/useAuthState.ts:18</a></li></ul></aside></li></ul></section></div>
+<li>value: User; <code>undefined</code> if user is currently being fetched, or an error occurred</li>
+<li>loading: <code>true</code> while fetching the user; <code>false</code> if the user was fetched successfully or an error occurred</li>
+<li>error: <code>undefined</code> if no error occurred</li>
+</ul>
+<aside class="tsd-sources">
+<ul>
+<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/474ab22/src/auth/useAuthState.ts#L18">auth/useAuthState.ts:18</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
