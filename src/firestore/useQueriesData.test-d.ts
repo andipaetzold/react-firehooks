@@ -9,7 +9,7 @@ describe("useQueriesData", () => {
 
         const results = useQueriesData([query]);
 
-        expectTypeOf<(typeof results)[0][0]>().toMatchTypeOf<Value | undefined>();
+        expectTypeOf<typeof results[0][0]>().toMatchTypeOf<Value | undefined>();
     });
 
     it("multiple queries", () => {
@@ -20,7 +20,7 @@ describe("useQueriesData", () => {
 
         const results = useQueriesData([query1, query2] as const);
 
-        expectTypeOf<(typeof results)[0][0]>().toMatchTypeOf<Value1 | undefined>();
-        expectTypeOf<(typeof results)[1][0]>().toMatchTypeOf<Value2 | undefined>();
+        expectTypeOf<typeof results[0][0]>().toMatchTypeOf<Value1 | undefined>();
+        expectTypeOf<typeof results[1][0]>().toMatchTypeOf<Value2 | undefined>();
     });
 });
