@@ -3,11 +3,11 @@ name: Compressed Size
 on: [pull_request]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v3
-      - uses: preactjs/compressed-size-action@v2
-        with:
-          pattern: "**/lib/**/*.js"
+        steps:
+            - uses: actions/checkout@v3
+            - uses: preactjs/compressed-size-action@v2
+              with:
+                  pattern: "**/lib/**/*.js"
