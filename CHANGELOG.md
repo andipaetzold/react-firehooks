@@ -1,3 +1,10 @@
+# [3.0.0-next.8](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.7...v3.0.0-next.8) (2023-07-07)
+
+
+### Features
+
+* support firebase v10 ([#217](https://github.com/andipaetzold/react-firehooks/issues/217)) ([5119385](https://github.com/andipaetzold/react-firehooks/commit/51193857619ee963d6e40089d8bafef71e699caa))
+
 # [3.0.0-next.7](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.6...v3.0.0-next.7) (2023-02-24)
 
 
