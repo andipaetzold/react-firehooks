@@ -82,7 +82,7 @@
         "lint-staged": "lint-staged"
     },
     "peerDependencies": {
-        "firebase": "^9.5.0",
+        "firebase": "^9.5.0 || ^10.0.0",
         "react": ">=16.8.0"
     },
     "lint-staged": {
