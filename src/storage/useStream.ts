@@ -21,7 +21,7 @@ export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageErro
 export function useStream(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseStreamResult {
     const fetchBlob = useCallback(
         async (ref: StorageReference) => getStream(ref, maxDownloadSizeBytes),
-        [maxDownloadSizeBytes]
+        [maxDownloadSizeBytes],
     );
 
     return useOnce(reference ?? undefined, fetchBlob, isStorageRefEqual);

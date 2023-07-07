@@ -30,7 +30,7 @@ export interface UseQueryOnceOptions {
  */
 export function useQueryOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseQueryOnceOptions
+    options?: UseQueryOnceOptions,
 ): UseQueryOnceResult<Value> {
     const { source = "default" } = options ?? {};
 

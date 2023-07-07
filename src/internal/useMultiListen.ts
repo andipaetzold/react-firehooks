@@ -8,7 +8,7 @@ import { useMultiLoadingValue } from "./useMultiLoadingValue.js";
 export type UseMultiListenChange<Value, Error, Reference> = (
     ref: Reference,
     onValue: (value: Value | undefined) => void,
-    onError: (e: Error) => void
+    onError: (e: Error) => void,
 ) => () => void;
 
 /**
@@ -17,7 +17,7 @@ export type UseMultiListenChange<Value, Error, Reference> = (
 export function useMultiListen<Value, Error, Reference>(
     references: ReadonlyArray<Reference>,
     onChange: UseMultiListenChange<Value, Error, Reference>,
-    isEqualRef: (a: Reference | undefined, b: Reference | undefined) => boolean
+    isEqualRef: (a: Reference | undefined, b: Reference | undefined) => boolean,
 ): ValueHookResult<Value, Error>[] {
     const { states, setError, setLoading, setValue } = useMultiLoadingValue<Value, Error>(references.length);
 
@@ -45,7 +45,7 @@ export function useMultiListen<Value, Error, Reference>(
             subscriptions.current[refIndex] = onChange(
                 ref,
                 (snap) => setValue(refIndex, snap),
-                (error) => setError(refIndex, error)
+                (error) => setError(refIndex, error),
             );
         }
     }, [references]);
@@ -58,11 +58,11 @@ export function useMultiListen<Value, Error, Reference>(
 
             prevReferences.current = [];
         },
-        []
+        [],
     );
 
     return useMemo(
         () => states.map((state) => [state.value, state.loading, state.error] as ValueHookResult<Value, Error>),
-        [states]
+        [states],
     );
 }

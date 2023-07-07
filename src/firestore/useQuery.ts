@@ -30,7 +30,7 @@ export interface UseQueryOptions {
  */
 export function useQuery<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseQueryOptions
+    options?: UseQueryOptions,
 ): UseQueryResult<Value> {
     const { snapshotListenOptions = {} } = options ?? {};
 
@@ -40,7 +40,7 @@ export function useQuery<Value extends DocumentData = DocumentData>(
                 next,
                 error,
             }),
-        []
+        [],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);

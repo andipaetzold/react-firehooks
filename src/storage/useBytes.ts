@@ -19,7 +19,7 @@ export type UseBytesResult = ValueHookResult<ArrayBuffer, StorageError>;
 export function useBytes(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseBytesResult {
     const fetchBytes = useCallback(
         async (ref: StorageReference) => getBytes(ref, maxDownloadSizeBytes),
-        [maxDownloadSizeBytes]
+        [maxDownloadSizeBytes],
     );
 
     return useOnce(reference ?? undefined, fetchBytes, isStorageRefEqual);

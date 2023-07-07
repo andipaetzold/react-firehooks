@@ -10,11 +10,11 @@ import { useStableValue } from "./useStableValue.js";
 export function useOnce<Value, Error, Reference>(
     reference: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
-    isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean
+    isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
 ): ValueHookResult<Value, Error> {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, Error>(
-        reference === undefined ? undefined : LoadingState
+        reference === undefined ? undefined : LoadingState,
     );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);

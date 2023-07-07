@@ -28,7 +28,7 @@ export interface UseDocumentDataOnceOptions {
  */
 export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOnceOptions
+    options?: UseDocumentDataOnceOptions,
 ): UseDocumentDataOnceResult<Value> {
     const { source = "default", snapshotOptions } = options ?? {};
 

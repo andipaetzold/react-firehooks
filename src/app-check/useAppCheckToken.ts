@@ -18,7 +18,7 @@ export type UseAppCheckToken = ValueHookResult<AppCheckTokenResult | null, Error
 export function useAppCheckToken(appCheck: AppCheck): UseAppCheckToken {
     const onChange: UseListenOnChange<AppCheckTokenResult | null, Error, AppCheck> = useCallback(
         (stableAppCheck, next, error) => onTokenChanged(stableAppCheck, next, error),
-        []
+        [],
     );
 
     return useListen(appCheck, onChange, () => true, LoadingState);
