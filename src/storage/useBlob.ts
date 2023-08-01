@@ -21,7 +21,7 @@ export type UseBlobResult = ValueHookResult<Blob, StorageError>;
 export function useBlob(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseBlobResult {
     const fetchBlob = useCallback(
         async (ref: StorageReference) => getBlob(ref, maxDownloadSizeBytes),
-        [maxDownloadSizeBytes]
+        [maxDownloadSizeBytes],
     );
 
     return useOnce(reference ?? undefined, fetchBlob, isStorageRefEqual);

@@ -25,6 +25,6 @@ export function useMessagingToken(messaging: Messaging, options?: UseMessagingTo
     return useOnce(
         messaging,
         (m) => getToken(m, options?.getTokenOptions),
-        () => true
+        () => true,
     );
 }

@@ -30,7 +30,7 @@ export interface UseQueryDataOptions<Value extends DocumentData = DocumentData> 
  */
 export function useQueryData<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseQueryDataOptions<Value>
+    options?: UseQueryDataOptions<Value>,
 ): UseQueryDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
 
@@ -40,7 +40,7 @@ export function useQueryData<Value extends DocumentData = DocumentData>(
                 next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
                 error,
             }),
-        []
+        [],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);

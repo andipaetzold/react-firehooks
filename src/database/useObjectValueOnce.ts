@@ -26,7 +26,7 @@ export interface UseObjectValueOnceOptions<Value> {
  */
 export function useObjectValueOnce<Value = unknown>(
     query: Query | undefined | null,
-    options?: UseObjectValueOnceOptions<Value>
+    options?: UseObjectValueOnceOptions<Value>,
 ): UseObjectValueOnceResult<Value> {
     const { converter = (snap: DataSnapshot) => snap.val() } = options ?? {};
 

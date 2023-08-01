@@ -37,7 +37,7 @@ export interface UseDocumentDataOptions<Value extends DocumentData = DocumentDat
  */
 export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOptions<Value>
+    options?: UseDocumentDataOptions<Value>,
 ): UseDocumentDataResult<Value> {
     const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
 
@@ -47,7 +47,7 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
                 next: (snap) => next(snap.data(snapshotOptions)),
                 error,
             }),
-        []
+        [],
     );
 
     return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);

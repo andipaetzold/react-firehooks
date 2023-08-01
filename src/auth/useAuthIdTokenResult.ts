@@ -31,7 +31,7 @@ export function useAuthIdTokenResult(auth: Auth): UseAuthIdTokenResultResult {
                     next(null);
                 }
             }),
-        []
+        [],
     );
 
     return useListen(auth, onChange, () => true, LoadingState);

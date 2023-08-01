@@ -28,7 +28,7 @@ export interface UseQueryDataOnceOptions {
  */
 export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
-    options?: UseQueryDataOnceOptions
+    options?: UseQueryDataOnceOptions,
 ): UseQueryDataOnceResult<Value> {
     const { source = "default", snapshotOptions = {} } = options ?? {};
 

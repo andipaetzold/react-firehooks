@@ -28,7 +28,7 @@ export interface UseQueriesOptions {
  */
 export function useQueries<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
     queries: { [Index in keyof Values]: Query<Values[Index]> },
-    options?: UseQueriesOptions
+    options?: UseQueriesOptions,
 ): UseQueriesResult<Values> {
     const { snapshotListenOptions = {} } = options ?? {};
     const onChange: UseMultiListenChange<QuerySnapshot<Values[number]>, FirestoreError, Query<Values[number]>> = useCallback(
@@ -37,7 +37,7 @@ export function useQueries<Values extends ReadonlyArray<DocumentData> = Readonly
                 next,
                 error,
             }),
-        []
+        [],
     );
 
     // @ts-expect-error `useMultiListen` assumes a single value type

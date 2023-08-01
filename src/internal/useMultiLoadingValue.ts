@@ -40,8 +40,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: false,
                           error: undefined,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 
@@ -54,8 +54,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: true,
                           error: undefined,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 
@@ -68,8 +68,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: false,
                           error,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 

@@ -29,13 +29,13 @@ export interface UseObjectValueOptions<Value> {
  */
 export function useObjectValue<Value = unknown>(
     query: Query | undefined | null,
-    options?: UseObjectValueOptions<Value>
+    options?: UseObjectValueOptions<Value>,
 ): UseObjectValueResult<Value> {
     const { converter = (snap: DataSnapshot) => snap.val() } = options ?? {};
 
     const onChange: UseListenOnChange<Value, Error, Query> = useCallback(
         (stableQuery, next, error) => onValue(stableQuery, (snap) => next(converter(snap)), error),
-        []
+        [],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);

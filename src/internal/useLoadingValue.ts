@@ -27,7 +27,7 @@ export interface UseLoadingValueResult<Value, Error> {
  * @internal
  */
 export function useLoadingValue<Value, Error = unknown>(
-    initialState: Value | undefined | typeof LoadingState
+    initialState: Value | undefined | typeof LoadingState,
 ): UseLoadingValueResult<Value, Error> {
     const [state, setState] = useState<State<Value, Error>>({
         error: undefined,
@@ -68,6 +68,6 @@ export function useLoadingValue<Value, Error = unknown>(
             error: state.error,
             setError,
         }),
-        [state, setValue, setLoading, setError]
+        [state, setValue, setLoading, setError],
     );
 }

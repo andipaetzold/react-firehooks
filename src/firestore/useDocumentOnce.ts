@@ -30,7 +30,7 @@ export interface UseDocumentOnceOptions {
  */
 export function useDocumentOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentOnceOptions
+    options?: UseDocumentOnceOptions,
 ): UseDocumentOnceResult<Value> {
     const { source = "default" } = options ?? {};
 

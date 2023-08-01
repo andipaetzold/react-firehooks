@@ -20,7 +20,7 @@ import type { Source } from "./types.js";
  */
 export async function getDocFromSource<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value>,
-    source: Source
+    source: Source,
 ): Promise<DocumentSnapshot<Value>> {
     switch (source) {
         case "cache":
@@ -37,7 +37,7 @@ export async function getDocFromSource<Value extends DocumentData = DocumentData
  */
 export async function getDocsFromSource<Value extends DocumentData = DocumentData>(
     query: Query<Value>,
-    source: Source
+    source: Source,
 ): Promise<QuerySnapshot<Value>> {
     switch (source) {
         case "cache":
@@ -54,7 +54,7 @@ export async function getDocsFromSource<Value extends DocumentData = DocumentDat
  */
 export function isDocRefEqual<Value>(
     a: DocumentReference<Value> | undefined,
-    b: DocumentReference<Value> | undefined
+    b: DocumentReference<Value> | undefined,
 ): boolean {
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && refEqual(a, b);
