@@ -1,3 +1,26 @@
+# [3.0.0](https://github.com/andipaetzold/react-firehooks/compare/v2.5.0...v3.0.0) (2023-08-01)
+
+
+### Bug Fixes
+
+* **firestore:** remove dynamic import from useCountFromServer ([#162](https://github.com/andipaetzold/react-firehooks/issues/162)) ([47a03f6](https://github.com/andipaetzold/react-firehooks/commit/47a03f60baa82768d7fc95b703a14493ca588f3b))
+* properly cleanup `useQueries*` on unmount ([b77becc](https://github.com/andipaetzold/react-firehooks/commit/b77becc381f41c633455f9b7d8d5bc5b0c7db469))
+
+
+### Features
+
+* rename `useCollection*` hooks to `useQuery*` ([#194](https://github.com/andipaetzold/react-firehooks/issues/194)) ([372f055](https://github.com/andipaetzold/react-firehooks/commit/372f055322bf7f273c9736e3bb80969bef2e046f))
+* require firebase 9.11.0 or later ([#148](https://github.com/andipaetzold/react-firehooks/issues/148)) ([7da01b0](https://github.com/andipaetzold/react-firehooks/commit/7da01b003caeaa82fd293549c821fc9c5bc3997e))
+* target es2017 instead of es2015 ([#163](https://github.com/andipaetzold/react-firehooks/issues/163)) ([be187d0](https://github.com/andipaetzold/react-firehooks/commit/be187d03301b156eb032eecb9076b94395bd69e2))
+* useQueries & useQueriesData ([#193](https://github.com/andipaetzold/react-firehooks/issues/193)) ([03be7c8](https://github.com/andipaetzold/react-firehooks/commit/03be7c8054d7e1b2ed4716a6af807a35ab267057))
+
+
+### BREAKING CHANGES
+
+* `useCollection*` hooks are renamed to `useQuery*`
+* require firebase 9.11.0 or later
+* package targets es2017
+
 # [3.0.0-next.8](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0-next.7...v3.0.0-next.8) (2023-07-07)
 
 
