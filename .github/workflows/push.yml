@@ -16,7 +16,7 @@ jobs:
               id: node-version
               run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
             - name: Use node
-              uses: actions/setup-node@v3.8.0
+              uses: actions/setup-node@v3.8.1
               with:
                   node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
                   cache: "npm"
@@ -42,7 +42,7 @@ jobs:
               id: node-version
               run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
             - name: Use node
-              uses: actions/setup-node@v3.8.0
+              uses: actions/setup-node@v3.8.1
               with:
                   node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
                   cache: "npm"
