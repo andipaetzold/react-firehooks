@@ -59,7 +59,7 @@ describe("initial load", () => {
 describe("when ref changes", () => {
     describe("to equal ref", () => {
         it("should not update success result", async () => {
-            getData.mockImplementationOnce(() => new Promise((resolve) => resolve(result1)));
+            getData.mockResolvedValueOnce(result1);
 
             const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
@@ -75,7 +75,7 @@ describe("when ref changes", () => {
         });
 
         it("should not update error result", async () => {
-            getData.mockImplementationOnce(() => new Promise((_resolve, reject) => reject(error)));
+            getData.mockRejectedValueOnce(error);
 
             const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
@@ -93,9 +93,7 @@ describe("when ref changes", () => {
 
     describe("to unequal ref", () => {
         it("should update success result", async () => {
-            getData
-                .mockImplementationOnce(() => new Promise((resolve) => resolve(result1)))
-                .mockImplementationOnce(() => new Promise((resolve) => resolve(result2)));
+            getData.mockResolvedValueOnce(result1).mockResolvedValueOnce(result2);
 
             const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
@@ -111,9 +109,7 @@ describe("when ref changes", () => {
         });
 
         it("should update error result", async () => {
-            getData
-                .mockImplementationOnce(() => new Promise((_resolve, reject) => reject(error)))
-                .mockImplementationOnce(() => new Promise((resolve) => resolve(result2)));
+            getData.mockRejectedValueOnce(error).mockResolvedValueOnce(result2);
 
             const { result, rerender } = renderHook(({ ref }) => useOnce(ref, getData, isEqual), {
                 initialProps: { ref: refA1 },
