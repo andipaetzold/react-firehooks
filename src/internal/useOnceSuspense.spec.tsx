@@ -1,8 +1,8 @@
-import { cleanup, getByTestId, getByText, render, renderHook, waitFor } from "@testing-library/react";
-import { newPromise, newSymbol } from "../__testfixtures__";
-import { useOnceSuspense } from "./useOnceSuspense";
-import { it, expect, beforeEach, describe, vi, afterEach } from "vitest";
+import { cleanup, render, renderHook } from "@testing-library/react";
 import React, { Suspense } from "react";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { newSymbol } from "../__testfixtures__";
+import { useOnceSuspense } from "./useOnceSuspense";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
