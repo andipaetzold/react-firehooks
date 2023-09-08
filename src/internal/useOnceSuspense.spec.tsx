@@ -1,4 +1,4 @@
-import { cleanup, render, renderHook } from "@testing-library/react";
+import { cleanup, render, renderHook, waitFor } from "@testing-library/react";
 import React, { Suspense } from "react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { newSymbol } from "../__testfixtures__";
@@ -18,8 +18,6 @@ const getData = vi.fn();
 const isEqual = (a: any, b: any) =>
     [a, b].every((x) => [refA1, refA2].includes(x)) || [a, b].every((x) => [refB1, refB2].includes(x));
 
-vi.useFakeTimers();
-
 beforeEach(() => {
     vi.resetAllMocks();
 
@@ -32,16 +30,14 @@ describe("success state", () => {
     it("defined reference", async () => {
         getData.mockResolvedValue(result1);
         const { result } = renderHook(() => useOnceSuspense(refA1, getData, isEqual));
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-        expect(result.current).toBe(result1);
+
+        await waitFor(() => expect(result.current).toBe(result1));
     });
 
     it("undefined reference", async () => {
         const { result } = renderHook(() => useOnceSuspense(undefined, getData, isEqual));
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-        expect(result.current).toBeUndefined();
+
+        await waitFor(() => expect(result.current).toBeUndefined());
     });
 });
 
@@ -67,10 +63,7 @@ it("within `<Suspense>`", async () => {
         </Suspense>,
     );
 
-    await vi.runOnlyPendingTimersAsync();
-    await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-
-    expect(getByTestId("component")).toBeDefined();
+    await waitFor(() => expect(getByTestId("component")).toBeDefined());
     expect(getByTestId("component").textContent).toBe("Success");
 });
 
@@ -82,18 +75,12 @@ describe("when ref changes", () => {
             initialProps: { ref: refA1 },
         });
 
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-
-        expect(result.current).toStrictEqual(result1);
+        await waitFor(() => expect(result.current).toStrictEqual(result1));
         expect(getData).toHaveBeenCalledTimes(1);
 
         rerender({ ref: refA2 });
 
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-
-        expect(result.current).toStrictEqual(result1);
+        await waitFor(() => expect(result.current).toStrictEqual(result1));
         expect(getData).toHaveBeenCalledTimes(1);
     });
 
@@ -104,18 +91,12 @@ describe("when ref changes", () => {
             initialProps: { ref: refA1 },
         });
 
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-
-        expect(result.current).toStrictEqual(result1);
+        await waitFor(() => expect(result.current).toStrictEqual(result1));
         expect(getData).toHaveBeenCalledTimes(1);
 
         rerender({ ref: refB1 });
 
-        await vi.runOnlyPendingTimersAsync();
-        await vi.runOnlyPendingTimersAsync(); // Not sure why this is needed
-
-        expect(result.current).toStrictEqual(result2);
+        await waitFor(() => expect(result.current).toStrictEqual(result2));
         expect(getData).toHaveBeenCalledTimes(2);
     });
 });
