@@ -1,4 +1,3 @@
-/* eslint-disable jsdoc/require-jsdoc */
 export function newPromise<T>() {
     let resolve: (value: T) => void;
     let reject: (error: unknown) => void;

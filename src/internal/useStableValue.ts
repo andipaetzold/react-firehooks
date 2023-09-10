@@ -1,5 +1,3 @@
-/* eslint-disable jsdoc/require-returns */
-/* eslint-disable jsdoc/require-param */
 import { useEffect, useState as useRef } from "react";
 
 /**
