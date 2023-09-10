@@ -39,22 +39,18 @@
 <div class="tsd-comment tsd-typography"></div></li>
 <li>
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/UseObjectValueOnceOptions.html" class="tsd-signature-type tsd-kind-interface">UseObjectValueOnceOptions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Value</span><span class="tsd-signature-symbol">&gt;</span></h5>
-<div class="tsd-comment tsd-typography"><p>Options to configure how the object is fetched</p>
-<ul>
-<li><code>converter</code>: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: <code>snap.val()</code>.</li>
-</ul>
+<div class="tsd-comment tsd-typography"><p>Options to configure how the object is fetched
+<code>converter</code>: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: <code>snap.val()</code>.</p>
 </div>
 <div class="tsd-comment tsd-typography"></div></li></ul></div>
-<h4 class="tsd-returns-title">Returns <a href="../types/UseObjectValueOnceResult.html" class="tsd-signature-type tsd-kind-type-alias">UseObjectValueOnceResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Value</span><span class="tsd-signature-symbol">&gt;</span></h4><p>User, loading state, and error</p>
-<ul>
-<li>value: Object value; <code>undefined</code> if query is currently being fetched, or an error occurred</li>
-<li>loading: <code>true</code> while fetching the query; <code>false</code> if the query was fetched successfully or an error occurred</li>
-<li>error: <code>undefined</code> if no error occurred</li>
-</ul>
+<h4 class="tsd-returns-title">Returns <a href="../types/UseObjectValueOnceResult.html" class="tsd-signature-type tsd-kind-type-alias">UseObjectValueOnceResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Value</span><span class="tsd-signature-symbol">&gt;</span></h4><p>User, loading state, and error
+value: Object value; <code>undefined</code> if query is currently being fetched, or an error occurred
+loading: <code>true</code> while fetching the query; <code>false</code> if the query was fetched successfully or an error occurred
+error: <code>undefined</code> if no error occurred</p>
 
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/80d71e6/src/database/useObjectValueOnce.ts#L27">database/useObjectValueOnce.ts:27</a></li></ul></aside></li></ul></section></div>
+<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/60dbb63/src/database/useObjectValueOnce.ts#L26">database/useObjectValueOnce.ts:26</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
