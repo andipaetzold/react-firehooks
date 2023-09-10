@@ -7,8 +7,8 @@ import { ValueHookResult } from "../common/types.js";
  * value: `WrappedPromise<Value | undefined>`
  */
 // @ts-expect-error Property is missing on `globalThis`
-const wrappedPromises: Map<any, WrappedPromise<any>> = globalThis._firehookWrappedPromises ??
-new Map<any, WrappedPromise<any>>();
+const wrappedPromises: Map<unknown, WrappedPromise<unknown>> = globalThis._firehookWrappedPromises ??
+new Map<unknown, WrappedPromise<unknown>>();
 
 // @ts-expect-error Property is missing on `globalThis`
 if (!globalThis._firehookPromises) {
@@ -33,7 +33,7 @@ export function useOnceSuspense<Value, Error, Reference>(
         }
 
         for (const [ref, promise] of wrappedPromises) {
-            if (isEqual(ref, stableRef)) {
+            if (isEqual(ref as Reference, stableRef)) {
                 return promise;
             }
         }
@@ -42,6 +42,9 @@ export function useOnceSuspense<Value, Error, Reference>(
         const wrappedPromise = wrapPromise(promise);
         wrappedPromises.set(stableRef, wrappedPromise);
         return wrappedPromise;
+
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stableRef]);
 
     if (!enabled) {

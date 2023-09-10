@@ -1,5 +1,4 @@
 import { Query } from "firebase/database";
-import * as a from "@firebase/installations";
 
 /**
  * @internal

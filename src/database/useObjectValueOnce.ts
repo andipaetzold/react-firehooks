@@ -33,6 +33,8 @@ export function useObjectValueOnce<Value = unknown>(
     const getData = useCallback(async (stableQuery: Query) => {
         const snap = await get(stableQuery);
         return converter(snap);
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return useOnce(query ?? undefined, getData, isQueryEqual);

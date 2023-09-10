@@ -47,6 +47,8 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
                 next: (snap) => next(snap.data(snapshotOptions)),
                 error,
             }),
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 

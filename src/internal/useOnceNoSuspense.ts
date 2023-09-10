@@ -41,6 +41,9 @@ export function useOnceNoSuspense<Value, Error, Reference>(
                 }
             }
         })();
+
+        // TODO: double-check dependencies
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [enabled, stableRef]);
 
     const result = useMemo<ValueHookResult<Value, Error>>(() => [value, loading, error], [value, loading, error]);

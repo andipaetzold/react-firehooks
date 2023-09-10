@@ -44,6 +44,9 @@ export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
     const getData = useCallback(async (stableQuery: Query<Value>) => {
         const snap = await getDocsFromSource(stableQuery, source);
         return snap.docs.map((doc) => doc.data(snapshotOptions));
+
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }

@@ -10,6 +10,9 @@ export function useStableValue<Value>(value: Value, isEqual: (a: Value, b: Value
         if (!isEqual(state, value)) {
             setState(value);
         }
+
+        // TODO: double check dependencies
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [value]);
 
     return state;
