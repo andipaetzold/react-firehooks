@@ -15,26 +15,6 @@ export interface UseCountFromServerOptions {
     suspense?: boolean;
 }
 
-/**
- * Options to configure how the number of documents is fetched
- */
-export interface UseCountFromServerOptions {
-    /**
-     * @default false
-     */
-    suspense?: boolean;
-}
-
-/**
- * Options to configure how the number of documents is fetched
- */
-export interface UseCountFromServerOptions {
-    /**
-     * @default false
-     */
-    suspense?: boolean;
-}
-
 // eslint-disable-next-line jsdoc/require-param, jsdoc/require-returns
 /**
  * @internal
