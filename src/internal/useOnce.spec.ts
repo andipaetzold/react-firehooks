@@ -14,7 +14,7 @@ const refB1 = newSymbol("Ref B1");
 const refB2 = newSymbol("Ref B2");
 
 const getData = vi.fn();
-const isEqual = (a: any, b: any) =>
+const isEqual = (a: unknown, b: unknown) =>
     [a, b].every((x) => [refA1, refA2].includes(x)) || [a, b].every((x) => [refB1, refB2].includes(x));
 
 beforeEach(() => {

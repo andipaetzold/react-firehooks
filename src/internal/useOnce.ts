@@ -44,6 +44,9 @@ export function useOnce<Value, Error, Reference>(
                 }
             }
         })();
+
+        // TODO: double check dependencies
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stableRef]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);

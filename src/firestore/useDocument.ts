@@ -47,6 +47,8 @@ export function useDocument<Value extends DocumentData = DocumentData>(
                 next,
                 error,
             }),
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 

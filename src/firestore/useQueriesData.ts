@@ -38,6 +38,9 @@ export function useQueriesData<Values extends ReadonlyArray<DocumentData> = Read
                 next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
                 error,
             }),
+
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 

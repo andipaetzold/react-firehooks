@@ -48,6 +48,9 @@ export function useMultiListen<Value, Error, Reference>(
                 (error) => setError(refIndex, error),
             );
         }
+
+        // TODO: double check dependencies
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [references]);
 
     // unsubscribe and cleanup on unmount
