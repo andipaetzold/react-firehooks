@@ -1,6 +1,6 @@
 import { useMemo } from "react";
-import { useStableValue } from "./useStableValue.js";
 import { WrappedPromise, wrapPromise } from "./wrapPromise.js";
+import { ValueHookResult } from "../common/types.js";
 
 /**
  * key: `Reference`
@@ -21,13 +21,12 @@ const undefinedPromise = wrapPromise(Promise.resolve(undefined));
 /**
  * @internal
  */
-export function useOnceSuspense<Value, Reference>(
-    reference: Reference | undefined,
+export function useOnceSuspense<Value, Error, Reference>(
+    stableRef: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
-): Value | undefined {
-    const stableRef = useStableValue(reference ?? undefined, isEqual);
-
+    enabled: boolean,
+): ValueHookResult<Value, Error> | undefined {
     const read = useMemo(() => {
         if (stableRef === undefined) {
             return undefinedPromise;
@@ -45,5 +44,9 @@ export function useOnceSuspense<Value, Reference>(
         return wrappedPromise;
     }, [stableRef]);
 
-    return read();
+    if (!enabled) {
+        return undefined;
+    }
+
+    return [read(), false, undefined] as ValueHookResult<Value, Error>;
 }
