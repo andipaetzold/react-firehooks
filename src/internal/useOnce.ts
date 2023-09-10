@@ -1,4 +1,4 @@
-import { ValueHookResult } from "../common/index.js";
+import type { ValueHookResult } from "../common/index.js";
 import { useOnceNoSuspense } from "./useOnceNoSuspense.js";
 import { useOnceSuspense } from "./useOnceSuspense.js";
 import { useStableValue } from "./useStableValue.js";
