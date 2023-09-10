@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 /**

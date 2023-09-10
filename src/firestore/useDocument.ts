@@ -26,14 +26,13 @@ export interface UseDocumentOptions {
 
 /**
  * Returns and updates a DocumentSnapshot of a Firestore DocumentReference
- *
  * @template Value Type of the document data
- * @param {DocumentReference<Value> | undefined | null} reference Firestore DocumentReference that will be subscribed to
- * @param {?UseDocumentOptions} options Options to configure the subscription
- * @returns {UseDocumentResult<Value>} Document snapshot, loading state, and error
- * * value: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Firestore DocumentReference that will be subscribed to
+ * @param options Options to configure the subscription
+ * @returns Document snapshot, loading state, and error
+ * value: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useDocument<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,

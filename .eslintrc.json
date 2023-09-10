@@ -1,21 +1,22 @@
 {
     "env": {
-      "browser": true,
-      "es2021": true
+        "browser": true,
+        "es2021": true
     },
     "extends": [
-      "plugin:react/recommended",
-      "plugin:react-hooks/recommended",
-      "plugin:@typescript-eslint/recommended",
-      "prettier"
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:jsdoc/recommended-typescript",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "rules": {
-      "react-hooks/exhaustive-deps": "error"
+        "react-hooks/exhaustive-deps": "error"
     },
     "settings": {
-      "react": {
-        "version": "detect"
-      }
+        "react": {
+            "version": "detect"
+        }
     }
-  }
+}

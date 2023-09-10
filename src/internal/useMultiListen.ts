@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 import { useEffect, useMemo, useRef } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useMultiLoadingValue } from "./useMultiLoadingValue.js";

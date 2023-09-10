@@ -13,13 +13,12 @@ export interface UseMessagingTokenOptions {
 
 /**
  * Returns the messaging token. The token never updates.
- *
- * @param {Messaging} messaging Firebase Messaging instance
- * @param {UseMessagingTokenOptions} options Options to configure how the token will be fetched
- * @returns {UseMessagingTokenResult} Token, loading state, and error
- * * value: Messaging token; `undefined` if token is currently being fetched, or an error occurred
- * * loading: `true` while fetching the token; `false` if the token was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param messaging Firebase Messaging instance
+ * @param options Options to configure how the token will be fetched
+ * @returns Token, loading state, and error
+ * value: Messaging token; `undefined` if token is currently being fetched, or an error occurred
+ * loading: `true` while fetching the token; `false` if the token was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useMessagingToken(messaging: Messaging, options?: UseMessagingTokenOptions): UseMessagingTokenResult {
     return useOnce(

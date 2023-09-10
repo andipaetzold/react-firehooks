@@ -17,14 +17,13 @@ export interface UseQueriesOptions {
 
 /**
  * Returns and updates a QuerySnapshot of multiple Firestore queries
- *
  * @template Values Tuple of types of the collection data
- * @param {Query[]} queries Firestore queries that will be subscribed to
- * @param {?UseQueriesOptions} options Options to configure the subscription
- * @returns {ValueHookResult[]} Array with tuple for each query:
- * * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
- * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param queries Firestore queries that will be subscribed to
+ * @param options Options to configure the subscription
+ * @returns Array with tuple for each query:
+ * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useQueries<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
     queries: { [Index in keyof Values]: Query<Values[Index]> },

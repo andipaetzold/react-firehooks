@@ -19,14 +19,13 @@ export interface UseQueryOptions {
 
 /**
  * Returns and updates a QuerySnapshot of a Firestore Query
- *
  * @template Value Type of the collection data
- * @param {Query<Value> | undefined | null} query Firestore query that will be subscribed to
- * @param {?UseQueryOptions} options Options to configure the subscription
- * @returns {UseQueryResult<Value>} QuerySnapshot, loading, and error
- * * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
- * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param query Firestore query that will be subscribed to
+ * @param options Options to configure the subscription
+ * @returns QuerySnapshot, loading, and error
+ * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useQuery<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,

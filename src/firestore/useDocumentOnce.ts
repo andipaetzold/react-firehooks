@@ -19,14 +19,13 @@ export interface UseDocumentOnceOptions {
 
 /**
  * Returns the DocumentSnapshot of a Firestore DocumentReference. Does not update the DocumentSnapshot once initially fetched
- *
  * @template Value Type of the document data
- * @param {DocumentReference<Value> | undefined | null} reference Firestore DocumentReference that will be fetched
- * @param {?UseDocumentOnceOptions} options Options to configure how the document is fetched
- * @returns {UseDocumentOnceResult<Value>} DocumentSnapshot, loading state, and error
- * * value: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Firestore DocumentReference that will be fetched
+ * @param options Options to configure how the document is fetched
+ * @returns DocumentSnapshot, loading state, and error
+ * value: DocumentSnapshot; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useDocumentOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
