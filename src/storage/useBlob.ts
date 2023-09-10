@@ -27,7 +27,7 @@ export interface UseBlobOptions {
  * This hook is not available in Node
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?number} options Options to configure how the object is fetched
+ * @param {?number} [options] Options to configure how the object is fetched
  * @returns {UseBlobResult} Data, loading state, and error
  * * value: Object data as a Blob; `undefined` if data of the object is currently being downloaded, or an error occurred
  * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
@@ -40,7 +40,7 @@ export function useBlob(reference: StorageReference | undefined | null, options?
  * This hook is not available in Node
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?number} maxDownloadSizeBytes If set, the maximum allowed size in bytes to retrieve
+ * @param {?number} [maxDownloadSizeBytes] If set, the maximum allowed size in bytes to retrieve
  * @returns {UseBlobResult} Data, loading state, and error
  * * value: Object data as a Blob; `undefined` if data of the object is currently being downloaded, or an error occurred
  * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
@@ -55,7 +55,7 @@ export function useBlob(reference: StorageReference | undefined | null, maxDownl
  * This hook is not available in Node
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?UseBlobOptions} optionsOrMaxDownloadSizeBytes Options to configure how the object is fetched, or the maximum allowed size in bytes to retrieve
+ * @param {?UseBlobOptions | number} [optionsOrMaxDownloadSizeBytes] Options to configure how the object is fetched, or the maximum allowed size in bytes to retrieve
  * @returns {UseBlobResult} Data, loading state, and error
  * * value: Object data as a Blob; `undefined` if data of the object is currently being downloaded, or an error occurred
  * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred

@@ -12,6 +12,9 @@ export type UseObjectValueOnceConverter<Value> = (snap: DataSnapshot) => Value;
  * Options to configure how the object is fetched
  */
 export interface UseObjectValueOnceOptions<Value> {
+    /**
+     * Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
+     */
     converter?: UseObjectValueOnceConverter<Value>;
 
     /**
@@ -25,8 +28,7 @@ export interface UseObjectValueOnceOptions<Value> {
  *
  * @template Value Type of the object value
  * @param {Query | undefined | null} query Realtime Database query
- * @param {?UseObjectValueOnceOptions} options Options to configure how the object is fetched
- * * `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
+ * @param {?UseObjectValueOnceOptions} [options] Options to configure how the object is fetched
  * @returns {UseObjectValueOnceResult} User, loading state, and error
  * * value: Object value; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred

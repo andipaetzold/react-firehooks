@@ -11,6 +11,11 @@ export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageErro
  */
 export interface UseStreamOptions {
     /**
+     * The maximum allowed size in bytes to retrieve
+     */
+    maxDownloadSizeBytes?: number;
+
+    /**
      * @default false
      */
     suspense?: boolean;
@@ -22,7 +27,7 @@ export interface UseStreamOptions {
  * This hook is only available in Node
  *
  * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?number} maxDownloadSizeBytes If set, the maximum allowed size in bytes to retrieve
+ * @param {?UseStreamOptions | number} [optionsOrMaxDownloadSizeBytes] If set, the maximum allowed size in bytes to retrieve
  * @returns {UseStreamResult} Data, loading state, and error
  * * value: Object data as stream; `undefined` if data of the object is currently being downloaded, or an error occurred
  * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
@@ -30,10 +35,12 @@ export interface UseStreamOptions {
  */
 export function useStream(
     reference: StorageReference | undefined | null,
-    maxDownloadSizeBytes?: number,
-    options?: UseStreamOptions,
+    optionsOrMaxDownloadSizeBytes?: UseStreamOptions,
 ): UseStreamResult {
-    const { suspense = false } = options ?? {};
+    const { maxDownloadSizeBytes, suspense = false } =
+        typeof optionsOrMaxDownloadSizeBytes === "number"
+            ? { maxDownloadSizeBytes: optionsOrMaxDownloadSizeBytes }
+            : optionsOrMaxDownloadSizeBytes ?? {};
 
     const fetchBlob = useCallback(
         async (ref: StorageReference) => getStream(ref, maxDownloadSizeBytes),

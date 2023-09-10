@@ -29,7 +29,7 @@ export interface UseQueryDataOnceOptions {
  *
  * @template Value Type of the collection data
  * @param {Query<Value> | undefined | null} query Firestore query that will be fetched
- * @param {?UseQueryDataOnceOptions} options Options to configure how the query is fetched
+ * @param {?UseQueryDataOnceOptions} [options] Options to configure how the query is fetched
  * @returns {UseQueryDataOnceResult<Value>} Query data, loading state, and error
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred; Always `false` with `supsense=true`
