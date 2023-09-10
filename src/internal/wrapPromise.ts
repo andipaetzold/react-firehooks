@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 type Status = "pending" | "success" | "error";
 
 export type WrappedPromise<T> = () => T;

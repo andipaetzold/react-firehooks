@@ -8,12 +8,11 @@ export type UseAuthIdTokenResultResult = ValueHookResult<IdTokenResult | null, A
 
 /**
  * Returns and updates the deserialized JWT of the currently authenticated user
- *
- * @param {Auth} auth Firebase Auth instance
- * @returns {UseAuthIdTokenResultResult} Deserialized JWT, loading state, and error
- * * value: Deserialized JWT; `undefined` if the JWT is currently being fetched, or an error occurred
- * * loading: `true` while fetching JWT; `false` if the JWT was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param auth Firebase Auth instance
+ * @returns Deserialized JWT, loading state, and error
+ * value: Deserialized JWT; `undefined` if the JWT is currently being fetched, or an error occurred
+ * loading: `true` while fetching JWT; `false` if the JWT was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useAuthIdTokenResult(auth: Auth): UseAuthIdTokenResultResult {
     const onChange: UseListenOnChange<IdTokenResult | null, AuthError, Auth> = useCallback(

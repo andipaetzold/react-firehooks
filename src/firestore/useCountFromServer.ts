@@ -15,20 +15,43 @@ export interface UseCountFromServerOptions {
     suspense?: boolean;
 }
 
-async function getData(stableQuery: Query<unknown>) {
+/**
+ * Options to configure how the number of documents is fetched
+ */
+export interface UseCountFromServerOptions {
+    /**
+     * @default false
+     */
+    suspense?: boolean;
+}
+
+/**
+ * Options to configure how the number of documents is fetched
+ */
+export interface UseCountFromServerOptions {
+    /**
+     * @default false
+     */
+    suspense?: boolean;
+}
+
+// eslint-disable-next-line jsdoc/require-param, jsdoc/require-returns
+/**
+ * @internal
+ */
+async function getData(stableQuery: Query<unknown>): Promise<number> {
     const snap = await getCountFromServer(stableQuery);
     return snap.data().count;
 }
 
 /**
  * Returns the number of documents in the result set of a Firestore Query. Does not update the count once initially calculated.
- *
- * @param {Query<unknown> | undefined | null} query Firestore query whose result set size is calculated
- * @param {?UseCountFromServerOptions} [options] Options to configure how the number of documents is fetched
- * @returns {UseCountFromServerResult} Size of the result set, loading state, and error
- * * value: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
- * * loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param query Firestore query whose result set size is calculated
+ * @param [options] Options to configure how the number of documents is fetched
+ * @returns Size of the result set, loading state, and error
+ * value: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
+ * loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useCountFromServer(
     query: Query<unknown> | undefined | null,

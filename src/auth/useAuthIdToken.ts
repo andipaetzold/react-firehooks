@@ -8,12 +8,11 @@ export type UseAuthIdTokenResult = ValueHookResult<string | null, AuthError>;
 
 /**
  * Returns and updates the JWT of the currently authenticated user
- *
- * @param {Auth} auth Firebase Auth instance
- * @returns {UseAuthIdTokenResult} JWT, loading state, and error
- * * value: JWT; `undefined` if the JWT is currently being fetched, or an error occurred
- * * loading: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param auth Firebase Auth instance
+ * @returns JWT, loading state, and error
+ * value: JWT; `undefined` if the JWT is currently being fetched, or an error occurred
+ * loading: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useAuthIdToken(auth: Auth): UseAuthIdTokenResult {
     const onChange: UseListenOnChange<string | null, AuthError, Auth> = useCallback(

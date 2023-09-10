@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-jsdoc */
 import { render, renderHook, waitFor } from "@testing-library/react";
 import React, { Suspense } from "react";
 import { beforeEach, describe, expect, it, vi } from "vitest";

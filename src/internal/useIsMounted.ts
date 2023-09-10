@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-returns */
 import { useEffect, useRef } from "react";
 
 /**

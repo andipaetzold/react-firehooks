@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 import { useMemo } from "react";
 import { WrappedPromise, wrapPromise } from "./wrapPromise.js";
 import { ValueHookResult } from "../common/types.js";

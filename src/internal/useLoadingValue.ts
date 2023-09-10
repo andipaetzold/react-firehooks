@@ -1,3 +1,5 @@
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
 import { useCallback, useMemo, useState } from "react";
 
 export const LoadingState = Symbol();

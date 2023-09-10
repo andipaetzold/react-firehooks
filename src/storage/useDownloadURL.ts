@@ -17,13 +17,12 @@ export interface UseDownloadURLOptions {
 
 /**
  * Returns the download URL of a Google Cloud Storage object
- *
- * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?UseDownloadURLOptions} [options] Options to configure how the download url is fetched
- * @returns {UseDownloadURLResult} Download URL, loading state, and error
- * * value: Download URL; `undefined` if download URL is currently being fetched, or an error occurred
- * * loading: `true` while fetching the download URL; `false` if the download URL was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Reference to a Google Cloud Storage object
+ * @param [options] Options to configure how the download url is fetched
+ * @returns Download URL, loading state, and error
+ * value: Download URL; `undefined` if download URL is currently being fetched, or an error occurred
+ * loading: `true` while fetching the download URL; `false` if the download URL was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useDownloadURL(
     reference: StorageReference | undefined | null,

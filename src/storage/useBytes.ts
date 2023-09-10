@@ -23,35 +23,32 @@ export interface UseBytesOptions {
 
 /**
  * Returns the data of a Google Cloud Storage object
- *
- * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?UseBytesOptions} [options] Options to configure how the object is fetched
- * @returns {UseBytesResult} Data, loading state, and error
- * * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
- * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Reference to a Google Cloud Storage object
+ * @param [options] Options to configure how the object is fetched
+ * @returns Data, loading state, and error
+ * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
+ * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useBytes(reference: StorageReference | undefined | null, options?: UseBytesOptions): UseBytesResult;
 /**
  * Returns the data of a Google Cloud Storage object
- *
- * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?number} maxDownloadSizeBytes The maximum allowed size in bytes to retrieve
- * @returns {UseBytesResult} Data, loading state, and error
- * * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
- * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Reference to a Google Cloud Storage object
+ * @param maxDownloadSizeBytes The maximum allowed size in bytes to retrieve
+ * @returns Data, loading state, and error
+ * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
+ * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useBytes(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseBytesResult;
 /**
  * Returns the data of a Google Cloud Storage object
- *
- * @param {StorageReference | undefined | null} reference Reference to a Google Cloud Storage object
- * @param {?UseBytesOptions | number} optionsOrMaxDownloadSizeBytes Options to configure how the object is fetched, or the maximum allowed size in bytes to retrieve
- * @returns {UseBytesResult} Data, loading state, and error
- * * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
- * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Reference to a Google Cloud Storage object
+ * @param optionsOrMaxDownloadSizeBytes Options to configure how the object is fetched, or the maximum allowed size in bytes to retrieve
+ * @returns Data, loading state, and error
+ * value: Object data; `undefined` if data of the object is currently being downloaded, or an error occurred
+ * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useBytes(
     reference: StorageReference | undefined | null,

@@ -1,3 +1,4 @@
+/* eslint-disable jsdoc/require-jsdoc */
 import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useIsMounted } from "./useIsMounted.js";
