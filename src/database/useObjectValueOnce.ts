@@ -8,8 +8,16 @@ export type UseObjectValueOnceResult<Value = unknown> = ValueHookResult<Value, E
 
 export type UseObjectValueOnceConverter<Value> = (snap: DataSnapshot) => Value;
 
+/**
+ * Options to configure how the object is fetched
+ */
 export interface UseObjectValueOnceOptions<Value> {
     converter?: UseObjectValueOnceConverter<Value>;
+
+    /**
+     * @default false
+     */
+    suspense?: boolean;
 }
 
 /**
@@ -28,7 +36,7 @@ export function useObjectValueOnce<Value = unknown>(
     query: Query | undefined | null,
     options?: UseObjectValueOnceOptions<Value>,
 ): UseObjectValueOnceResult<Value> {
-    const { converter = (snap: DataSnapshot) => snap.val() } = options ?? {};
+    const { converter = (snap: DataSnapshot) => snap.val(), suspense = false } = options ?? {};
 
     const getData = useCallback(async (stableQuery: Query) => {
         const snap = await get(stableQuery);
@@ -37,5 +45,5 @@ export function useObjectValueOnce<Value = unknown>(
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }

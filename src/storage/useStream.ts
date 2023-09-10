@@ -7,6 +7,16 @@ import { isStorageRefEqual } from "./internal.js";
 export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageError>;
 
 /**
+ * Options to configure how the object is fetched
+ */
+export interface UseStreamOptions {
+    /**
+     * @default false
+     */
+    suspense?: boolean;
+}
+
+/**
  * Returns the data of a Google Cloud Storage object as a stream
  *
  * This hook is only available in Node
@@ -18,11 +28,17 @@ export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageErro
  * * loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useStream(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseStreamResult {
+export function useStream(
+    reference: StorageReference | undefined | null,
+    maxDownloadSizeBytes?: number,
+    options?: UseStreamOptions,
+): UseStreamResult {
+    const { suspense = false } = options ?? {};
+
     const fetchBlob = useCallback(
         async (ref: StorageReference) => getStream(ref, maxDownloadSizeBytes),
         [maxDownloadSizeBytes],
     );
 
-    return useOnce(reference ?? undefined, fetchBlob, isStorageRefEqual);
+    return useOnce(reference ?? undefined, fetchBlob, isStorageRefEqual, suspense);
 }

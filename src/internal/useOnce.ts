@@ -10,7 +10,7 @@ export function useOnce<Value, Error, Reference>(
     reference: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
-    suspense = false,
+    suspense: boolean,
 ): ValueHookResult<Value, Error> {
     const stableRef = useStableValue(reference ?? undefined, isEqual);
 

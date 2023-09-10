@@ -5,6 +5,16 @@ import { isQueryEqual } from "./internal.js";
 
 export type UseCountFromServerResult = ValueHookResult<number, FirestoreError>;
 
+/**
+ * Options to configure how the number of documents is fetched
+ */
+export interface UseCountFromServerOptions {
+    /**
+     * @default false
+     */
+    suspense?: boolean;
+}
+
 async function getData(stableQuery: Query<unknown>) {
     const snap = await getCountFromServer(stableQuery);
     return snap.data().count;
@@ -19,6 +29,10 @@ async function getData(stableQuery: Query<unknown>) {
  * * loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useCountFromServer(query: Query<unknown> | undefined | null): UseCountFromServerResult {
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+export function useCountFromServer(
+    query: Query<unknown> | undefined | null,
+    options?: UseCountFromServerOptions,
+): UseCountFromServerResult {
+    const { suspense = false } = options ?? {};
+    return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }

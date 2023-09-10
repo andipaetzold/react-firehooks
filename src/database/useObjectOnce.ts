@@ -7,6 +7,16 @@ import { isQueryEqual } from "./internal.js";
 export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
 
 /**
+ * Options to configure how the object is fetched
+ */
+export interface UseObjectOnceOptions {
+    /**
+     * @default false
+     */
+    suspense?: boolean;
+}
+
+/**
  * Returns and updates the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
  *
  * @param {Query | undefined | null} query Realtime Database query
@@ -15,7 +25,8 @@ export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
  * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * * error: `undefined` if no error occurred
  */
-export function useObjectOnce(query: Query | undefined | null): UseObjectOnceResult {
+export function useObjectOnce(query: Query | undefined | null, options?: UseObjectOnceOptions): UseObjectOnceResult {
+    const { suspense = false } = options ?? {};
     const getData = useCallback((stableQuery: Query) => get(stableQuery), []);
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }
