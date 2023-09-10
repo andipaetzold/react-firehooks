@@ -6,7 +6,7 @@ import { LoadingState, useLoadingValue } from "./useLoadingValue.js";
 export function useOnceNoSuspense<Value, Error, Reference>(
     stableRef: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
-    enabled: boolean,
+    enabled = true,
 ): ValueHookResult<Value, Error> | undefined {
     const isMounted = useIsMounted();
     const { value, setValue, loading, setLoading, error, setError } = useLoadingValue<Value, Error>(

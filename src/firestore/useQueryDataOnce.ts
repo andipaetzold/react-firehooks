@@ -11,8 +11,17 @@ export type UseQueryDataOnceResult<Value extends DocumentData = DocumentData> = 
  * Options to configure the subscription
  */
 export interface UseQueryDataOnceOptions {
+    /**
+     * @default "default"
+     */
     source?: Source;
+
     snapshotOptions?: SnapshotOptions;
+
+    /**
+     * @default false
+     */
+    suspense?: boolean;
 }
 
 /**
@@ -23,18 +32,18 @@ export interface UseQueryDataOnceOptions {
  * @param {?UseQueryDataOnceOptions} options Options to configure how the query is fetched
  * @returns {UseQueryDataOnceResult<Value>} Query data, loading state, and error
  * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
- * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred; Always `false` with `supsense=true`
+ * * error: `undefined` if no error occurred; Always `undefined` with `supsense=true`
  */
 export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
     options?: UseQueryDataOnceOptions,
 ): UseQueryDataOnceResult<Value> {
-    const { source = "default", snapshotOptions = {} } = options ?? {};
+    const { source = "default", snapshotOptions = {}, suspense = false } = options ?? {};
 
     const getData = useCallback(async (stableQuery: Query<Value>) => {
         const snap = await getDocsFromSource(stableQuery, source);
         return snap.docs.map((doc) => doc.data(snapshotOptions));
     }, []);
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }

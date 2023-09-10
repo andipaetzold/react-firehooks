@@ -25,7 +25,7 @@ export function useOnceSuspense<Value, Error, Reference>(
     stableRef: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
-    enabled: boolean,
+    enabled = true,
 ): ValueHookResult<Value, Error> | undefined {
     const read = useMemo(() => {
         if (stableRef === undefined) {
