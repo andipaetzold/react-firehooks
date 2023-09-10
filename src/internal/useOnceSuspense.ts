@@ -7,13 +7,13 @@ import { ValueHookResult } from "../common/types.js";
  * value: `WrappedPromise<Value | undefined>`
  */
 // @ts-expect-error Property is missing on `globalThis`
-const wrappedPromises: Map<unknown, WrappedPromise<unknown>> = globalThis._firehookWrappedPromises ??
+const wrappedPromises: Map<unknown, WrappedPromise<unknown>> = globalThis._rfh_promises ??
 new Map<unknown, WrappedPromise<unknown>>();
 
 // @ts-expect-error Property is missing on `globalThis`
-if (!globalThis._firehookPromises) {
+if (!globalThis._rfh_promises) {
     // @ts-expect-error Property is missing on `globalThis`
-    globalThis._firehookWrappedPromises = wrappedPromises;
+    globalThis._rfh_promises = wrappedPromises;
 }
 
 const undefinedPromise = wrapPromise(Promise.resolve(undefined));
