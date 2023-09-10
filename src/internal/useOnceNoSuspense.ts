@@ -41,7 +41,7 @@ export function useOnceNoSuspense<Value, Error, Reference>(
                 }
             }
         })();
-    }, [stableRef]);
+    }, [enabled, stableRef]);
 
     const result = useMemo<ValueHookResult<Value, Error>>(() => [value, loading, error], [value, loading, error]);
     return enabled ? result : undefined;
