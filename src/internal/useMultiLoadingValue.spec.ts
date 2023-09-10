@@ -54,7 +54,7 @@ describe("size change", () => {
 
 describe("setValue", () => {
     it("with undefined value", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, undefined));
 
         expect(result.current.states[0].value).toBeUndefined();
@@ -63,7 +63,7 @@ describe("setValue", () => {
     });
 
     it("with a value", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, value1));
 
         expect(result.current.states[0].value).toBe(value1);
@@ -72,7 +72,7 @@ describe("setValue", () => {
     });
 
     it("multiple values", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(2));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(2));
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setValue(1, value2));
 
@@ -86,7 +86,7 @@ describe("setValue", () => {
     });
 
     it("with error", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setError(0, error1));
         act(() => result.current.setValue(0, value1));
 
@@ -98,7 +98,7 @@ describe("setValue", () => {
 
 describe("setError", () => {
     it("without value", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setError(0, error1));
 
         expect(result.current.states[0].value).toBeUndefined();
@@ -107,7 +107,7 @@ describe("setError", () => {
     });
 
     it("with value", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setError(0, error1));
 
@@ -117,7 +117,7 @@ describe("setError", () => {
     });
 
     it("multiple queries", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(2));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(2));
         act(() => result.current.setError(0, error1));
         act(() => result.current.setError(1, error2));
 
@@ -133,7 +133,7 @@ describe("setError", () => {
 
 describe("setLoading", () => {
     it("with value", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setLoading(0));
 
@@ -143,7 +143,7 @@ describe("setLoading", () => {
     });
 
     it("with error", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(1));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setError(0, error1));
         act(() => result.current.setLoading(0));
 
@@ -155,7 +155,7 @@ describe("setLoading", () => {
 
 describe("combinations", () => {
     it("setError & setValue & setLoading", () => {
-        const { result } = renderHook(() => useMultiLoadingValue<Symbol>(3));
+        const { result } = renderHook(() => useMultiLoadingValue<symbol>(3));
         act(() => result.current.setError(0, error1));
         act(() => result.current.setValue(1, value2));
         act(() => result.current.setLoading(2));

@@ -34,7 +34,7 @@ describe("initial state", () => {
 
 describe("setValue", () => {
     it("with undefined value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(value));
+        const { result } = renderHook(() => useLoadingValue<symbol>(value));
         act(() => result.current.setValue(undefined));
 
         expect(result.current.value).toBeUndefined();
@@ -43,7 +43,7 @@ describe("setValue", () => {
     });
 
     it("with a value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
+        const { result } = renderHook(() => useLoadingValue<symbol>(LoadingState));
         act(() => result.current.setValue(value));
 
         expect(result.current.value).toBe(value);
@@ -52,7 +52,7 @@ describe("setValue", () => {
     });
 
     it("with error", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
+        const { result } = renderHook(() => useLoadingValue<symbol>(LoadingState));
         act(() => result.current.setError(error));
 
         act(() => result.current.setValue(value));
@@ -65,7 +65,7 @@ describe("setValue", () => {
 
 describe("setError", () => {
     it("without value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(LoadingState));
+        const { result } = renderHook(() => useLoadingValue<symbol>(LoadingState));
         act(() => result.current.setError(error));
 
         expect(result.current.value).toBeUndefined();
@@ -74,7 +74,7 @@ describe("setError", () => {
     });
 
     it("with value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(value));
+        const { result } = renderHook(() => useLoadingValue<symbol>(value));
         act(() => result.current.setError(error));
 
         expect(result.current.value).toBeUndefined();
@@ -85,7 +85,7 @@ describe("setError", () => {
 
 describe("setLoading", () => {
     it("with value", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(value));
+        const { result } = renderHook(() => useLoadingValue<symbol>(value));
         act(() => result.current.setLoading());
 
         expect(result.current.value).toBeUndefined();
@@ -94,7 +94,7 @@ describe("setLoading", () => {
     });
 
     it("with error", () => {
-        const { result } = renderHook(() => useLoadingValue<Symbol>(value));
+        const { result } = renderHook(() => useLoadingValue<symbol>(value));
         act(() => result.current.setError(error));
 
         act(() => result.current.setLoading());

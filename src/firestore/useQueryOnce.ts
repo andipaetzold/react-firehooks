@@ -34,6 +34,12 @@ export function useQueryOnce<Value extends DocumentData = DocumentData>(
 ): UseQueryOnceResult<Value> {
     const { source = "default" } = options ?? {};
 
-    const getData = useCallback(async (stableQuery: Query<Value>) => getDocsFromSource(stableQuery, source), []);
+    const getData = useCallback(
+        async (stableQuery: Query<Value>) => getDocsFromSource(stableQuery, source),
+
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [],
+    );
     return useOnce(query ?? undefined, getData, isQueryEqual);
 }

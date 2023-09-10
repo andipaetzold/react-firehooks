@@ -5,6 +5,7 @@ export function newPromise<T>() {
         resolve = _resolve;
         reject = _reject;
     });
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     return { promise, resolve, reject };
 }

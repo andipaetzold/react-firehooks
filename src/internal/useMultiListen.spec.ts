@@ -19,7 +19,7 @@ const refB2 = newSymbol("Ref B2");
 const onChangeUnsubscribe = vi.fn();
 const onChange = vi.fn();
 
-const isEqual = (a: any, b: any) =>
+const isEqual = (a: unknown, b: unknown) =>
     [a, b].every((x) => [refA1, refA2].includes(x)) || [a, b].every((x) => [refB1, refB2].includes(x));
 
 beforeEach(() => {

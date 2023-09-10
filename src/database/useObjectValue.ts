@@ -35,6 +35,8 @@ export function useObjectValue<Value = unknown>(
 
     const onChange: UseListenOnChange<Value, Error, Query> = useCallback(
         (stableQuery, next, error) => onValue(stableQuery, (snap) => next(converter(snap)), error),
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
 

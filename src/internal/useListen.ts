@@ -48,6 +48,9 @@ export function useListen<Value, Error, Reference>(
             const unsubscribe = onChange(stableRef, setValue, setError);
             return () => unsubscribe();
         }
+
+        // TODO: double check dependencies
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [stableRef]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);

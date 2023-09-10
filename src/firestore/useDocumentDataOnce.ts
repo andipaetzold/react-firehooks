@@ -35,6 +35,8 @@ export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
     const getData = useCallback(async (stableRef: DocumentReference<Value>) => {
         const snap = await getDocFromSource(stableRef, source);
         return snap.data(snapshotOptions);
+        // TODO: add options as dependency
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return useOnce(reference ?? undefined, getData, isDocRefEqual);
 }
