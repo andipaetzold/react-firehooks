@@ -1,3 +1,10 @@
+# [3.1.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0...v3.1.0-next.1) (2023-09-12)
+
+
+### Features
+
+* support React suspense ([#229](https://github.com/andipaetzold/react-firehooks/issues/229)) ([afda4e4](https://github.com/andipaetzold/react-firehooks/commit/afda4e41ebd8100eba55c04313c60d14c35e622d))
+
 # [3.0.0](https://github.com/andipaetzold/react-firehooks/compare/v2.5.0...v3.0.0) (2023-08-01)
 
 
