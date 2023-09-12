@@ -9,12 +9,14 @@ import { ... } from 'react-firehooks/firestore';
 Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
 
 ```javascript
-const [count, loading, error] = useCountFromServer(query);
+const [count, loading, error] = useCountFromServer(query, options);
 ```
 
 Params:
 
 -   `query`: Firestore query whose result set size is calculated
+-   `options`: Options to configure how the number of documents is fetched
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -72,6 +74,9 @@ Params:
 
 -   `documentReference`: Firestore DocumentReference that will be fetched
 -   `options`: Options to configure the document will be fetched
+    -   `source`: Firestore source to fetch the document from. Default: `default`. [Read more](https://firebase.google.com/docs/firestore/query-data/get-data#source_options)
+    -   `snapshotOptions`: Options to configure the snapshot. [Read more](https://firebase.google.com/docs/reference/js/firestore_.snapshotoptions)
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -90,7 +95,9 @@ const [querySnap, loading, error] = useDocumentData(documentReference, options);
 Params:
 
 -   `documentReference`: Firestore DocumentReference that will be fetched
--   `options`: Options to configure how the document will be fetched
+-   `options`: Options to configure the document will be fetched
+    -   `source`: Firestore source to fetch the document from. Default: `default`. [Read more](https://firebase.google.com/docs/firestore/query-data/get-data#source_options)
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -188,6 +195,9 @@ Params:
 
 -   `query`: Firestore query that will be fetched
 -   `options`: Options to configure how the query is fetched
+    -   `source`: Firestore source to fetch the document from. Default: `default`. [Read more](https://firebase.google.com/docs/firestore/query-data/get-data#source_options)
+    -   `snapshotOptions`: Options to configure the snapshot. [Read more](https://firebase.google.com/docs/reference/js/firestore_.snapshotoptions)
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -207,6 +217,8 @@ Params:
 
 -   `query`: Firestore query that will be fetched
 -   `options`: Options to configure how the query is fetched
+    -   `source`: Firestore source to fetch the document from. Default: `default`. [Read more](https://firebase.google.com/docs/firestore/query-data/get-data#source_options)
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
