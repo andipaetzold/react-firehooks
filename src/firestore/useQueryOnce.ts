@@ -14,7 +14,15 @@ export type UseQueryOnceResult<Value extends DocumentData = DocumentData> = Valu
  * Options to configure how the query is fetched
  */
 export interface UseQueryOnceOptions {
+    /**
+     * @default "default"
+     */
     source?: Source;
+
+    /**
+     * @default false
+     */
+    suspense?: boolean;
 }
 
 /**
@@ -24,14 +32,14 @@ export interface UseQueryOnceOptions {
  * @param options Options to configure how the query is fetched
  * @returns QuerySnapshot, loading state, and error
  * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred; Always `false` with `supsense=true`
+ * error: `undefined` if no error occurred; Always `undefined` with `supsense=true`
  */
 export function useQueryOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
     options?: UseQueryOnceOptions,
 ): UseQueryOnceResult<Value> {
-    const { source = "default" } = options ?? {};
+    const { source = "default", suspense = false } = options ?? {};
 
     const getData = useCallback(
         async (stableQuery: Query<Value>) => getDocsFromSource(stableQuery, source),
@@ -40,5 +48,5 @@ export function useQueryOnce<Value extends DocumentData = DocumentData>(
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useOnce(query ?? undefined, getData, isQueryEqual, suspense);
 }

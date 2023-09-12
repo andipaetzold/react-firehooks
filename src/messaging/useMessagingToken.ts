@@ -9,6 +9,11 @@ export type UseMessagingTokenResult = ValueHookResult<string, Error>;
  */
 export interface UseMessagingTokenOptions {
     getTokenOptions?: GetTokenOptions;
+
+    /**
+     * @default false
+     */
+    suspense?: boolean;
 }
 
 /**
@@ -21,9 +26,12 @@ export interface UseMessagingTokenOptions {
  * error: `undefined` if no error occurred
  */
 export function useMessagingToken(messaging: Messaging, options?: UseMessagingTokenOptions): UseMessagingTokenResult {
+    const { getTokenOptions, suspense = false } = options ?? {};
+
     return useOnce(
         messaging,
-        (m) => getToken(m, options?.getTokenOptions),
+        (m) => getToken(m, getTokenOptions),
         () => true,
+        suspense,
     );
 }

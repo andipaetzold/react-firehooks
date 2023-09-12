@@ -41,6 +41,8 @@ This library consists of 6 modules with many hooks:
 
 All hooks can be imported from `react-firehooks` directly or via `react-firehooks/<module>` to improve tree-shaking and bundle size.
 
+All hooks suffixed with `Once` can be used in [React suspense-mode](docs/react-suspense.md).
+
 ## Development
 
 ### Build
