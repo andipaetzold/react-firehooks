@@ -102,3 +102,41 @@ it("when ref changes", async () => {
     await waitFor(() => expect(result.current).toStrictEqual([result2, false, undefined]));
     expect(getData).toHaveBeenCalledTimes(2);
 });
+
+it("when two hooks are mounted after each other", async () => {
+    const { result1, result2, refA1, refA2, isEqual, getData } = createMockData();
+
+    getData.mockResolvedValueOnce(result1).mockResolvedValueOnce(result2);
+
+    const { result: hookResult1 } = renderHook(() => useOnceSuspense(refA1, getData, isEqual));
+    expect(getData).toHaveBeenCalledTimes(1);
+    await waitFor(() => expect(hookResult1.current).toStrictEqual([result1, false, undefined]));
+
+    const { result: hookResult2 } = renderHook(() => useOnceSuspense(refA2, getData, isEqual));
+    await waitFor(() => expect(hookResult2.current).toStrictEqual([result2, false, undefined]));
+    expect(getData).toHaveBeenCalledTimes(2);
+});
+
+it("when two hooks are mounted in parallel", async () => {
+    vi.useFakeTimers();
+    const { result1, refA1, refA2, isEqual, getData } = createMockData();
+
+    getData.mockImplementation(() => new Promise((resolve) => setTimeout(() => resolve(result1), 1_000)));
+
+    const use2Hooks = () => {
+        const r1 = useOnceSuspense(refA1, getData, isEqual)!;
+        const r2 = useOnceSuspense(refA2, getData, isEqual)!;
+
+        return { r1, r2 };
+    };
+
+    const { result } = renderHook(() => use2Hooks());
+
+    await vi.runAllTimersAsync();
+    await vi.runAllTimersAsync();
+    await vi.runAllTimersAsync();
+
+    expect(result.current.r1).toStrictEqual([result1, false, undefined]);
+    expect(result.current.r2).toStrictEqual([result1, false, undefined]);
+    expect(getData).toHaveBeenCalledTimes(1);
+});
