@@ -17,7 +17,9 @@ const [data, loading, error] = useBlob(storageReference);
 Params:
 
 -   `reference`: Reference to a Google Cloud Storage object
--   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+-   `options`: Options to configure how the object is fetched
+    -   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -36,7 +38,9 @@ const [data, loading, error] = useBytes(storageReference);
 Params:
 
 -   `reference`: Reference to a Google Cloud Storage object
--   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+-   `options`: Options to configure how the object is fetched
+    -   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -55,6 +59,8 @@ const [url, loading, error] = useDownloadURL(storageReference);
 Params:
 
 -   `reference`: Reference to a Google Cloud Storage object
+-   `options`: Options to configure how the download URL is fetched
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -73,6 +79,8 @@ const [metadata, loading, error] = useMetadata(storageReference);
 Params:
 
 -   `reference`: Reference to a Google Cloud Storage object
+-   `options`: Options to configure how the metadata is fetched
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -93,7 +101,9 @@ const [data, loading, error] = useStream(storageReference);
 Params:
 
 -   `reference`: Reference to a Google Cloud Storage object
--   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+-   `options`: Options to configure how the object is fetched
+    -   `maxDownloadSizeBytes`: If set, the maximum allowed size in bytes to retrieve.
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 

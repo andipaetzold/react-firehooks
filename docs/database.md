@@ -27,12 +27,14 @@ Returns:
 Returns the DataSnapshot of the Realtime Database query. Does not update the DataSnapshot once initially fetched
 
 ```javascript
-const [dataSnap, loading, error] = useObjectOnce(query);
+const [dataSnap, loading, error] = useObjectOnce(query, options);
 ```
 
 Params:
 
 -   `query`: Realtime Database query
+-   `options`: Options to configure how the object is fetched
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
@@ -73,6 +75,7 @@ Params:
 -   `query`: Realtime Database query
 -   `options`: Options to configure how the object is fetched
     -   `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 

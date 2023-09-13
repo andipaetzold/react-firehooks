@@ -16,6 +16,8 @@ Params:
 
 -   `messaging`: Firestore Messaging instance
 -   `options`: Options to configure how the token will be fetched
+    -   `getTokenOptions`: Options to configure how the token will be fetched. [Read more](https://firebase.google.com/docs/reference/js/messaging_.gettokenoptions)
+    -   `suspense`: Whether to use React suspense-mode. Default: `false`. [Read more](docs/react-suspense.md)
 
 Returns:
 
