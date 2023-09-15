@@ -103,7 +103,7 @@ Returns:
 Returns and updates a QuerySnapshot of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueries(queries, options);
+const results = useQueries(queries, options);
 ```
 
 Params:
@@ -123,7 +123,7 @@ Returns:
 Returns and updates a the document data of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueriesData(query, options);
+const results = useQueriesData(query, options);
 ```
 
 Params:
@@ -143,7 +143,7 @@ Returns:
 Returns the data of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueriesDataOnce(queries, options);
+const results = useQueriesDataOnce(queries, options);
 ```
 
 Params:
@@ -160,10 +160,10 @@ Returns:
 
 ## useQueriesOnce
 
-Returns the QuerySnapshot of multiple Firestore queries
+Returns the QuerySnapshots of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueriesOnce(queries, options);
+const results = useQueriesOnce(queries, options);
 ```
 
 Params:
