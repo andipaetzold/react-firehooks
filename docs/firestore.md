@@ -140,7 +140,7 @@ Returns:
 
 ## useQueriesDataOnce
 
-Returns the data of multile Firestore queries
+Returns the data of multiple Firestore queries
 
 ```javascript
 const [querySnap, loading, error] = useQueriesDataOnce(queries, options);
