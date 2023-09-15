@@ -30,12 +30,15 @@ export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
     options?: UseDocumentDataOnceOptions,
 ): UseDocumentDataOnceResult<Value> {
     const { source = "default", snapshotOptions } = options ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
-    const getData = useCallback(async (stableRef: DocumentReference<Value>) => {
-        const snap = await getDocFromSource(stableRef, source);
-        return snap.data(snapshotOptions);
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const getData = useCallback(
+        async (stableRef: DocumentReference<Value>) => {
+            const snap = await getDocFromSource(stableRef, source);
+            return snap.data({ serverTimestamps });
+        },
+        [serverTimestamps, source],
+    );
+
     return useGet(reference ?? undefined, getData, isDocRefEqual);
 }

@@ -30,17 +30,22 @@ export function useQueriesData<Values extends ReadonlyArray<DocumentData> = Read
     queries: { [Index in keyof Values]: Query<Values[Index]> },
     options?: UseQueriesDataOptions,
 ): UseQueriesDataResult<Values> {
-    const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
+    const { snapshotListenOptions, snapshotOptions } = options ?? {};
+    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
+
     const onChange: UseMultiListenChange<Values[number], FirestoreError, Query<Values[number]>> = useCallback(
         (query, next, error) =>
-            onSnapshot(query, snapshotListenOptions, {
-                next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
-                error,
-            }),
+            onSnapshot(
+                query,
+                { includeMetadataChanges },
+                {
+                    next: (snap) => next(snap.docs.map((doc) => doc.data({ serverTimestamps }))),
+                    error,
+                },
+            ),
 
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+        [includeMetadataChanges, serverTimestamps],
     );
 
     // @ts-expect-error `useMultiListen` assumes a single value type

@@ -33,11 +33,7 @@ export function useDocumentOnce<Value extends DocumentData = DocumentData>(
 ): UseDocumentOnceResult<Value> {
     const { source = "default" } = options ?? {};
 
-    const getData = useCallback(
-        (stableRef: DocumentReference<Value>) => getDocFromSource(stableRef, source),
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
-    );
+    const getData = useCallback((stableRef: DocumentReference<Value>) => getDocFromSource(stableRef, source), [source]);
+
     return useGet(reference ?? undefined, getData, isDocRefEqual);
 }

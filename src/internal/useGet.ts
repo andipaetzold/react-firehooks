@@ -44,10 +44,7 @@ export function useGet<Value, Error, Reference>(
                 }
             }
         })();
-
-        // TODO: double check dependencies
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [stableRef]);
+    }, [stableRef, getData, isEqual, setValue, setLoading, isMounted, setError]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);
 }

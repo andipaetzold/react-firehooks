@@ -29,14 +29,16 @@ export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
     options?: UseQueryDataOnceOptions,
 ): UseQueryDataOnceResult<Value> {
-    const { source = "default", snapshotOptions = {} } = options ?? {};
+    const { source = "default", snapshotOptions } = options ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
-    const getData = useCallback(async (stableQuery: Query<Value>) => {
-        const snap = await getDocsFromSource(stableQuery, source);
-        return snap.docs.map((doc) => doc.data(snapshotOptions));
+    const getData = useCallback(
+        async (stableQuery: Query<Value>) => {
+            const snap = await getDocsFromSource(stableQuery, source);
+            return snap.docs.map((doc) => doc.data({ serverTimestamps }));
+        },
+        [serverTimestamps, source],
+    );
 
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
     return useGet(query ?? undefined, getData, isQueryEqual);
 }
