@@ -7,7 +7,7 @@ import { useStableValue } from "./useStableValue.js";
 /**
  * @internal
  */
-export function useOnce<Value, Error, Reference>(
+export function useGet<Value, Error, Reference>(
     reference: Reference | undefined,
     getData: (ref: Reference) => Promise<Value>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,

@@ -1,7 +1,7 @@
 import { DocumentData, FirestoreError, Query, QuerySnapshot } from "firebase/firestore";
 import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { getDocsFromSource, isQueryEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
@@ -18,7 +18,7 @@ export interface UseQueryOnceOptions {
 }
 
 /**
- * Returns the QuerySnapshot of a Firestore Query. Does not update the QuerySnapshot once initially fetched
+ * Returns the QuerySnapshot of a Firestore query. Does not update the QuerySnapshot once initially fetched
  * @template Value Type of the collection data
  * @param query Firestore query that will be fetched
  * @param options Options to configure how the query is fetched
@@ -40,5 +40,5 @@ export function useQueryOnce<Value extends DocumentData = DocumentData>(
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [],
     );
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useGet(query ?? undefined, getData, isQueryEqual);
 }

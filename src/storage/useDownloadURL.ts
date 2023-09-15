@@ -1,6 +1,6 @@
 import { getDownloadURL, StorageError, StorageReference } from "firebase/storage";
 import { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isStorageRefEqual } from "./internal.js";
 
 export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
@@ -14,5 +14,5 @@ export type UseDownloadURLResult = ValueHookResult<string, StorageError>;
  * error: `undefined` if no error occurred
  */
 export function useDownloadURL(reference: StorageReference | undefined | null): UseDownloadURLResult {
-    return useOnce(reference ?? undefined, getDownloadURL, isStorageRefEqual);
+    return useGet(reference ?? undefined, getDownloadURL, isStorageRefEqual);
 }

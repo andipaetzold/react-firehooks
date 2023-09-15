@@ -1,6 +1,6 @@
 import { FullMetadata, getMetadata, StorageError, StorageReference } from "firebase/storage";
 import type { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isStorageRefEqual } from "./internal.js";
 
 export type UseMetadataResult = ValueHookResult<FullMetadata, StorageError>;
@@ -14,5 +14,5 @@ export type UseMetadataResult = ValueHookResult<FullMetadata, StorageError>;
  * error: `undefined` if no error occurred
  */
 export function useMetadata(reference: StorageReference | undefined | null): UseMetadataResult {
-    return useOnce(reference ?? undefined, getMetadata, isStorageRefEqual);
+    return useGet(reference ?? undefined, getMetadata, isStorageRefEqual);
 }

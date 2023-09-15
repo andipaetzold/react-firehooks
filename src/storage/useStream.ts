@@ -1,7 +1,7 @@
 import { getStream, StorageError, StorageReference } from "firebase/storage";
 import { useCallback } from "react";
 import type { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isStorageRefEqual } from "./internal.js";
 
 export type UseStreamResult = ValueHookResult<NodeJS.ReadableStream, StorageError>;
@@ -23,5 +23,5 @@ export function useStream(reference: StorageReference | undefined | null, maxDow
         [maxDownloadSizeBytes],
     );
 
-    return useOnce(reference ?? undefined, fetchBlob, isStorageRefEqual);
+    return useGet(reference ?? undefined, fetchBlob, isStorageRefEqual);
 }
