@@ -1,10 +1,10 @@
-import { useEffect, useState as useRef } from "react";
+import { useEffect, useState } from "react";
 
 /**
  * @internal
  */
 export function useStableValue<Value>(value: Value, isEqual: (a: Value, b: Value) => boolean): Value {
-    const [state, setState] = useRef(value);
+    const [state, setState] = useState(value);
 
     useEffect(() => {
         if (!isEqual(state, value)) {

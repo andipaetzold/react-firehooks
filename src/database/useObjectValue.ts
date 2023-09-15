@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import type { ValueHookResult } from "../common/index.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
-import { isQueryEqual } from "./internal.js";
+import { defaultConverter, isQueryEqual } from "./internal.js";
 
 export type UseObjectValueResult<Value = unknown> = ValueHookResult<Value, Error>;
 
@@ -30,7 +30,7 @@ export function useObjectValue<Value = unknown>(
     query: Query | undefined | null,
     options?: UseObjectValueOptions<Value>,
 ): UseObjectValueResult<Value> {
-    const { converter = (snap: DataSnapshot) => snap.val() } = options ?? {};
+    const { converter = defaultConverter, initialValue = LoadingState } = options ?? {};
 
     const onChange: UseListenOnChange<Value, Error, Query> = useCallback(
         (stableQuery, next, error) => onValue(stableQuery, (snap) => next(converter(snap)), error),
@@ -39,5 +39,5 @@ export function useObjectValue<Value = unknown>(
         [],
     );
 
-    return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
+    return useListen(query ?? undefined, onChange, isQueryEqual, initialValue);
 }
