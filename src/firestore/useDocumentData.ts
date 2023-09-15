@@ -38,17 +38,21 @@ export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
     options?: UseDocumentDataOptions<Value>,
 ): UseDocumentDataResult<Value> {
-    const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
+    const { snapshotListenOptions, snapshotOptions } = options ?? {};
+    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<Value, FirestoreError, DocumentReference<Value>> = useCallback(
         (stableRef, next, error) =>
-            onSnapshot<Value>(stableRef, snapshotListenOptions, {
-                next: (snap) => next(snap.data(snapshotOptions)),
-                error,
-            }),
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+            onSnapshot<Value>(
+                stableRef,
+                { includeMetadataChanges },
+                {
+                    next: (snap) => next(snap.data({ serverTimestamps })),
+                    error,
+                },
+            ),
+        [includeMetadataChanges, serverTimestamps],
     );
 
     return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);

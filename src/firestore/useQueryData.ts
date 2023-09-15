@@ -31,18 +31,28 @@ export function useQueryData<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,
     options?: UseQueryDataOptions<Value>,
 ): UseQueryDataResult<Value> {
-    const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
+    const { snapshotListenOptions, snapshotOptions } = options ?? {};
+    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<Value[], FirestoreError, Query<Value>> = useCallback(
         (stableQuery, next, error) =>
-            onSnapshot<Value>(stableQuery, snapshotListenOptions, {
-                next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
-                error,
-            }),
-
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+            onSnapshot<Value>(
+                stableQuery,
+                { includeMetadataChanges },
+                {
+                    next: (snap) =>
+                        next(
+                            snap.docs.map((doc) =>
+                                doc.data({
+                                    serverTimestamps,
+                                }),
+                            ),
+                        ),
+                    error,
+                },
+            ),
+        [includeMetadataChanges, serverTimestamps],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
