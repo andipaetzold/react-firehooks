@@ -138,6 +138,46 @@ Returns:
     -   `loading` :`true` while fetching the query; `false` if the query was fetched successfully or an error occurred
     -   `error`: `undefined` if no error occurred
 
+## useQueriesDataOnce
+
+Returns the data of multile Firestore queries
+
+```javascript
+const [querySnap, loading, error] = useQueriesDataOnce(queries, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be fetched
+-   `options`: Options to configure how the queries are fetched
+
+Returns:
+
+-   Array with tuple for each query::
+    -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
+
+## useQueriesOnce
+
+Returns the QuerySnapshot of multiple Firestore queries
+
+```javascript
+const [querySnap, loading, error] = useQueriesOnce(queries, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be fetched
+-   `options`: Options to configure how the queries are fetched
+
+Returns:
+
+-   Array with tuple for each query::
+    -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
+
 ## useQuery
 
 Returns and updates a QuerySnapshot of a Firestore Query

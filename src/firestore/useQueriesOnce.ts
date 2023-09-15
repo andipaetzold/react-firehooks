@@ -19,7 +19,7 @@ export interface UseQueriesOnceOptions {
 
 /**
  * Returns the QuerySnapshot of multiple Firestore queries. Does not update the data once initially fetched
- * @template Value Type of the collection data
+ * @template Values Tuple of types of the collection data
  * @param queries Firestore queries that will be fetched
  * @param options Options to configure how the queries are fetched
  * @returns Array with tuple for each query:
