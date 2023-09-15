@@ -35,10 +35,7 @@ export function useQueriesOnce<Values extends ReadonlyArray<DocumentData> = Read
 
     const getData = useCallback(
         async (stableQuery: Query<Values[number]>) => getDocsFromSource(stableQuery, source),
-
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        [],
+        [source],
     );
 
     // @ts-expect-error `useMultiGet` assumes a single value type

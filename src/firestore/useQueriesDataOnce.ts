@@ -31,15 +31,16 @@ export function useQueriesDataOnce<Values extends ReadonlyArray<DocumentData> = 
     queries: { [Index in keyof Values]: Query<Values[Index]> },
     options?: UseQueriesDataOnceOptions,
 ): UseQueriesDataOnceResult<Values> {
-    const { source = "default", snapshotOptions = {} } = options ?? {};
+    const { source = "default", snapshotOptions } = options ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
-    const getData = useCallback(async (stableQuery: Query<Values[number]>) => {
-        const snap = await getDocsFromSource(stableQuery, source);
-        return snap.docs.map((doc) => doc.data(snapshotOptions));
-
-        // TODO: add options as dependency
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const getData = useCallback(
+        async (stableQuery: Query<Values[number]>) => {
+            const snap = await getDocsFromSource(stableQuery, source);
+            return snap.docs.map((doc) => doc.data({ serverTimestamps }));
+        },
+        [source, serverTimestamps],
+    );
 
     // @ts-expect-error `useMultiGet` assumes a single value type
     return useMultiGet(queries, getData, isQueryEqual);
