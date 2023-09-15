@@ -1,7 +1,7 @@
 import { DataSnapshot, get, Query } from "firebase/database";
 import { useCallback } from "react";
 import type { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isQueryEqual } from "./internal.js";
 
 export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
@@ -16,5 +16,5 @@ export type UseObjectOnceResult = ValueHookResult<DataSnapshot, Error>;
  */
 export function useObjectOnce(query: Query | undefined | null): UseObjectOnceResult {
     const getData = useCallback((stableQuery: Query) => get(stableQuery), []);
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useGet(query ?? undefined, getData, isQueryEqual);
 }

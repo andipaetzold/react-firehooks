@@ -1,7 +1,7 @@
 import { DocumentData, FirestoreError, Query, SnapshotOptions } from "firebase/firestore";
 import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { getDocsFromSource, isQueryEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
@@ -40,5 +40,5 @@ export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
         [serverTimestamps, source],
     );
 
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useGet(query ?? undefined, getData, isQueryEqual);
 }

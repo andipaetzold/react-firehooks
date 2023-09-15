@@ -103,7 +103,7 @@ Returns:
 Returns and updates a QuerySnapshot of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueries(queries, options);
+const results = useQueries(queries, options);
 ```
 
 Params:
@@ -123,7 +123,7 @@ Returns:
 Returns and updates a the document data of multiple Firestore queries
 
 ```javascript
-const [querySnap, loading, error] = useQueriesData(query, options);
+const results = useQueriesData(query, options);
 ```
 
 Params:
@@ -136,6 +136,46 @@ Returns:
 -   Array with tuple for each query:
     -   `value`: Query data; `undefined` if query is currently being fetched, or an error occurred
     -   `loading` :`true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
+
+## useQueriesDataOnce
+
+Returns the data of multiple Firestore queries
+
+```javascript
+const results = useQueriesDataOnce(queries, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be fetched
+-   `options`: Options to configure how the queries are fetched
+
+Returns:
+
+-   Array with tuple for each query::
+    -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+    -   `error`: `undefined` if no error occurred
+
+## useQueriesOnce
+
+Returns the QuerySnapshots of multiple Firestore queries
+
+```javascript
+const results = useQueriesOnce(queries, options);
+```
+
+Params:
+
+-   `queries`: Firestore queries that will be fetched
+-   `options`: Options to configure how the queries are fetched
+
+Returns:
+
+-   Array with tuple for each query::
+    -   `value`: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+    -   `loading`: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
     -   `error`: `undefined` if no error occurred
 
 ## useQuery

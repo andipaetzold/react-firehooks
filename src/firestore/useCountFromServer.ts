@@ -1,6 +1,6 @@
 import { FirestoreError, Query, getCountFromServer } from "firebase/firestore";
 import type { ValueHookResult } from "../common/types.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isQueryEqual } from "./internal.js";
 
 export type UseCountFromServerResult = ValueHookResult<number, FirestoreError>;
@@ -23,5 +23,5 @@ async function getData(stableQuery: Query<unknown>): Promise<number> {
  * error: `undefined` if no error occurred
  */
 export function useCountFromServer(query: Query<unknown> | undefined | null): UseCountFromServerResult {
-    return useOnce(query ?? undefined, getData, isQueryEqual);
+    return useGet(query ?? undefined, getData, isQueryEqual);
 }

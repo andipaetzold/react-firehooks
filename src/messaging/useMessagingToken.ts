@@ -1,6 +1,6 @@
 import { Messaging, getToken, GetTokenOptions } from "firebase/messaging";
 import { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 
 export type UseMessagingTokenResult = ValueHookResult<string, Error>;
 
@@ -21,7 +21,7 @@ export interface UseMessagingTokenOptions {
  * error: `undefined` if no error occurred
  */
 export function useMessagingToken(messaging: Messaging, options?: UseMessagingTokenOptions): UseMessagingTokenResult {
-    return useOnce(
+    return useGet(
         messaging,
         (m) => getToken(m, options?.getTokenOptions),
         () => true,

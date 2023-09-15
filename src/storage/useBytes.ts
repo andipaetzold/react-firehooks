@@ -1,7 +1,7 @@
 import { getBytes, StorageError, StorageReference } from "firebase/storage";
 import { useCallback } from "react";
 import { ValueHookResult } from "../common/index.js";
-import { useOnce } from "../internal/useOnce.js";
+import { useGet } from "../internal/useGet.js";
 import { isStorageRefEqual } from "./internal.js";
 
 export type UseBytesResult = ValueHookResult<ArrayBuffer, StorageError>;
@@ -21,5 +21,5 @@ export function useBytes(reference: StorageReference | undefined | null, maxDown
         [maxDownloadSizeBytes],
     );
 
-    return useOnce(reference ?? undefined, fetchBytes, isStorageRefEqual);
+    return useGet(reference ?? undefined, fetchBytes, isStorageRefEqual);
 }
