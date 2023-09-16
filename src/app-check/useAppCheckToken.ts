@@ -1,10 +1,12 @@
 import { AppCheck, AppCheckTokenResult, onTokenChanged } from "firebase/app-check";
-import { useCallback } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 
 export type UseAppCheckToken = ValueHookResult<AppCheckTokenResult | null, Error>;
+
+const onChange: UseListenOnChange<AppCheckTokenResult | null, Error, AppCheck> = (stableAppCheck, next, error) =>
+    onTokenChanged(stableAppCheck, next, error);
 
 /**
  * Returns and updates the current App Check token
@@ -15,10 +17,5 @@ export type UseAppCheckToken = ValueHookResult<AppCheckTokenResult | null, Error
  * error: `undefined` if no error occurred
  */
 export function useAppCheckToken(appCheck: AppCheck): UseAppCheckToken {
-    const onChange: UseListenOnChange<AppCheckTokenResult | null, Error, AppCheck> = useCallback(
-        (stableAppCheck, next, error) => onTokenChanged(stableAppCheck, next, error),
-        [],
-    );
-
     return useListen(appCheck, onChange, () => true, LoadingState);
 }
