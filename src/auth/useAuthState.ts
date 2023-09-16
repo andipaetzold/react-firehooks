@@ -1,10 +1,12 @@
 import { Auth, AuthError, onAuthStateChanged, User } from "firebase/auth";
-import { useCallback } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 
 export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
+
+const onChange: UseListenOnChange<User | null, AuthError, Auth> = (stableAuth, next, error) =>
+    onAuthStateChanged(stableAuth, next, (e) => error(e as AuthError));
 
 /**
  * Returns and updates the currently authenticated user
@@ -15,10 +17,5 @@ export type UseAuthStateResult = ValueHookResult<User | null, AuthError>;
  * error: `undefined` if no error occurred
  */
 export function useAuthState(auth: Auth): UseAuthStateResult {
-    const onChange: UseListenOnChange<User | null, AuthError, Auth> = useCallback(
-        (stableAuth, next, error) => onAuthStateChanged(stableAuth, next, (e) => error(e as AuthError)),
-        [],
-    );
-
     return useListen(auth, onChange, () => true, auth.currentUser ? auth.currentUser : LoadingState);
 }

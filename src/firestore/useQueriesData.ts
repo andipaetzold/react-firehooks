@@ -44,7 +44,6 @@ export function useQueriesData<Values extends ReadonlyArray<DocumentData> = Read
                     error,
                 },
             ),
-
         [includeMetadataChanges, serverTimestamps],
     );
 
