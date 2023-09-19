@@ -3,8 +3,8 @@ import { newPromise, newSymbol } from "../__testfixtures__";
 import { useGet } from "./useGet";
 import { it, expect, beforeEach, describe, vi } from "vitest";
 
-const result1 = newSymbol("Result 1");
-const result2 = newSymbol("Result 2");
+const result1 = newSymbol<string>("Result 1");
+const result2 = newSymbol<string>("Result 2");
 const error = newSymbol("Error");
 
 const refA1 = newSymbol("Ref A1");
@@ -125,4 +125,25 @@ describe("when ref changes", () => {
             await waitFor(() => expect(result.current).toStrictEqual([result2, false, undefined]));
         });
     });
+});
+
+it("refetches if `getData` changes", async () => {
+    const getData1 = vi.fn().mockResolvedValue(result1);
+    const getData2 = vi.fn().mockResolvedValue(result2);
+
+    const { result, rerender } = renderHook(({ getData }) => useGet(refA1, getData, isEqual), {
+        initialProps: { getData: getData1 },
+    });
+
+    await waitFor(() => {
+        expect(result.current).toStrictEqual([result1, false, undefined]);
+    });
+    expect(getData1).toHaveBeenCalledTimes(1);
+
+    rerender({ getData: getData2 });
+
+    await waitFor(() => {
+        expect(result.current).toStrictEqual([result2, false, undefined]);
+    });
+    expect(getData2).toHaveBeenCalledTimes(1);
 });

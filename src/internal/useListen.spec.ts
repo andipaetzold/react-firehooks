@@ -140,3 +140,20 @@ it("should return emitted error", () => {
     act(() => setValue(result2));
     expect(result.current).toStrictEqual([result2, false, undefined]);
 });
+
+it("resubscribes if `onChange` changes", async () => {
+    const onChange1 = vi.fn().mockReturnValue(onChangeUnsubscribe);
+
+    const { result, rerender } = renderHook(({ onChange }) => useListen(refA1, onChange, isEqual, LoadingState), {
+        initialProps: { onChange: onChange1 },
+    });
+    const setValue1 = onChange1.mock.calls[0][1];
+    act(() => setValue1(result1));
+    expect(result.current).toStrictEqual([result1, false, undefined]);
+
+    const onChange2 = vi.fn().mockReturnValue(onChangeUnsubscribe);
+    rerender({ onChange: onChange2 });
+    const setValue2 = onChange1.mock.calls[0][1];
+    act(() => setValue2(result2));
+    expect(result.current).toStrictEqual([result2, false, undefined]);
+});
