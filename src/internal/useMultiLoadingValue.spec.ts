@@ -3,8 +3,8 @@ import { newSymbol } from "../__testfixtures__";
 import { useMultiLoadingValue } from "./useMultiLoadingValue";
 import { it, expect, describe } from "vitest";
 
-const value1 = newSymbol("Value 1");
-const value2 = newSymbol("Value 2");
+const value1 = newSymbol<symbol>("Value 1");
+const value2 = newSymbol<symbol>("Value 2");
 const error1 = newSymbol("Error 1");
 const error2 = newSymbol("Error 2");
 
