@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Source | react-firehooks</title><meta name="description" content="Documentation for react-firehooks"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>useQueriesDataOnce | react-firehooks</title><meta name="description" content="Documentation for react-firehooks"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script defer src="../assets/main.js"></script><script async src="../assets/search.js" id="tsd-search-script"></script><script async src="../assets/navigation.js" id="tsd-nav-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base="..">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><use href="#icon-search"></use></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -13,17 +13,43 @@
 <div class="tsd-page-title">
 <ul class="tsd-breadcrumb">
 <li><a href="../index.html">react-firehooks</a></li>
-<li><a href="Source.html">Source</a></li></ul>
-<h1>Type alias Source</h1></div>
-<div class="tsd-signature"><span class="tsd-kind-type-alias">Source</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;default&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;server&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;cache&quot;</span></div>
-<div class="tsd-comment tsd-typography"><p>Specifies how the document or query should be fetched</p>
-<p><code>default</code>: Attempts to provide up-to-date data when possible by waiting for data from the server, but it may return cached data or fail if you are offline and the server cannot be reached.
-<code>server</code>: Reads the document/query from the server. Returns an error if the network is not available.
-<code>cache</code>: Reads the document/query from cache. Returns an error if the document/query is not currently cached.</p>
+<li><a href="useQueriesDataOnce.html">useQueriesDataOnce</a></li></ul>
+<h1>Function useQueriesDataOnce</h1></div>
+<section class="tsd-panel">
+<ul class="tsd-signatures">
+<li class="tsd-signature tsd-anchor-link" id="useQueriesDataOnce"><span class="tsd-kind-call-signature">use<wbr/>Queries<wbr/>Data<wbr/>Once</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Values</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">(</span><span class="tsd-kind-parameter">queries</span>, <span class="tsd-kind-parameter">options</span><span class="tsd-signature-symbol">?</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../types/UseQueriesDataOnceResult.html" class="tsd-signature-type tsd-kind-type-alias">UseQueriesDataOnceResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Values</span><span class="tsd-signature-symbol">&gt;</span><a href="#useQueriesDataOnce" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24"><use href="#icon-anchor"></use></svg></a></li>
+<li class="tsd-description">
+<div class="tsd-comment tsd-typography"><p>Returns the data of multiple Firestore queries. Does not update the data once initially fetched</p>
 </div>
+<section class="tsd-panel">
+<h4>Type Parameters</h4>
+<ul class="tsd-type-parameter-list">
+<li>
+<h4><span class="tsd-kind-type-parameter">Values</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type ">DocumentData</span><span class="tsd-signature-symbol">[]</span> = <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type ">DocumentData</span><span class="tsd-signature-symbol">[]</span></h4>
+<div class="tsd-comment tsd-typography"><p>Tuple of types of the collection data</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></section>
+<div class="tsd-parameters">
+<h4 class="tsd-parameters-title">Parameters</h4>
+<ul class="tsd-parameter-list">
+<li>
+<h5><span class="tsd-kind-parameter">queries</span>: <span class="tsd-signature-symbol">{</span><br/><span>    </span><span class="tsd-signature-symbol">[</span><span class="tsd-kind-type-parameter">Index</span><span class="tsd-signature-symbol"> in </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type ">Query</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Values</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type tsd-kind-type-parameter">Index</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span><br/><span class="tsd-signature-symbol">}</span></h5>
+<div class="tsd-comment tsd-typography"><p>Firestore queries that will be fetched</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li>
+<li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> <span class="tsd-kind-parameter">options</span>: <a href="../interfaces/UseQueriesDataOnceOptions.html" class="tsd-signature-type tsd-kind-interface">UseQueriesDataOnceOptions</a></h5>
+<div class="tsd-comment tsd-typography"><p>Options to configure how the queries are fetched</p>
+</div>
+<div class="tsd-comment tsd-typography"></div></li></ul></div>
+<h4 class="tsd-returns-title">Returns <a href="../types/UseQueriesDataOnceResult.html" class="tsd-signature-type tsd-kind-type-alias">UseQueriesDataOnceResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type tsd-kind-type-parameter">Values</span><span class="tsd-signature-symbol">&gt;</span></h4><p>Array with tuple for each query:
+value: Query data; <code>undefined</code> if query is currently being fetched, or an error occurred
+loading: <code>true</code> while fetching the query; <code>false</code> if the query was fetched successfully or an error occurred
+error: <code>undefined</code> if no error occurred</p>
+
 <div class="tsd-comment tsd-typography"></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/f8e78d0/src/firestore/types.ts#L8">firestore/types.ts:8</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/andipaetzold/react-firehooks/blob/f8e78d0/src/firestore/useQueriesDataOnce.ts#L30">firestore/useQueriesDataOnce.ts:30</a></li></ul></aside></li></ul></section></div>
 <div class="col-sidebar">
 <div class="page-menu">
 <div class="tsd-navigation settings">
@@ -56,13 +82,13 @@
 <li><a href="../interfaces/UseQueryDataOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg>UseQueryDataOptions</a></li>
 <li><a href="../interfaces/UseQueryOnceOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg>UseQueryOnceOptions</a></li>
 <li><a href="../interfaces/UseQueryOptions.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-256"></use></svg>UseQueryOptions</a></li>
-<li><a href="Source.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>Source</a></li>
-<li><a href="UseAppCheckToken.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAppCheckToken</a></li>
-<li><a href="UseAuthIdTokenResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthIdTokenResult</a></li>
-<li><a href="UseAuthIdTokenResultResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthIdTokenResultResult</a></li>
-<li><a href="UseAuthStateResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthStateResult</a></li>
-<li><a href="UseBlobResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseBlobResult</a></li>
-<li><a href="UseBytesResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseBytesResult</a></li>
+<li><a href="../types/Source.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>Source</a></li>
+<li><a href="../types/UseAppCheckToken.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAppCheckToken</a></li>
+<li><a href="../types/UseAuthIdTokenResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthIdTokenResult</a></li>
+<li><a href="../types/UseAuthIdTokenResultResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthIdTokenResultResult</a></li>
+<li><a href="../types/UseAuthStateResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseAuthStateResult</a></li>
+<li><a href="../types/UseBlobResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseBlobResult</a></li>
+<li><a href="../types/UseBytesResult.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg>UseBytesResult</a></li>
 <li>Loading...</li></ul></nav></div></div></div>
 <div class="tsd-generator">
 <p>Generated using <a href="https://typedoc.org/" rel="noopener" target="_blank">TypeDoc</a></p></div>
