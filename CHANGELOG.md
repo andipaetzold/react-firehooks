@@ -1,3 +1,11 @@
+# [3.1.0](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0...v3.1.0) (2023-09-19)
+
+
+### Features
+
+* refetch/resubscribe when options change ([#240](https://github.com/andipaetzold/react-firehooks/issues/240)) ([f9c30ea](https://github.com/andipaetzold/react-firehooks/commit/f9c30ea98116aa89ef64aae74a000340bece9e6c))
+* useQueriesOnce & useQueriesDataOnce ([#239](https://github.com/andipaetzold/react-firehooks/issues/239)) ([0380229](https://github.com/andipaetzold/react-firehooks/commit/0380229696262f3cec3acf3b6a9b365aca50dc91))
+
 # [3.0.0](https://github.com/andipaetzold/react-firehooks/compare/v2.5.0...v3.0.0) (2023-08-01)
 
 
