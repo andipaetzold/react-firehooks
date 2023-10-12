@@ -1,3 +1,16 @@
+# [4.0.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v3.1.0...v4.0.0-next.1) (2023-10-12)
+
+
+### Features
+
+* require firebase 10.5.0 or later ([#247](https://github.com/andipaetzold/react-firehooks/issues/247)) ([03cf52f](https://github.com/andipaetzold/react-firehooks/commit/03cf52ff81cab28b935b3b66b8aba8577a0759be))
+* useAggregateFromServer ([#192](https://github.com/andipaetzold/react-firehooks/issues/192)) ([327a210](https://github.com/andipaetzold/react-firehooks/commit/327a2106711b913351f0e942e27c4be7483fbd13))
+
+
+### BREAKING CHANGES
+
+* require firebase 10.5.0 or later
+
 # [3.1.0](https://github.com/andipaetzold/react-firehooks/compare/v3.0.0...v3.1.0) (2023-09-19)
 
 
