@@ -1,4 +1,5 @@
 export * from "./types.js";
+export * from "./useAggregateFromServer.js";
 export * from "./useDocument.js";
 export * from "./useDocumentData.js";
 export * from "./useDocumentDataOnce.js";
