@@ -18,10 +18,10 @@ import type { Source } from "./types.js";
 /**
  * @internal
  */
-export async function getDocFromSource<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value>,
+export async function getDocFromSource<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    reference: DocumentReference<AppModelType, DbModelType>,
     source: Source,
-): Promise<DocumentSnapshot<Value>> {
+): Promise<DocumentSnapshot<AppModelType, DbModelType>> {
     switch (source) {
         case "cache":
             return await getDocFromCache(reference);
@@ -35,10 +35,10 @@ export async function getDocFromSource<Value extends DocumentData = DocumentData
 /**
  * @internal
  */
-export async function getDocsFromSource<Value extends DocumentData = DocumentData>(
-    query: Query<Value>,
+export async function getDocsFromSource<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    query: Query<AppModelType, DbModelType>,
     source: Source,
-): Promise<QuerySnapshot<Value>> {
+): Promise<QuerySnapshot<AppModelType, DbModelType>> {
     switch (source) {
         case "cache":
             return await getDocsFromCache(query);
@@ -52,9 +52,9 @@ export async function getDocsFromSource<Value extends DocumentData = DocumentDat
 /**
  * @internal
  */
-export function isDocRefEqual<Value>(
-    a: DocumentReference<Value> | undefined,
-    b: DocumentReference<Value> | undefined,
+export function isDocRefEqual<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    a: DocumentReference<AppModelType, DbModelType> | undefined,
+    b: DocumentReference<AppModelType, DbModelType> | undefined,
 ): boolean {
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && refEqual(a, b);
@@ -64,7 +64,10 @@ export function isDocRefEqual<Value>(
 /**
  * @internal
  */
-export function isQueryEqual<Value>(a: Query<Value> | undefined, b: Query<Value> | undefined): boolean {
+export function isQueryEqual<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    a: Query<AppModelType, DbModelType> | undefined,
+    b: Query<AppModelType, DbModelType> | undefined,
+): boolean {
     const areBothUndefined = a === undefined && b === undefined;
     const areSameRef = a !== undefined && b !== undefined && queryEqual(a, b);
     return areBothUndefined || areSameRef;

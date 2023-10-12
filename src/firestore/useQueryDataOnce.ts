@@ -5,7 +5,7 @@ import { useGet } from "../internal/useGet.js";
 import { getDocsFromSource, isQueryEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
-export type UseQueryDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value[], FirestoreError>;
+export type UseQueryDataOnceResult<AppModelType = DocumentData> = ValueHookResult<AppModelType[], FirestoreError>;
 
 /**
  * Options to configure the subscription
@@ -17,7 +17,8 @@ export interface UseQueryDataOnceOptions {
 
 /**
  * Returns the data of a Firestore Query. Does not update the data once initially fetched
- * @template Value Type of the collection data
+ * @template AppModelType Shape of the data after it was converted from firestore
+ * @template DbModelType Shape of the data in firestore
  * @param query Firestore query that will be fetched
  * @param options Options to configure how the query is fetched
  * @returns Query data, loading state, and error
@@ -25,15 +26,15 @@ export interface UseQueryDataOnceOptions {
  * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useQueryDataOnce<Value extends DocumentData = DocumentData>(
-    query: Query<Value> | undefined | null,
+export function useQueryDataOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    query: Query<AppModelType, DbModelType> | undefined | null,
     options?: UseQueryDataOnceOptions,
-): UseQueryDataOnceResult<Value> {
+): UseQueryDataOnceResult<AppModelType> {
     const { source = "default", snapshotOptions } = options ?? {};
     const { serverTimestamps } = snapshotOptions ?? {};
 
     const getData = useCallback(
-        async (stableQuery: Query<Value>) => {
+        async (stableQuery: Query<AppModelType, DbModelType>) => {
             const snap = await getDocsFromSource(stableQuery, source);
             return snap.docs.map((doc) => doc.data({ serverTimestamps }));
         },
