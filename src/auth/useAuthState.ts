@@ -12,9 +12,9 @@ const onChange: UseListenOnChange<User | null, AuthError, Auth> = (stableAuth, n
  * Returns and updates the currently authenticated user
  * @param auth Firebase Auth instance
  * @returns User, loading state, and error
- * value: User; `undefined` if user is currently being fetched, or an error occurred
- * loading: `true` while fetching the user; `false` if the user was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: User; `undefined` if user is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the user; `false` if the user was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useAuthState(auth: Auth): UseAuthStateResult {
     return useListen(auth, onChange, () => true, auth.currentUser ? auth.currentUser : LoadingState);

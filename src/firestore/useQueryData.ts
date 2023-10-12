@@ -23,9 +23,9 @@ export interface UseQueryDataOptions<Value extends DocumentData = DocumentData> 
  * @param options Options to configure the subscription
  * `initialValue`: Value that is returned while the query is being fetched.
  * @returns Query data, loading state, and error
- * value: Query data; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Query data; `undefined` if query is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useQueryData<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,

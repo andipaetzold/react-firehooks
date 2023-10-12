@@ -23,9 +23,9 @@ export interface UseQueriesDataOnceOptions {
  * @param queries Firestore queries that will be fetched
  * @param options Options to configure how the queries are fetched
  * @returns Array with tuple for each query:
- * value: Query data; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Query data; `undefined` if query is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useQueriesDataOnce<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
     queries: { [Index in keyof Values]: Query<Values[Index]> },

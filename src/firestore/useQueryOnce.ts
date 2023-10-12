@@ -23,9 +23,9 @@ export interface UseQueryOnceOptions {
  * @param query Firestore query that will be fetched
  * @param options Options to configure how the query is fetched
  * @returns QuerySnapshot, loading state, and error
- * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useQueryOnce<Value extends DocumentData = DocumentData>(
     query: Query<Value> | undefined | null,

@@ -21,9 +21,9 @@ export interface UseDocumentDataOnceOptions {
  * @param reference Firestore DocumentReference that will be subscribed to
  * @param options  Options to configure how the document is fetched
  * @returns Document data, loading state, and error
- * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,

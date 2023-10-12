@@ -30,9 +30,9 @@ export interface UseDocumentDataOptions<Value extends DocumentData = DocumentDat
  * @param options Options to configure the subscription
  * `initialValue`: Value that is returned while the document is being fetched.
  * @returns Document data, loading state, and error
- * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
