@@ -1,6 +1,6 @@
 {
     "name": "react-firehooks",
-    "version": "3.0.0-next.7",
+    "version": "3.1.0",
     "description": "Lightweight dependency-free collection of React hooks for Firebase",
     "main": "./lib/index.js",
     "types": "./lib/index.d.ts",
@@ -50,24 +50,32 @@
     },
     "homepage": "https://github.com/andipaetzold/react-firehooks#readme",
     "devDependencies": {
-        "@semantic-release/changelog": "6.0.2",
+        "@semantic-release/changelog": "6.0.3",
         "@semantic-release/git": "10.0.1",
-        "@testing-library/react": "13.4.0",
-        "@tsconfig/recommended": "1.0.1",
-        "@types/react": "18.0.25",
-        "@vitest/coverage-c8": "0.25.3",
+        "@testing-library/react": "14.0.0",
+        "@tsconfig/recommended": "1.0.3",
+        "@types/react": "18.2.23",
+        "@typescript-eslint/eslint-plugin": "6.7.3",
+        "@typescript-eslint/parser": "6.7.3",
+        "@vitest/coverage-v8": "0.34.6",
+        "eslint": "8.50.0",
+        "eslint-config-prettier": "9.0.0",
+        "eslint-plugin-jsdoc": "46.8.2",
+        "eslint-plugin-prettier": "5.0.0",
+        "eslint-plugin-react": "7.33.2",
+        "eslint-plugin-react-hooks": "4.6.0",
         "firebase": "9.11.0",
-        "happy-dom": "7.7.0",
-        "husky": "8.0.2",
-        "lint-staged": "13.0.3",
-        "prettier": "2.8.0",
+        "happy-dom": "12.2.2",
+        "husky": "8.0.3",
+        "lint-staged": "14.0.1",
+        "prettier": "3.0.3",
         "react": "18.2.0",
         "react-test-renderer": "18.2.0",
-        "rimraf": "4.1.2",
-        "semantic-release": "20.1.0",
-        "typedoc": "0.23.25",
-        "typescript": "4.9.5",
-        "vitest": "0.28.5"
+        "rimraf": "5.0.5",
+        "semantic-release": "22.0.5",
+        "typedoc": "0.25.1",
+        "typescript": "5.2.2",
+        "vitest": "0.34.6"
     },
     "scripts": {
         "prepublishOnly": "npm run build",
@@ -79,15 +87,17 @@
         "semantic-release": "semantic-release",
         "typedoc": "typedoc",
         "prepare": "husky install",
+        "lint": "eslint src",
         "lint-staged": "lint-staged"
     },
     "peerDependencies": {
-        "firebase": "^9.11.0",
+        "firebase": "^9.11.0 || ^10.0.0",
         "react": ">=16.8.0"
     },
     "lint-staged": {
         "src/**/*.ts": [
-            "prettier --write"
+            "prettier --write",
+            "eslint"
         ]
     }
 }

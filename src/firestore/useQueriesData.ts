@@ -18,27 +18,33 @@ export interface UseQueriesDataOptions {
 
 /**
  * Returns and updates a the document data of multiple Firestore queries
- *
  * @template Values Tuple of types of the collection data
- * @param {Query[]} queries Firestore queries that will be subscribed to
- * @param {?UseQueriesDataOptions} options Options to configure the subscription
- * @returns {ValueHookResult[]} Array with tuple for each query:
- * * value: Query data; `undefined` if query is currently being fetched, or an error occurred
- * * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param queries Firestore queries that will be subscribed to
+ * @param options Options to configure the subscription
+ * @returns Array with tuple for each query:
+ * value: Query data; `undefined` if query is currently being fetched, or an error occurred
+ * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useQueriesData<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
     queries: { [Index in keyof Values]: Query<Values[Index]> },
-    options?: UseQueriesDataOptions
+    options?: UseQueriesDataOptions,
 ): UseQueriesDataResult<Values> {
-    const { snapshotListenOptions = {}, snapshotOptions = {} } = options ?? {};
+    const { snapshotListenOptions, snapshotOptions } = options ?? {};
+    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
+
     const onChange: UseMultiListenChange<Values[number], FirestoreError, Query<Values[number]>> = useCallback(
         (query, next, error) =>
-            onSnapshot(query, snapshotListenOptions, {
-                next: (snap) => next(snap.docs.map((doc) => doc.data(snapshotOptions))),
-                error,
-            }),
-        []
+            onSnapshot(
+                query,
+                { includeMetadataChanges },
+                {
+                    next: (snap) => next(snap.docs.map((doc) => doc.data({ serverTimestamps }))),
+                    error,
+                },
+            ),
+        [includeMetadataChanges, serverTimestamps],
     );
 
     // @ts-expect-error `useMultiListen` assumes a single value type

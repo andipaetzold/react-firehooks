@@ -1,3 +1,3 @@
-export function newSymbol<T = any>(name: string): T {
-    return Symbol(name) as any;
+export function newSymbol<T = unknown>(name: string): T {
+    return Symbol(name) as T;
 }

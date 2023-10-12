@@ -25,29 +25,34 @@ export interface UseDocumentDataOptions<Value extends DocumentData = DocumentDat
 
 /**
  * Returns and updates the data of a Firestore DocumentReference
- *
  * @template Value Type of the document data
- * @param {DocumentReference<Value> | undefined | null} reference Firestore DocumentReference that will be subscribed to
- * @param {?UseDocumentDataOptions} options Options to configure the subscription
- * * `initialValue`: Value that is returned while the document is being fetched.
- * @returns {UseDocumentDataResult<Value>} Document data, loading state, and error
- * * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * * error: `undefined` if no error occurred
+ * @param reference Firestore DocumentReference that will be subscribed to
+ * @param options Options to configure the subscription
+ * `initialValue`: Value that is returned while the document is being fetched.
+ * @returns Document data, loading state, and error
+ * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * error: `undefined` if no error occurred
  */
 export function useDocumentData<Value extends DocumentData = DocumentData>(
     reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOptions<Value>
+    options?: UseDocumentDataOptions<Value>,
 ): UseDocumentDataResult<Value> {
-    const { snapshotListenOptions = {}, snapshotOptions } = options ?? {};
+    const { snapshotListenOptions, snapshotOptions } = options ?? {};
+    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { serverTimestamps } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<Value, FirestoreError, DocumentReference<Value>> = useCallback(
         (stableRef, next, error) =>
-            onSnapshot<Value>(stableRef, snapshotListenOptions, {
-                next: (snap) => next(snap.data(snapshotOptions)),
-                error,
-            }),
-        []
+            onSnapshot<Value>(
+                stableRef,
+                { includeMetadataChanges },
+                {
+                    next: (snap) => next(snap.data({ serverTimestamps })),
+                    error,
+                },
+            ),
+        [includeMetadataChanges, serverTimestamps],
     );
 
     return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);

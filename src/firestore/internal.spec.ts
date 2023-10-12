@@ -10,7 +10,7 @@ import {
 } from "firebase/firestore";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { newSymbol } from "../__testfixtures__";
-import { getDocFromSource, getDocsFromSource } from "./internal";
+import { getDocFromSource, getDocsFromSource, isDocRefEqual, isQueryEqual } from "./internal";
 
 vi.mock("firebase/firestore", () => ({
     getDoc: vi.fn(),
@@ -19,6 +19,8 @@ vi.mock("firebase/firestore", () => ({
     getDocs: vi.fn(),
     getDocsFromServer: vi.fn(),
     getDocsFromCache: vi.fn(),
+    queryEqual: Object.is,
+    refEqual: Object.is,
 }));
 
 beforeEach(() => {
@@ -74,5 +76,37 @@ describe("getDocsFromSource", () => {
         await getDocsFromSource(query, "server");
 
         expect(vi.mocked(getDocsFromServer)).toHaveBeenCalledWith(query);
+    });
+});
+
+describe("isDocRefEqual", () => {
+    it("with undefined", () => {
+        const ref = newSymbol<DocumentReference>("ref");
+        expect(isDocRefEqual(undefined, undefined)).toBe(true);
+        expect(isDocRefEqual(ref, undefined)).toBe(false);
+        expect(isDocRefEqual(undefined, ref)).toBe(false);
+    });
+
+    it("with refs", () => {
+        const refA = newSymbol<DocumentReference>("refA");
+        const refB = newSymbol<DocumentReference>("refB");
+        expect(isDocRefEqual(refA, refA)).toBe(true);
+        expect(isDocRefEqual(refA, refB)).toBe(false);
+    });
+});
+
+describe("isQueryEqual", () => {
+    it("with undefined", () => {
+        const query = newSymbol<Query>("query");
+        expect(isQueryEqual(undefined, undefined)).toBe(true);
+        expect(isQueryEqual(query, undefined)).toBe(false);
+        expect(isQueryEqual(undefined, query)).toBe(false);
+    });
+
+    it("with refs", () => {
+        const queryA = newSymbol<Query>("queryA");
+        const queryB = newSymbol<Query>("queryB");
+        expect(isQueryEqual(queryA, queryA)).toBe(true);
+        expect(isQueryEqual(queryA, queryB)).toBe(false);
     });
 });

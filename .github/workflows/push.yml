@@ -6,17 +6,17 @@ on:
 jobs:
     build-test:
         name: Build & Test
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
 
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
               with:
                   fetch-depth: 0
             - name: Get node version
               id: node-version
               run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
             - name: Use node
-              uses: actions/setup-node@v3.6.0
+              uses: actions/setup-node@v3.8.1
               with:
                   node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
                   cache: "npm"
@@ -25,6 +25,8 @@ jobs:
               run: npm ci
             - name: Build
               run: npm run build
+            - name: Lint
+              run: npm run lint
             - name: Test
               run: npm test -- --run --coverage
             - name: Typecheck
@@ -32,17 +34,25 @@ jobs:
 
     release:
         name: Release
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-22.04
         needs: build-test
+
+        # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md#node-project-configuration
+        permissions:
+            contents: write # to be able to publish a GitHub release
+            issues: write # to be able to comment on released issues
+            pull-requests: write # to be able to comment on released pull requests
+            id-token: write # to enable use of OIDC for npm provenance
+
         steps:
-            - uses: actions/checkout@v3
+            - uses: actions/checkout@v4
               with:
                   fetch-depth: 0
             - name: Get node version
               id: node-version
               run: echo ::set-output name=NODE_VERSION::$(cat .nvmrc)
             - name: Use node
-              uses: actions/setup-node@v3.6.0
+              uses: actions/setup-node@v3.8.1
               with:
                   node-version: ${{ steps.node-version.outputs.NODE_VERSION }}
                   cache: "npm"

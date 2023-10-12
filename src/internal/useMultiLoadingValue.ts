@@ -40,8 +40,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: false,
                           error: undefined,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 
@@ -54,8 +54,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: true,
                           error: undefined,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 
@@ -68,8 +68,8 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                           loading: false,
                           error,
                       }
-                    : state
-            )
+                    : state,
+            ),
         );
     }, []);
 
@@ -83,6 +83,7 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
                 return curStates.slice(0, size);
             } else if (curStates.length < size) {
                 return [...curStates, ...Array.from({ length: size - curStates.length }).map(() => DEFAULT_STATE)];
+                /* c8 ignore next 3 */
             } else {
                 return curStates;
             }

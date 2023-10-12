@@ -1,0 +1,32 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:jsdoc/recommended-typescript",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "rules": {
+        "react-hooks/exhaustive-deps": "error"
+    },
+    "overrides": [
+        {
+            "files": ["src/**/*.spec.*", "src/__testfixtures__/*", "src/**/internal.ts", "src/internal/*"],
+            "rules": {
+                "jsdoc/require-jsdoc": "off",
+                "jsdoc/require-returns": "off",
+                "jsdoc/require-param": "off"
+            }
+        }
+    ],
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
+    }
+}

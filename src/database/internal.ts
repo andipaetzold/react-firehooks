@@ -1,5 +1,6 @@
-import { Query } from "firebase/database";
-import * as a from "@firebase/installations";
+/* eslint-disable jsdoc/require-returns */
+/* eslint-disable jsdoc/require-param */
+import type { DataSnapshot, Query } from "firebase/database";
 
 /**
  * @internal
@@ -9,3 +10,5 @@ export function isQueryEqual(a: Query | undefined, b: Query | undefined): boolea
     const areSameRef = a !== undefined && b !== undefined && a.isEqual(b);
     return areBothUndefined || areSameRef;
 }
+
+export const defaultConverter = (snap: DataSnapshot) => snap.val();

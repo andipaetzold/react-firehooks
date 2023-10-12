@@ -9,7 +9,7 @@ import { useStableValue } from "./useStableValue.js";
 export type UseListenOnChange<Value, Error, Reference> = (
     ref: Reference,
     onValue: (value: Value | undefined) => void,
-    onError: (e: Error) => void
+    onError: (e: Error) => void,
 ) => () => void;
 
 /**
@@ -19,10 +19,10 @@ export function useListen<Value, Error, Reference>(
     reference: Reference | undefined,
     onChange: UseListenOnChange<Value, Error, Reference>,
     isEqual: (a: Reference | undefined, b: Reference | undefined) => boolean,
-    initialState: Value | typeof LoadingState
+    initialState: Value | typeof LoadingState,
 ): ValueHookResult<Value, Error> {
     const { error, loading, setLoading, setError, setValue, value } = useLoadingValue<Value, Error>(
-        reference === undefined ? undefined : initialState
+        reference === undefined ? undefined : initialState,
     );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
@@ -48,7 +48,7 @@ export function useListen<Value, Error, Reference>(
             const unsubscribe = onChange(stableRef, setValue, setError);
             return () => unsubscribe();
         }
-    }, [stableRef]);
+    }, [stableRef, onChange, setError, setLoading, setValue]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);
 }
