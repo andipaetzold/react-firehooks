@@ -4,6 +4,25 @@
 import { ... } from 'react-firehooks/firestore';
 ```
 
+#### useAggregateFromServer
+
+Returns aggregate of a Firestore Query. Does not update the result once initially calculated.
+
+```javascript
+const [data, loading, error] = useAggregateFromServer(query, aggregateSpec);
+```
+
+Params:
+
+-   `query`: Firestore query the aggregate is calculated for
+-   `aggregateSpec`: Aggregate specification
+
+Returns:
+
+-   `value`: Aggregate of the Firestore query; `undefined` if the aggregate is currently being calculated, or an error occurred
+-   `loading`: `true` while calculating the aggregate; `false` if the aggregate was calculated successfully or an error occurred
+-   `error`: `undefined` if no error occurred
+
 ## useCountFromServer
 
 Returns the number of documents in the result set of of a Firestore Query. Does not update the count once initially calculated.
