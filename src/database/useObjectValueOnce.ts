@@ -19,9 +19,9 @@ export interface UseObjectValueOnceOptions<Value> {
  * @param options Options to configure how the object is fetched
  * `converter`: Function to extract the desired data from the DataSnapshot. Similar to Firestore converters. Default: `snap.val()`.
  * @returns User, loading state, and error
- * value: Object value; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Object value; `undefined` if query is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useObjectValueOnce<Value = unknown>(
     query: Query | undefined | null,

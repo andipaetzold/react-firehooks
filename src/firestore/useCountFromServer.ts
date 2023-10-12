@@ -18,9 +18,9 @@ async function getData(stableQuery: Query<unknown>): Promise<number> {
  * Returns the number of documents in the result set of a Firestore Query. Does not update the count once initially calculated.
  * @param query Firestore query whose result set size is calculated
  * @returns Size of the result set, loading state, and error
- * value: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
- * loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Size of the result set; `undefined` if the result set size is currently being calculated, or an error occurred
+ * - loading: `true` while calculating the result size set; `false` if the result size set was calculated successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useCountFromServer(query: Query<unknown> | undefined | null): UseCountFromServerResult {
     return useGet(query ?? undefined, getData, isQueryEqual);

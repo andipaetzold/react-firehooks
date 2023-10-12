@@ -5,7 +5,7 @@ import { useGet } from "../internal/useGet.js";
 import { getDocFromSource, isDocRefEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
-export type UseDocumentDataOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value, FirestoreError>;
+export type UseDocumentDataOnceResult<AppModelType = DocumentData> = ValueHookResult<AppModelType, FirestoreError>;
 
 /**
  * Options to configure how the document is fetched
@@ -17,23 +17,24 @@ export interface UseDocumentDataOnceOptions {
 
 /**
  * Returns the data of a Firestore DocumentReference
- * @template Value Type of the document data
+ * @template AppModelType Shape of the data after it was converted from firestore
+ * @template DbModelType Shape of the data in firestore
  * @param reference Firestore DocumentReference that will be subscribed to
  * @param options  Options to configure how the document is fetched
  * @returns Document data, loading state, and error
- * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
-export function useDocumentDataOnce<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined | null,
+export function useDocumentDataOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
     options?: UseDocumentDataOnceOptions,
-): UseDocumentDataOnceResult<Value> {
+): UseDocumentDataOnceResult<AppModelType> {
     const { source = "default", snapshotOptions } = options ?? {};
     const { serverTimestamps } = snapshotOptions ?? {};
 
     const getData = useCallback(
-        async (stableRef: DocumentReference<Value>) => {
+        async (stableRef: DocumentReference<AppModelType, DbModelType>) => {
             const snap = await getDocFromSource(stableRef, source);
             return snap.data({ serverTimestamps });
         },

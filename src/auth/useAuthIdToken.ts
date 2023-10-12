@@ -24,9 +24,9 @@ const onChange: UseListenOnChange<string | null, AuthError, Auth> = (stableAuth,
  * Returns and updates the JWT of the currently authenticated user
  * @param auth Firebase Auth instance
  * @returns JWT, loading state, and error
- * value: JWT; `undefined` if the JWT is currently being fetched, or an error occurred
- * loading: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: JWT; `undefined` if the JWT is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the JWT; `false` if the JWT was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
 export function useAuthIdToken(auth: Auth): UseAuthIdTokenResult {
     return useListen(auth, onChange, () => true, LoadingState);

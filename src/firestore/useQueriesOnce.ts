@@ -5,9 +5,9 @@ import { useMultiGet } from "../internal/useMultiGet.js";
 import { getDocsFromSource, isQueryEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
-export type UseQueriesOnceResult<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>> = {
-    [Index in keyof Values]: ValueHookResult<Values[Index], FirestoreError>;
-} & { length: Values["length"] };
+export type UseQueriesOnceResult<AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>> = {
+    [Index in keyof AppModelTypes]: ValueHookResult<AppModelTypes[Index], FirestoreError>;
+} & { length: AppModelTypes["length"] };
 
 /**
  * Options to configure the subscription
@@ -19,22 +19,26 @@ export interface UseQueriesOnceOptions {
 
 /**
  * Returns the QuerySnapshot of multiple Firestore queries. Does not update the data once initially fetched
- * @template Values Tuple of types of the collection data
+ * @template AppModelTypes Tuple of shapes of the data after it was converted from firestore
+ * @template DbModelTypes Tuple of shapes of the data in firestore
  * @param queries Firestore queries that will be fetched
  * @param options Options to configure how the queries are fetched
  * @returns Array with tuple for each query:
- * value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
- * loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: QuerySnapshot; `undefined` if query is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
-export function useQueriesOnce<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
-    queries: { [Index in keyof Values]: Query<Values[Index]> },
+export function useQueriesOnce<
+    AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>,
+    DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
+>(
+    queries: { [Index in keyof AppModelTypes]: Query<AppModelTypes[Index], DbModelTypes[number]> },
     options?: UseQueriesOnceOptions,
-): UseQueriesOnceResult<Values> {
+): UseQueriesOnceResult<AppModelTypes> {
     const { source = "default" } = options ?? {};
 
     const getData = useCallback(
-        async (stableQuery: Query<Values[number]>) => getDocsFromSource(stableQuery, source),
+        async (stableQuery: Query<AppModelTypes[number], DbModelTypes[number]>) => getDocsFromSource(stableQuery, source),
         [source],
     );
 

@@ -12,39 +12,44 @@ import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 import { isDocRefEqual } from "./internal.js";
 
-export type UseDocumentDataResult<Value extends DocumentData = DocumentData> = ValueHookResult<Value, FirestoreError>;
+export type UseDocumentDataResult<AppModelType = DocumentData> = ValueHookResult<AppModelType, FirestoreError>;
 
 /**
  * Options to configure the subscription
  */
-export interface UseDocumentDataOptions<Value extends DocumentData = DocumentData> {
+export interface UseDocumentDataOptions<AppModelType = DocumentData> {
     snapshotListenOptions?: SnapshotListenOptions;
     snapshotOptions?: SnapshotOptions;
-    initialValue?: Value;
+    initialValue?: AppModelType;
 }
 
 /**
  * Returns and updates the data of a Firestore DocumentReference
- * @template Value Type of the document data
+ * @template AppModelType Shape of the data after it was converted from firestore
+ * @template DbModelType Shape of the data in firestore
  * @param reference Firestore DocumentReference that will be subscribed to
  * @param options Options to configure the subscription
  * `initialValue`: Value that is returned while the document is being fetched.
  * @returns Document data, loading state, and error
- * value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
- * loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
- * error: `undefined` if no error occurred
+ * - value: Document data; `undefined` if document does not exist, is currently being fetched, or an error occurred
+ * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
+ * - error: `undefined` if no error occurred
  */
-export function useDocumentData<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined | null,
-    options?: UseDocumentDataOptions<Value>,
-): UseDocumentDataResult<Value> {
+export function useDocumentData<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
+    options?: UseDocumentDataOptions<AppModelType>,
+): UseDocumentDataResult<AppModelType> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
     const { includeMetadataChanges } = snapshotListenOptions ?? {};
     const { serverTimestamps } = snapshotOptions ?? {};
 
-    const onChange: UseListenOnChange<Value, FirestoreError, DocumentReference<Value>> = useCallback(
+    const onChange: UseListenOnChange<
+        AppModelType,
+        FirestoreError,
+        DocumentReference<AppModelType, DbModelType>
+    > = useCallback(
         (stableRef, next, error) =>
-            onSnapshot<Value>(
+            onSnapshot(
                 stableRef,
                 { includeMetadataChanges },
                 {
