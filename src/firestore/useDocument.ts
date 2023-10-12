@@ -12,10 +12,7 @@ import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
 import { isDocRefEqual } from "./internal.js";
 
-export type UseDocumentResult<Value extends DocumentData = DocumentData> = ValueHookResult<
-    DocumentSnapshot<Value>,
-    FirestoreError
->;
+export type UseDocumentResult<AppModelType = DocumentData> = ValueHookResult<DocumentSnapshot<AppModelType>, FirestoreError>;
 
 /**
  * Options to configure the subscription
@@ -26,7 +23,8 @@ export interface UseDocumentOptions {
 
 /**
  * Returns and updates a DocumentSnapshot of a Firestore DocumentReference
- * @template Value Type of the document data
+ * @template AppModelType Shape of the data after it was converted from firestore
+ * @template DbModelType Shape of the data in firestore
  * @param reference Firestore DocumentReference that will be subscribed to
  * @param options Options to configure the subscription
  * @returns Document snapshot, loading state, and error
@@ -34,16 +32,20 @@ export interface UseDocumentOptions {
  * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useDocument<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined | null,
+export function useDocument<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
     options?: UseDocumentOptions,
-): UseDocumentResult<Value> {
+): UseDocumentResult<AppModelType> {
     const { snapshotListenOptions } = options ?? {};
     const { includeMetadataChanges } = snapshotListenOptions ?? {};
 
-    const onChange: UseListenOnChange<DocumentSnapshot<Value>, FirestoreError, DocumentReference<Value>> = useCallback(
+    const onChange: UseListenOnChange<
+        DocumentSnapshot<AppModelType, DbModelType>,
+        FirestoreError,
+        DocumentReference<AppModelType, DbModelType>
+    > = useCallback(
         (stableRef, next, error) =>
-            onSnapshot<Value>(
+            onSnapshot(
                 stableRef,
                 { includeMetadataChanges },
                 {

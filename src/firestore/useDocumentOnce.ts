@@ -5,8 +5,8 @@ import { useGet } from "../internal/useGet.js";
 import { getDocFromSource, isDocRefEqual } from "./internal.js";
 import type { Source } from "./types.js";
 
-export type UseDocumentOnceResult<Value extends DocumentData = DocumentData> = ValueHookResult<
-    DocumentSnapshot<Value>,
+export type UseDocumentOnceResult<AppModelType = DocumentData> = ValueHookResult<
+    DocumentSnapshot<AppModelType>,
     FirestoreError
 >;
 
@@ -19,7 +19,8 @@ export interface UseDocumentOnceOptions {
 
 /**
  * Returns the DocumentSnapshot of a Firestore DocumentReference. Does not update the DocumentSnapshot once initially fetched
- * @template Value Type of the document data
+ * @template AppModelType Shape of the data after it was converted from firestore
+ * @template DbModelType Shape of the data in firestore
  * @param reference Firestore DocumentReference that will be fetched
  * @param options Options to configure how the document is fetched
  * @returns DocumentSnapshot, loading state, and error
@@ -27,13 +28,16 @@ export interface UseDocumentOnceOptions {
  * - loading: `true` while fetching the document; `false` if the document was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useDocumentOnce<Value extends DocumentData = DocumentData>(
-    reference: DocumentReference<Value> | undefined | null,
+export function useDocumentOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
+    reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
     options?: UseDocumentOnceOptions,
-): UseDocumentOnceResult<Value> {
+): UseDocumentOnceResult<AppModelType> {
     const { source = "default" } = options ?? {};
 
-    const getData = useCallback((stableRef: DocumentReference<Value>) => getDocFromSource(stableRef, source), [source]);
+    const getData = useCallback(
+        (stableRef: DocumentReference<AppModelType, DbModelType>) => getDocFromSource(stableRef, source),
+        [source],
+    );
 
     return useGet(reference ?? undefined, getData, isDocRefEqual);
 }

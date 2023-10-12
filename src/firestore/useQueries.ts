@@ -4,9 +4,9 @@ import { ValueHookResult } from "../common/types.js";
 import { useMultiListen, UseMultiListenChange } from "../internal/useMultiListen.js";
 import { isQueryEqual } from "./internal.js";
 
-export type UseQueriesResult<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>> = {
-    [Index in keyof Values]: ValueHookResult<QuerySnapshot<Values[Index]>, FirestoreError>;
-} & { length: Values["length"] };
+export type UseQueriesResult<AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>> = {
+    [Index in keyof AppModelTypes]: ValueHookResult<QuerySnapshot<AppModelTypes[Index]>, FirestoreError>;
+} & { length: AppModelTypes["length"] };
 
 /**
  * Options to configure the subscription
@@ -17,7 +17,8 @@ export interface UseQueriesOptions {
 
 /**
  * Returns and updates a QuerySnapshot of multiple Firestore queries
- * @template Values Tuple of types of the collection data
+ * @template AppModelTypes Tuple of shapes of the data after it was converted from firestore
+ * @template DbModelTypes Tuple of shapes of the data in firestore
  * @param queries Firestore queries that will be subscribed to
  * @param options Options to configure the subscription
  * @returns Array with tuple for each query:
@@ -25,14 +26,21 @@ export interface UseQueriesOptions {
  * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useQueries<Values extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>>(
-    queries: { [Index in keyof Values]: Query<Values[Index]> },
+export function useQuerie<
+    AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>,
+    DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
+>(
+    queries: { [Index in keyof AppModelTypes]: Query<AppModelTypes[Index], DbModelTypes[number]> },
     options?: UseQueriesOptions,
-): UseQueriesResult<Values> {
+): UseQueriesResult<AppModelTypes> {
     const { snapshotListenOptions } = options ?? {};
     const { includeMetadataChanges } = snapshotListenOptions ?? {};
 
-    const onChange: UseMultiListenChange<QuerySnapshot<Values[number]>, FirestoreError, Query<Values[number]>> = useCallback(
+    const onChange: UseMultiListenChange<
+        QuerySnapshot<AppModelTypes[number], DbModelTypes[number]>,
+        FirestoreError,
+        Query<AppModelTypes[number], DbModelTypes[number]>
+    > = useCallback(
         (query, next, error) =>
             onSnapshot(
                 query,
