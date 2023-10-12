@@ -1,3 +1,16 @@
+# [4.0.0-next.2](https://github.com/andipaetzold/react-firehooks/compare/v4.0.0-next.1...v4.0.0-next.2) (2023-10-12)
+
+
+### Features
+
+* remove `useCountFromServer` ([#248](https://github.com/andipaetzold/react-firehooks/issues/248)) ([f2724ed](https://github.com/andipaetzold/react-firehooks/commit/f2724edbcd20fd57a26b8860a3ff59a8d26fc3ae))
+
+
+### BREAKING CHANGES
+
+* `useCountFromServer` was removed in favor of
+`useAggregateFromServer`
+
 # [4.0.0-next.1](https://github.com/andipaetzold/react-firehooks/compare/v3.1.0...v4.0.0-next.1) (2023-10-12)
 
 
