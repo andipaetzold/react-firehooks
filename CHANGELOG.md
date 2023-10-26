@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/andipaetzold/react-firehooks/compare/v3.1.0...v4.0.0) (2023-10-26)
+
+
+### Features
+
+* remove `useCountFromServer` ([#248](https://github.com/andipaetzold/react-firehooks/issues/248)) ([f2724ed](https://github.com/andipaetzold/react-firehooks/commit/f2724edbcd20fd57a26b8860a3ff59a8d26fc3ae))
+* require firebase 10.5.0 or later ([#247](https://github.com/andipaetzold/react-firehooks/issues/247)) ([03cf52f](https://github.com/andipaetzold/react-firehooks/commit/03cf52ff81cab28b935b3b66b8aba8577a0759be))
+* useAggregateFromServer ([#192](https://github.com/andipaetzold/react-firehooks/issues/192)) ([327a210](https://github.com/andipaetzold/react-firehooks/commit/327a2106711b913351f0e942e27c4be7483fbd13))
+
+
+### BREAKING CHANGES
+
+* `useCountFromServer` was removed in favor of
+`useAggregateFromServer`
+* require firebase 10.5.0 or later
+
 # [4.0.0-next.2](https://github.com/andipaetzold/react-firehooks/compare/v4.0.0-next.1...v4.0.0-next.2) (2023-10-12)
 
 
