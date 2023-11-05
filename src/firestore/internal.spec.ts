@@ -1,4 +1,6 @@
 import {
+    average,
+    count,
     DocumentReference,
     getDoc,
     getDocFromCache,
@@ -10,18 +12,23 @@ import {
 } from "firebase/firestore";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import { newSymbol } from "../__testfixtures__";
-import { getDocFromSource, getDocsFromSource, isDocRefEqual, isQueryEqual } from "./internal";
+import { getDocFromSource, getDocsFromSource, isAggregateSpecEqual, isDocRefEqual, isQueryEqual } from "./internal";
 
-vi.mock("firebase/firestore", () => ({
-    getDoc: vi.fn(),
-    getDocFromServer: vi.fn(),
-    getDocFromCache: vi.fn(),
-    getDocs: vi.fn(),
-    getDocsFromServer: vi.fn(),
-    getDocsFromCache: vi.fn(),
-    queryEqual: Object.is,
-    refEqual: Object.is,
-}));
+vi.mock("firebase/firestore", async () => {
+    const mod = await vi.importActual<typeof import("firebase/firestore")>("firebase/firestore");
+
+    return {
+        ...mod,
+        getDoc: vi.fn(),
+        getDocFromServer: vi.fn(),
+        getDocFromCache: vi.fn(),
+        getDocs: vi.fn(),
+        getDocsFromServer: vi.fn(),
+        getDocsFromCache: vi.fn(),
+        queryEqual: Object.is,
+        refEqual: Object.is,
+    };
+});
 
 beforeEach(() => {
     vi.resetAllMocks();
@@ -108,5 +115,31 @@ describe("isQueryEqual", () => {
         const queryB = newSymbol<Query>("queryB");
         expect(isQueryEqual(queryA, queryA)).toBe(true);
         expect(isQueryEqual(queryA, queryB)).toBe(false);
+    });
+});
+
+describe("isAggregateSpecEqual", () => {
+    it("different key count", () => {
+        const spec1 = { count: count() };
+        const spec2 = {};
+        expect(isAggregateSpecEqual(spec1, spec2)).toBe(false);
+    });
+
+    it("different aggregations", () => {
+        const spec1 = { value: count() };
+        const spec2 = { value: average("abc") };
+        expect(isAggregateSpecEqual(spec1, spec2)).toBe(false);
+    });
+
+    it("identical, single aggregate", () => {
+        const spec1 = { count: count() };
+        const spec2 = { count: count() };
+        expect(isAggregateSpecEqual(spec1, spec2)).toBe(true);
+    });
+
+    it("identical, multiple aggregates", () => {
+        const spec1 = { count: count(), avg: average("123") };
+        const spec2 = { count: count(), avg: average("123") };
+        expect(isAggregateSpecEqual(spec1, spec2)).toBe(true);
     });
 });

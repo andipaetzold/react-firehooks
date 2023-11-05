@@ -79,7 +79,7 @@ export function isQueryEqual<AppModelType = DocumentData, DbModelType extends Do
  * @internal
  */
 export function isAggregateSpecEqual<T extends AggregateSpec>(a: T, b: T): boolean {
-    if (Object.keys(a).length === Object.keys(b).length) {
+    if (Object.keys(a).length !== Object.keys(b).length) {
         return false;
     }
 
