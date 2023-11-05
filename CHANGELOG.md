@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/andipaetzold/react-firehooks/compare/v4.0.1...v4.0.2) (2023-11-05)
+
+
+### Bug Fixes
+
+* infinite re-renders of `useAggregateFromServer` ([8882819](https://github.com/andipaetzold/react-firehooks/commit/8882819e9a354e07395911d863bb79a48b245cc2))
+
 ## [4.0.1](https://github.com/andipaetzold/react-firehooks/compare/v4.0.0...v4.0.1) (2023-11-05)
 
 
