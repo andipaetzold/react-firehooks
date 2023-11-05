@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/andipaetzold/react-firehooks/compare/v4.0.0...v4.0.1) (2023-11-05)
+
+
+### Bug Fixes
+
+* typo `useQuerie` -> `useQueries` ([#254](https://github.com/andipaetzold/react-firehooks/issues/254)) ([9a52945](https://github.com/andipaetzold/react-firehooks/commit/9a52945670578a52aa686062d28ab2172d6e125c))
+
 # [4.0.0](https://github.com/andipaetzold/react-firehooks/compare/v3.1.0...v4.0.0) (2023-10-26)
 
 
