@@ -26,7 +26,7 @@ export interface UseQueriesOptions {
  * - loading: `true` while fetching the query; `false` if the query was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useQuerie<
+export function useQueries<
     AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>,
     DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
 >(
