@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/andipaetzold/react-firehooks/compare/v4.0.2...v4.0.3) (2023-11-25)
+
+
+### Bug Fixes
+
+* `exactOptionalPropertyTypes` TS option compatibility ([#256](https://github.com/andipaetzold/react-firehooks/issues/256)) ([581774a](https://github.com/andipaetzold/react-firehooks/commit/581774a17f3632607d6bb2b6e0244e14a450a0cc))
+
 ## [4.0.2](https://github.com/andipaetzold/react-firehooks/compare/v4.0.1...v4.0.2) (2023-11-05)
 
 
