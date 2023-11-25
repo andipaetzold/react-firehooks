@@ -4,9 +4,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
  * @internal
  */
 interface State<Value, Error> {
-    readonly value?: Value;
+    readonly value?: Value | undefined;
     readonly loading: boolean;
-    readonly error?: Error;
+    readonly error?: Error | undefined;
 }
 
 /**
@@ -14,9 +14,9 @@ interface State<Value, Error> {
  */
 export interface UseMultiLoadingValueResult<Value, Error = unknown> {
     readonly states: ReadonlyArray<State<Value, Error>>;
-    readonly setValue: (index: number, value?: Value) => void;
+    readonly setValue: (index: number, value?: Value | undefined) => void;
     readonly setLoading: (index: number) => void;
-    readonly setError: (index: number, error?: Error) => void;
+    readonly setError: (index: number, error?: Error | undefined) => void;
 }
 
 const DEFAULT_STATE = {
@@ -31,7 +31,7 @@ const DEFAULT_STATE = {
 export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseMultiLoadingValueResult<Value, Error> {
     const [states, setState] = useState<State<Value, Error>[]>(() => Array.from({ length: size }).map(() => DEFAULT_STATE));
 
-    const setValue = useCallback((index: number, value?: Value) => {
+    const setValue = useCallback((index: number, value?: Value | undefined) => {
         setState((curStates) =>
             curStates.map((state, stateIndex) =>
                 stateIndex === index
@@ -59,7 +59,7 @@ export function useMultiLoadingValue<Value, Error = unknown>(size: number): UseM
         );
     }, []);
 
-    const setError = useCallback((index: number, error?: Error) => {
+    const setError = useCallback((index: number, error?: Error | undefined) => {
         setState((curStates) =>
             curStates.map((state, stateIndex) =>
                 stateIndex === index

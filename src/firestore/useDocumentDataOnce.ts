@@ -11,8 +11,8 @@ export type UseDocumentDataOnceResult<AppModelType = DocumentData> = ValueHookRe
  * Options to configure how the document is fetched
  */
 export interface UseDocumentDataOnceOptions {
-    source?: Source;
-    snapshotOptions?: SnapshotOptions;
+    source?: Source | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
 }
 
 /**
@@ -28,10 +28,10 @@ export interface UseDocumentDataOnceOptions {
  */
 export function useDocumentDataOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
-    options?: UseDocumentDataOnceOptions,
+    options?: UseDocumentDataOnceOptions | undefined,
 ): UseDocumentDataOnceResult<AppModelType> {
     const { source = "default", snapshotOptions } = options ?? {};
-    const { serverTimestamps } = snapshotOptions ?? {};
+    const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const getData = useCallback(
         async (stableRef: DocumentReference<AppModelType, DbModelType>) => {

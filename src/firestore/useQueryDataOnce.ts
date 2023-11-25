@@ -11,8 +11,8 @@ export type UseQueryDataOnceResult<AppModelType = DocumentData> = ValueHookResul
  * Options to configure the subscription
  */
 export interface UseQueryDataOnceOptions {
-    source?: Source;
-    snapshotOptions?: SnapshotOptions;
+    source?: Source | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
 }
 
 /**
@@ -28,10 +28,10 @@ export interface UseQueryDataOnceOptions {
  */
 export function useQueryDataOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     query: Query<AppModelType, DbModelType> | undefined | null,
-    options?: UseQueryDataOnceOptions,
+    options?: UseQueryDataOnceOptions | undefined,
 ): UseQueryDataOnceResult<AppModelType> {
     const { source = "default", snapshotOptions } = options ?? {};
-    const { serverTimestamps } = snapshotOptions ?? {};
+    const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const getData = useCallback(
         async (stableQuery: Query<AppModelType, DbModelType>) => {

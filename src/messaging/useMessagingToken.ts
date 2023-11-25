@@ -8,7 +8,7 @@ export type UseMessagingTokenResult = ValueHookResult<string, Error>;
  * Options to configure how the token will be fetched
  */
 export interface UseMessagingTokenOptions {
-    getTokenOptions?: GetTokenOptions;
+    getTokenOptions?: GetTokenOptions | undefined;
 }
 
 /**
@@ -20,7 +20,10 @@ export interface UseMessagingTokenOptions {
  * - loading: `true` while fetching the token; `false` if the token was fetched successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useMessagingToken(messaging: Messaging, options?: UseMessagingTokenOptions): UseMessagingTokenResult {
+export function useMessagingToken(
+    messaging: Messaging,
+    options?: UseMessagingTokenOptions | undefined,
+): UseMessagingTokenResult {
     return useGet(
         messaging,
         (m) => getToken(m, options?.getTokenOptions),

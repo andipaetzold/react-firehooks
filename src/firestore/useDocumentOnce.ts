@@ -14,7 +14,7 @@ export type UseDocumentOnceResult<AppModelType = DocumentData> = ValueHookResult
  * Options to configure how the document is fetched
  */
 export interface UseDocumentOnceOptions {
-    source?: Source;
+    source?: Source | undefined;
 }
 
 /**
@@ -30,7 +30,7 @@ export interface UseDocumentOnceOptions {
  */
 export function useDocumentOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
-    options?: UseDocumentOnceOptions,
+    options?: UseDocumentOnceOptions | undefined,
 ): UseDocumentOnceResult<AppModelType> {
     const { source = "default" } = options ?? {};
 

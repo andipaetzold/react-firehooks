@@ -6,9 +6,9 @@ export const LoadingState = Symbol();
  * @internal
  */
 interface State<Value, Error> {
-    value?: Value;
+    value?: Value | undefined;
     loading: boolean;
-    error?: Error;
+    error?: Error | undefined;
 }
 
 /**
@@ -16,10 +16,10 @@ interface State<Value, Error> {
  */
 export interface UseLoadingValueResult<Value, Error> {
     value: Value | undefined;
-    setValue: (value?: Value) => void;
+    setValue: (value?: Value | undefined) => void;
     loading: boolean;
     setLoading: () => void;
-    error?: Error;
+    error?: Error | undefined;
     setError: (error: Error) => void;
 }
 
@@ -35,7 +35,7 @@ export function useLoadingValue<Value, Error = unknown>(
         value: initialState === LoadingState ? undefined : initialState,
     });
 
-    const setValue = useCallback((value?: Value) => {
+    const setValue = useCallback((value?: Value | undefined) => {
         setState({
             value,
             loading: false,

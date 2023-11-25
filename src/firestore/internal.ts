@@ -83,5 +83,5 @@ export function isAggregateSpecEqual<T extends AggregateSpec>(a: T, b: T): boole
         return false;
     }
 
-    return Object.entries(a).every(([key, value]) => aggregateFieldEqual(value, b[key]));
+    return Object.entries(a).every(([key, value]) => aggregateFieldEqual(value, b[key]!));
 }

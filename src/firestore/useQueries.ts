@@ -12,7 +12,7 @@ export type UseQueriesResult<AppModelTypes extends ReadonlyArray<unknown> = Read
  * Options to configure the subscription
  */
 export interface UseQueriesOptions {
-    snapshotListenOptions?: SnapshotListenOptions;
+    snapshotListenOptions?: SnapshotListenOptions | undefined;
 }
 
 /**
@@ -31,10 +31,10 @@ export function useQueries<
     DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
 >(
     queries: { [Index in keyof AppModelTypes]: Query<AppModelTypes[Index], DbModelTypes[number]> },
-    options?: UseQueriesOptions,
+    options?: UseQueriesOptions | undefined,
 ): UseQueriesResult<AppModelTypes> {
     const { snapshotListenOptions } = options ?? {};
-    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
 
     const onChange: UseMultiListenChange<
         QuerySnapshot<AppModelTypes[number], DbModelTypes[number]>,
