@@ -13,8 +13,8 @@ export type UseQueriesDataOnceResult<AppModelTypes extends ReadonlyArray<unknown
  * Options to configure the subscription
  */
 export interface UseQueriesDataOnceOptions {
-    source?: Source;
-    snapshotOptions?: SnapshotOptions;
+    source?: Source | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
 }
 
 /**
@@ -33,10 +33,10 @@ export function useQueriesDataOnce<
     DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
 >(
     queries: { [Index in keyof AppModelTypes]: Query<AppModelTypes[Index], DbModelTypes[number]> },
-    options?: UseQueriesDataOnceOptions,
+    options?: UseQueriesDataOnceOptions | undefined,
 ): UseQueriesDataOnceResult<AppModelTypes> {
     const { source = "default", snapshotOptions } = options ?? {};
-    const { serverTimestamps } = snapshotOptions ?? {};
+    const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const getData = useCallback(
         async (stableQuery: Query<AppModelTypes[number], DbModelTypes[number]>) => {

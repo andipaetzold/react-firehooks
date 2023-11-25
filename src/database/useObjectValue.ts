@@ -10,8 +10,8 @@ export type UseObjectValueResult<Value = unknown> = ValueHookResult<Value, Error
 export type UseObjectValueConverter<Value> = (snap: DataSnapshot) => Value;
 
 export interface UseObjectValueOptions<Value> {
-    converter?: UseObjectValueConverter<Value>;
-    initialValue?: Value;
+    converter?: UseObjectValueConverter<Value> | undefined;
+    initialValue?: Value | undefined;
 }
 
 /**
@@ -28,7 +28,7 @@ export interface UseObjectValueOptions<Value> {
  */
 export function useObjectValue<Value = unknown>(
     query: Query | undefined | null,
-    options?: UseObjectValueOptions<Value>,
+    options?: UseObjectValueOptions<Value> | undefined,
 ): UseObjectValueResult<Value> {
     const { converter = defaultConverter, initialValue = LoadingState } = options ?? {};
 

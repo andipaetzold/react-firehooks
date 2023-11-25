@@ -13,8 +13,8 @@ export type UseQueriesOnceResult<AppModelTypes extends ReadonlyArray<unknown> = 
  * Options to configure the subscription
  */
 export interface UseQueriesOnceOptions {
-    source?: Source;
-    snapshotOptions?: SnapshotOptions;
+    source?: Source | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
 }
 
 /**
@@ -33,7 +33,7 @@ export function useQueriesOnce<
     DbModelTypes extends ReadonlyArray<DocumentData> = ReadonlyArray<DocumentData>,
 >(
     queries: { [Index in keyof AppModelTypes]: Query<AppModelTypes[Index], DbModelTypes[number]> },
-    options?: UseQueriesOnceOptions,
+    options?: UseQueriesOnceOptions | undefined,
 ): UseQueriesOnceResult<AppModelTypes> {
     const { source = "default" } = options ?? {};
 

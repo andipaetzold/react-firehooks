@@ -9,7 +9,7 @@ export type UseObjectValueOnceResult<Value = unknown> = ValueHookResult<Value, E
 export type UseObjectValueOnceConverter<Value> = (snap: DataSnapshot) => Value;
 
 export interface UseObjectValueOnceOptions<Value> {
-    converter?: UseObjectValueOnceConverter<Value>;
+    converter?: UseObjectValueOnceConverter<Value> | undefined;
 }
 
 /**
@@ -25,7 +25,7 @@ export interface UseObjectValueOnceOptions<Value> {
  */
 export function useObjectValueOnce<Value = unknown>(
     query: Query | undefined | null,
-    options?: UseObjectValueOnceOptions<Value>,
+    options?: UseObjectValueOnceOptions<Value> | undefined,
 ): UseObjectValueOnceResult<Value> {
     const { converter = defaultConverter } = options ?? {};
 

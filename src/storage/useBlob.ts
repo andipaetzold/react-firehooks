@@ -17,7 +17,10 @@ export type UseBlobResult = ValueHookResult<Blob, StorageError>;
  * - loading: `true` while downloading the data of the object; `false` if the data was downloaded successfully or an error occurred
  * - error: `undefined` if no error occurred
  */
-export function useBlob(reference: StorageReference | undefined | null, maxDownloadSizeBytes?: number): UseBlobResult {
+export function useBlob(
+    reference: StorageReference | undefined | null,
+    maxDownloadSizeBytes?: number | undefined,
+): UseBlobResult {
     const fetchBlob = useCallback(
         async (ref: StorageReference) => getBlob(ref, maxDownloadSizeBytes),
         [maxDownloadSizeBytes],

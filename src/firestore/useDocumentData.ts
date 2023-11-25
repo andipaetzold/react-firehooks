@@ -18,9 +18,9 @@ export type UseDocumentDataResult<AppModelType = DocumentData> = ValueHookResult
  * Options to configure the subscription
  */
 export interface UseDocumentDataOptions<AppModelType = DocumentData> {
-    snapshotListenOptions?: SnapshotListenOptions;
-    snapshotOptions?: SnapshotOptions;
-    initialValue?: AppModelType;
+    snapshotListenOptions?: SnapshotListenOptions | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
+    initialValue?: AppModelType | undefined;
 }
 
 /**
@@ -37,11 +37,11 @@ export interface UseDocumentDataOptions<AppModelType = DocumentData> {
  */
 export function useDocumentData<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     reference: DocumentReference<AppModelType, DbModelType> | undefined | null,
-    options?: UseDocumentDataOptions<AppModelType>,
+    options?: UseDocumentDataOptions<AppModelType> | undefined,
 ): UseDocumentDataResult<AppModelType> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
-    const { includeMetadataChanges } = snapshotListenOptions ?? {};
-    const { serverTimestamps } = snapshotOptions ?? {};
+    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<
         AppModelType,

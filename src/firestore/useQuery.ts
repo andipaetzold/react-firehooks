@@ -11,7 +11,7 @@ export type UseQueryResult<AppModelType = DocumentData> = ValueHookResult<QueryS
  * Options to configure the subscription
  */
 export interface UseQueryOptions {
-    snapshotListenOptions?: SnapshotListenOptions;
+    snapshotListenOptions?: SnapshotListenOptions | undefined;
 }
 
 /**
@@ -27,10 +27,10 @@ export interface UseQueryOptions {
  */
 export function useQuery<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     query: Query<AppModelType, DbModelType> | undefined | null,
-    options?: UseQueryOptions,
+    options?: UseQueryOptions | undefined,
 ): UseQueryResult<AppModelType> {
     const { snapshotListenOptions } = options ?? {};
-    const { includeMetadataChanges } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
 
     const onChange: UseListenOnChange<
         QuerySnapshot<AppModelType, DbModelType>,

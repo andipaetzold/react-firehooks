@@ -11,7 +11,7 @@ export type UseQueryOnceResult<AppModelType = DocumentData> = ValueHookResult<Qu
  * Options to configure how the query is fetched
  */
 export interface UseQueryOnceOptions {
-    source?: Source;
+    source?: Source | undefined;
 }
 
 /**
@@ -27,7 +27,7 @@ export interface UseQueryOnceOptions {
  */
 export function useQueryOnce<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     query: Query<AppModelType, DbModelType> | undefined | null,
-    options?: UseQueryOnceOptions,
+    options?: UseQueryOnceOptions | undefined,
 ): UseQueryOnceResult<AppModelType> {
     const { source = "default" } = options ?? {};
 

@@ -48,6 +48,7 @@ export function useListen<Value, Error, Reference>(
             const unsubscribe = onChange(stableRef, setValue, setError);
             return () => unsubscribe();
         }
+        return undefined;
     }, [stableRef, onChange, setError, setLoading, setValue]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);

@@ -11,9 +11,9 @@ export type UseQueryDataResult<AppModelType = DocumentData> = ValueHookResult<Ap
  * Options to configure the subscription
  */
 export interface UseQueryDataOptions<AppModelType = DocumentData> {
-    snapshotListenOptions?: SnapshotListenOptions;
-    snapshotOptions?: SnapshotOptions;
-    initialValue?: AppModelType[];
+    snapshotListenOptions?: SnapshotListenOptions | undefined;
+    snapshotOptions?: SnapshotOptions | undefined;
+    initialValue?: AppModelType[] | undefined;
 }
 
 /**
@@ -30,11 +30,11 @@ export interface UseQueryDataOptions<AppModelType = DocumentData> {
  */
 export function useQueryData<AppModelType = DocumentData, DbModelType extends DocumentData = DocumentData>(
     query: Query<AppModelType, DbModelType> | undefined | null,
-    options?: UseQueryDataOptions<AppModelType>,
+    options?: UseQueryDataOptions<AppModelType> | undefined,
 ): UseQueryDataResult<AppModelType> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
-    const { includeMetadataChanges } = snapshotListenOptions ?? {};
-    const { serverTimestamps } = snapshotOptions ?? {};
+    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<AppModelType[], FirestoreError, Query<AppModelType, DbModelType>> = useCallback(
         (stableQuery, next, error) =>
@@ -42,14 +42,7 @@ export function useQueryData<AppModelType = DocumentData, DbModelType extends Do
                 stableQuery,
                 { includeMetadataChanges },
                 {
-                    next: (snap) =>
-                        next(
-                            snap.docs.map((doc) =>
-                                doc.data({
-                                    serverTimestamps,
-                                }),
-                            ),
-                        ),
+                    next: (snap) => next(snap.docs.map((doc) => doc.data({ serverTimestamps }))),
                     error,
                 },
             ),

@@ -125,6 +125,13 @@ describe("isAggregateSpecEqual", () => {
         expect(isAggregateSpecEqual(spec1, spec2)).toBe(false);
     });
 
+    it("different keys", () => {
+        const spec1 = { count: count() };
+        const spec2 = { total: count() };
+        // @ts-expect-error Different specs
+        expect(isAggregateSpecEqual(spec1, spec2)).toBe(false);
+    });
+
     it("different aggregations", () => {
         const spec1 = { value: count() };
         const spec2 = { value: average("abc") };
