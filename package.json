@@ -58,7 +58,7 @@
         "@types/react": "18.2.33",
         "@typescript-eslint/eslint-plugin": "6.9.0",
         "@typescript-eslint/parser": "6.9.0",
-        "@vitest/coverage-v8": "0.34.6",
+        "@vitest/coverage-v8": "1.0.1",
         "eslint": "8.52.0",
         "eslint-config-prettier": "9.0.0",
         "eslint-plugin-jsdoc": "46.8.2",
@@ -76,7 +76,7 @@
         "semantic-release": "22.0.5",
         "typedoc": "0.25.2",
         "typescript": "5.2.2",
-        "vitest": "0.34.6"
+        "vitest": "1.0.1"
     },
     "scripts": {
         "prepublishOnly": "npm run build",
