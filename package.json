@@ -84,7 +84,7 @@
         "build:esm": "rimraf lib && tsc",
         "build:modules": "node ./scripts/create-modules.js",
         "test": "vitest",
-        "typecheck": "vitest typecheck",
+        "typecheck": "vitest --typecheck",
         "semantic-release": "semantic-release",
         "typedoc": "typedoc",
         "prepare": "husky install",
