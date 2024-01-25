@@ -67,7 +67,7 @@
         "eslint-plugin-react-hooks": "4.6.0",
         "firebase": "10.5.0",
         "happy-dom": "12.10.1",
-        "husky": "8.0.3",
+        "husky": "9.0.2",
         "lint-staged": "15.0.2",
         "prettier": "3.0.3",
         "react": "18.2.0",
