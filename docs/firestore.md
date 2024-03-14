@@ -4,7 +4,7 @@
 import { ... } from 'react-firehooks/firestore';
 ```
 
-#### useAggregateFromServer
+## useAggregateFromServer
 
 Returns aggregate of a Firestore Query. Does not update the result once initially calculated.
 
