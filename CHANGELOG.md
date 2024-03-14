@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/andipaetzold/react-firehooks/compare/v4.0.3...v4.1.0) (2024-03-14)
+
+
+### Features
+
+* **firestore:** support `SnapshotListenOptions.source` ([#267](https://github.com/andipaetzold/react-firehooks/issues/267)) ([aa74cda](https://github.com/andipaetzold/react-firehooks/commit/aa74cda8ee919b4975d2cbff718ecf573b9f5ac6))
+
 ## [4.0.3](https://github.com/andipaetzold/react-firehooks/compare/v4.0.2...v4.0.3) (2023-11-25)
 
 
