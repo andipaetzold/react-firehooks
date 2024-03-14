@@ -2,7 +2,7 @@ import { DocumentData, FirestoreError, onSnapshot, Query, SnapshotListenOptions,
 import { useCallback } from "react";
 import { ValueHookResult } from "../common/types.js";
 import { useMultiListen, UseMultiListenChange } from "../internal/useMultiListen.js";
-import { isQueryEqual } from "./internal.js";
+import { isQueryEqual, SnapshotListenOptionsInternal } from "./internal.js";
 
 export type UseQueriesDataResult<AppModelTypes extends ReadonlyArray<unknown> = ReadonlyArray<DocumentData>> = {
     [Index in keyof AppModelTypes]: ValueHookResult<AppModelTypes[Index], FirestoreError>;
@@ -35,7 +35,8 @@ export function useQueriesData<
     options?: UseQueriesDataOptions | undefined,
 ): UseQueriesDataResult<AppModelTypes> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
-    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false, source = "default" } = (snapshotListenOptions ??
+        {}) as SnapshotListenOptionsInternal;
     const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const onChange: UseMultiListenChange<
@@ -46,13 +47,16 @@ export function useQueriesData<
         (query, next, error) =>
             onSnapshot(
                 query,
-                { includeMetadataChanges },
+                {
+                    includeMetadataChanges,
+                    source,
+                } as SnapshotListenOptions,
                 {
                     next: (snap) => next(snap.docs.map((doc) => doc.data({ serverTimestamps }))),
                     error,
                 },
             ),
-        [includeMetadataChanges, serverTimestamps],
+        [includeMetadataChanges, serverTimestamps, source],
     );
 
     // @ts-expect-error `useMultiListen` assumes a single value type

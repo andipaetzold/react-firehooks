@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { ValueHookResult } from "../common/types.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
-import { isQueryEqual } from "./internal.js";
+import { isQueryEqual, SnapshotListenOptionsInternal } from "./internal.js";
 
 export type UseQueryDataResult<AppModelType = DocumentData> = ValueHookResult<AppModelType[], FirestoreError>;
 
@@ -33,20 +33,24 @@ export function useQueryData<AppModelType = DocumentData, DbModelType extends Do
     options?: UseQueryDataOptions<AppModelType> | undefined,
 ): UseQueryDataResult<AppModelType> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
-    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false, source = "default" } = (snapshotListenOptions ??
+        {}) as SnapshotListenOptionsInternal;
     const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<AppModelType[], FirestoreError, Query<AppModelType, DbModelType>> = useCallback(
         (stableQuery, next, error) =>
             onSnapshot(
                 stableQuery,
-                { includeMetadataChanges },
+                {
+                    includeMetadataChanges,
+                    source,
+                } as SnapshotListenOptions,
                 {
                     next: (snap) => next(snap.docs.map((doc) => doc.data({ serverTimestamps }))),
                     error,
                 },
             ),
-        [includeMetadataChanges, serverTimestamps],
+        [includeMetadataChanges, serverTimestamps, source],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, options?.initialValue ?? LoadingState);
