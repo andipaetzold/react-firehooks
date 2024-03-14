@@ -14,8 +14,21 @@ import {
     queryEqual,
     QuerySnapshot,
     refEqual,
+    SnapshotListenOptions,
 } from "firebase/firestore";
 import type { Source } from "./types.js";
+
+/**
+ * @since 10.9.0
+ */
+export type ListenSource = "default" | "cache";
+
+/**
+ * This library currently supports firebase@10.5.0 which is missing the `source` property in `SnapshotListenOptions`.
+ */
+export type SnapshotListenOptionsInternal = SnapshotListenOptions & {
+    readonly source?: "default" | "cache";
+};
 
 /**
  * @internal

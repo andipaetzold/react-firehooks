@@ -10,7 +10,7 @@ import { useCallback } from "react";
 import type { ValueHookResult } from "../common/types.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
-import { isDocRefEqual } from "./internal.js";
+import { isDocRefEqual, SnapshotListenOptionsInternal } from "./internal.js";
 
 export type UseDocumentDataResult<AppModelType = DocumentData> = ValueHookResult<AppModelType, FirestoreError>;
 
@@ -40,7 +40,8 @@ export function useDocumentData<AppModelType = DocumentData, DbModelType extends
     options?: UseDocumentDataOptions<AppModelType> | undefined,
 ): UseDocumentDataResult<AppModelType> {
     const { snapshotListenOptions, snapshotOptions } = options ?? {};
-    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false, source = "default" } = (snapshotListenOptions ??
+        {}) as SnapshotListenOptionsInternal;
     const { serverTimestamps = "none" } = snapshotOptions ?? {};
 
     const onChange: UseListenOnChange<
@@ -51,13 +52,16 @@ export function useDocumentData<AppModelType = DocumentData, DbModelType extends
         (stableRef, next, error) =>
             onSnapshot(
                 stableRef,
-                { includeMetadataChanges },
+                {
+                    includeMetadataChanges,
+                    source,
+                } as SnapshotListenOptions,
                 {
                     next: (snap) => next(snap.data({ serverTimestamps })),
                     error,
                 },
             ),
-        [includeMetadataChanges, serverTimestamps],
+        [includeMetadataChanges, serverTimestamps, source],
     );
 
     return useListen(reference ?? undefined, onChange, isDocRefEqual, options?.initialValue ?? LoadingState);

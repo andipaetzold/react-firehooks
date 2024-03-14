@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { ValueHookResult } from "../common/types.js";
 import { useListen, UseListenOnChange } from "../internal/useListen.js";
 import { LoadingState } from "../internal/useLoadingValue.js";
-import { isQueryEqual } from "./internal.js";
+import { isQueryEqual, SnapshotListenOptionsInternal } from "./internal.js";
 
 export type UseQueryResult<AppModelType = DocumentData> = ValueHookResult<QuerySnapshot<AppModelType>, FirestoreError>;
 
@@ -30,7 +30,8 @@ export function useQuery<AppModelType = DocumentData, DbModelType extends Docume
     options?: UseQueryOptions | undefined,
 ): UseQueryResult<AppModelType> {
     const { snapshotListenOptions } = options ?? {};
-    const { includeMetadataChanges = false } = snapshotListenOptions ?? {};
+    const { includeMetadataChanges = false, source = "default" } = (snapshotListenOptions ??
+        {}) as SnapshotListenOptionsInternal;
 
     const onChange: UseListenOnChange<
         QuerySnapshot<AppModelType, DbModelType>,
@@ -40,13 +41,16 @@ export function useQuery<AppModelType = DocumentData, DbModelType extends Docume
         (stableQuery, next, error) =>
             onSnapshot(
                 stableQuery,
-                { includeMetadataChanges },
+                {
+                    includeMetadataChanges,
+                    source,
+                } as SnapshotListenOptions,
                 {
                     next,
                     error,
                 },
             ),
-        [includeMetadataChanges],
+        [includeMetadataChanges, source],
     );
 
     return useListen(query ?? undefined, onChange, isQueryEqual, LoadingState);
