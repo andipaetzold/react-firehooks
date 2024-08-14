@@ -15,10 +15,14 @@ export function useMultiGet<Value, Error, Reference>(
 
     const { states, setError, setLoading, setValue } = useMultiLoadingValue<Value, Error>(references.length);
     const prevReferences = useRef<Reference[]>([]);
+    const ongoingFetchReferences = useRef<Reference[]>([]);
 
     useEffect(() => {
         // shorten `prevReferences` size if number of references was reduced
         prevReferences.current = prevReferences.current.slice(0, references.length);
+
+        // shorten `ongoingFetchReferences` size if number of references was reduced
+        ongoingFetchReferences.current = ongoingFetchReferences.current.slice(0, references.length);
 
         // fetch to new references
         const changedReferences = references
@@ -26,19 +30,29 @@ export function useMultiGet<Value, Error, Reference>(
             .filter(([ref, refIndex]) => !isEqual(ref, prevReferences.current[refIndex]));
 
         for (const [ref, refIndex] of changedReferences) {
-            (async () => {
-                prevReferences.current[refIndex] = ref;
-                setLoading(refIndex);
+            prevReferences.current[refIndex] = ref;
+            setLoading(refIndex);
+            ongoingFetchReferences.current[refIndex] = ref;
 
+            (async () => {
                 try {
                     const data = await getData(ref);
+
                     if (!isMounted.current) {
+                        return;
+                    }
+
+                    if (!isEqual(ongoingFetchReferences.current[refIndex], ref)) {
                         return;
                     }
 
                     setValue(refIndex, data);
                 } catch (e) {
                     if (!isMounted.current) {
+                        return;
+                    }
+
+                    if (!isEqual(ongoingFetchReferences.current[refIndex], ref)) {
                         return;
                     }
 
