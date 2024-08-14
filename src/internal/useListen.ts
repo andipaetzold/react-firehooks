@@ -1,7 +1,8 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useLoadingValue, LoadingState } from "./useLoadingValue.js";
 import { useStableValue } from "./useStableValue.js";
+import { usePrevious } from "./usePrevious.js";
 
 /**
  * @internal
@@ -26,30 +27,29 @@ export function useListen<Value, Error, Reference>(
     );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
-    const firstRender = useRef<boolean>(true);
+    const previousRef = usePrevious(stableRef);
 
+    // set state when ref changes
+    useEffect(() => {
+        if (stableRef === previousRef) {
+            return;
+        }
+
+        if (stableRef === undefined) {
+            setValue();
+        } else {
+            setLoading();
+        }
+    }, [previousRef, setLoading, setValue, stableRef]);
+
+    // subscribe to changes
     useEffect(() => {
         if (stableRef === undefined) {
-            // value doesn't change on first render with undefined ref
-            if (firstRender.current) {
-                firstRender.current = false;
-            } else {
-                setValue();
-            }
-        } else {
-            // do not set loading state on first render
-            // otherwise, the defaultValue gets overwritten
-            if (firstRender.current) {
-                firstRender.current = false;
-            } else {
-                setLoading();
-            }
-
-            const unsubscribe = onChange(stableRef, setValue, setError);
-            return () => unsubscribe();
+            return;
         }
-        return undefined;
-    }, [stableRef, onChange, setError, setLoading, setValue]);
+        const unsubscribe = onChange(stableRef, setValue, setError);
+        return () => unsubscribe();
+    }, [onChange, setError, setValue, stableRef]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);
 }

@@ -1,8 +1,8 @@
-import { act, renderHook } from "@testing-library/react";
+import { act, configure, renderHook } from "@testing-library/react";
 import { newSymbol } from "../__testfixtures__/index.js";
 import { useListen } from "./useListen.js";
 import { LoadingState } from "./useLoadingValue.js";
-import { it, expect, beforeEach, describe, vi } from "vitest";
+import { it, expect, beforeEach, describe, vi, afterEach } from "vitest";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
@@ -25,20 +25,36 @@ beforeEach(() => {
     onChange.mockReturnValue(onChangeUnsubscribe);
 });
 
-describe("initial state", () => {
-    // reference, initialState, expectedValue, expectedLoading
-    it.each([
-        [undefined, result1, undefined, false],
-        [undefined, undefined, undefined, false],
-        [undefined, LoadingState, undefined, false],
-        [refA1, result1, result1, false],
-        [refA1, undefined, undefined, false],
-        [refA1, LoadingState, undefined, true],
-    ])("reference=%s initialState=%s", (reference, initialState, expectedValue, expectedLoading) => {
-        const { result } = renderHook(() => useListen(reference, onChange, isEqual, initialState));
-        expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
-    });
+afterEach(() => {
+    configure({ reactStrictMode: false });
 });
+
+describe.each([{ reactStrictMode: true }, { reactStrictMode: false }])(
+    `strictMode=$reactStrictMode`,
+    ({ reactStrictMode }) => {
+        beforeEach(() => {
+            configure({ reactStrictMode });
+        });
+
+        describe("initial state", () => {
+            it.each`
+                reference    | initialState    | expectedValue | expectedLoading
+                ${undefined} | ${result1}      | ${undefined}  | ${false}
+                ${undefined} | ${undefined}    | ${undefined}  | ${false}
+                ${undefined} | ${LoadingState} | ${undefined}  | ${false}
+                ${refA1}     | ${result1}      | ${result1}    | ${false}
+                ${refA1}     | ${undefined}    | ${undefined}  | ${false}
+                ${refA1}     | ${LoadingState} | ${undefined}  | ${true}
+            `(
+                "reference=$reference initialState=$initialState",
+                ({ reference, initialState, expectedValue, expectedLoading }) => {
+                    const { result } = renderHook(() => useListen(reference, onChange, isEqual, initialState));
+                    expect(result.current).toStrictEqual([expectedValue, expectedLoading, undefined]);
+                },
+            );
+        });
+    },
+);
 
 describe("when changing ref", () => {
     it("should not resubscribe for equal ref", async () => {
