@@ -1,6 +1,6 @@
 import { Query, QuerySnapshot } from "firebase/firestore";
 import { describe, expectTypeOf, it } from "vitest";
-import { useQueries } from "./useQueries";
+import { useQueries } from "./useQueries.js";
 
 describe("useQueries", () => {
     it("single query", () => {

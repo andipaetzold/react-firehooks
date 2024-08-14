@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react";
-import { newSymbol } from "../__testfixtures__";
-import { useMultiLoadingValue } from "./useMultiLoadingValue";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { useMultiLoadingValue } from "./useMultiLoadingValue.js";
 import { it, expect, describe } from "vitest";
 
 const value1 = newSymbol<symbol>("Value 1");
@@ -12,9 +12,9 @@ it("initial state", () => {
     const { result } = renderHook(() => useMultiLoadingValue(1));
 
     expect(result.current.states).toHaveLength(1);
-    expect(result.current.states[0].value).toBeUndefined();
-    expect(result.current.states[0].loading).toBe(true);
-    expect(result.current.states[0].error).toBeUndefined();
+    expect(result.current.states[0]!.value).toBeUndefined();
+    expect(result.current.states[0]!.loading).toBe(true);
+    expect(result.current.states[0]!.error).toBeUndefined();
 });
 
 describe("size change", () => {
@@ -28,12 +28,12 @@ describe("size change", () => {
         rerender({ size: 2 });
 
         expect(result.current.states).toHaveLength(2);
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(true);
-        expect(result.current.states[0].error).toBeUndefined();
-        expect(result.current.states[1].value).toBeUndefined();
-        expect(result.current.states[1].loading).toBe(true);
-        expect(result.current.states[1].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(true);
+        expect(result.current.states[0]!.error).toBeUndefined();
+        expect(result.current.states[1]!.value).toBeUndefined();
+        expect(result.current.states[1]!.loading).toBe(true);
+        expect(result.current.states[1]!.error).toBeUndefined();
     });
 
     it("decrease", () => {
@@ -46,9 +46,9 @@ describe("size change", () => {
         rerender({ size: 1 });
 
         expect(result.current.states).toHaveLength(1);
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(true);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(true);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 });
 
@@ -57,18 +57,18 @@ describe("setValue", () => {
         const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, undefined));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 
     it("with a value", () => {
         const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setValue(0, value1));
 
-        expect(result.current.states[0].value).toBe(value1);
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBe(value1);
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 
     it("multiple values", () => {
@@ -76,13 +76,13 @@ describe("setValue", () => {
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setValue(1, value2));
 
-        expect(result.current.states[0].value).toBe(value1);
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBe(value1);
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBeUndefined();
 
-        expect(result.current.states[1].value).toBe(value2);
-        expect(result.current.states[1].loading).toBe(false);
-        expect(result.current.states[1].error).toBeUndefined();
+        expect(result.current.states[1]!.value).toBe(value2);
+        expect(result.current.states[1]!.loading).toBe(false);
+        expect(result.current.states[1]!.error).toBeUndefined();
     });
 
     it("with error", () => {
@@ -90,9 +90,9 @@ describe("setValue", () => {
         act(() => result.current.setError(0, error1));
         act(() => result.current.setValue(0, value1));
 
-        expect(result.current.states[0].value).toBe(value1);
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBe(value1);
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 });
 
@@ -101,9 +101,9 @@ describe("setError", () => {
         const { result } = renderHook(() => useMultiLoadingValue<symbol>(1));
         act(() => result.current.setError(0, error1));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBe(error1);
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBe(error1);
     });
 
     it("with value", () => {
@@ -111,9 +111,9 @@ describe("setError", () => {
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setError(0, error1));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBe(error1);
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBe(error1);
     });
 
     it("multiple queries", () => {
@@ -121,13 +121,13 @@ describe("setError", () => {
         act(() => result.current.setError(0, error1));
         act(() => result.current.setError(1, error2));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBe(error1);
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBe(error1);
 
-        expect(result.current.states[1].value).toBeUndefined();
-        expect(result.current.states[1].loading).toBe(false);
-        expect(result.current.states[1].error).toBe(error2);
+        expect(result.current.states[1]!.value).toBeUndefined();
+        expect(result.current.states[1]!.loading).toBe(false);
+        expect(result.current.states[1]!.error).toBe(error2);
     });
 });
 
@@ -137,9 +137,9 @@ describe("setLoading", () => {
         act(() => result.current.setValue(0, value1));
         act(() => result.current.setLoading(0));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(true);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(true);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 
     it("with error", () => {
@@ -147,9 +147,9 @@ describe("setLoading", () => {
         act(() => result.current.setError(0, error1));
         act(() => result.current.setLoading(0));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(true);
-        expect(result.current.states[0].error).toBeUndefined();
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(true);
+        expect(result.current.states[0]!.error).toBeUndefined();
     });
 });
 
@@ -160,16 +160,16 @@ describe("combinations", () => {
         act(() => result.current.setValue(1, value2));
         act(() => result.current.setLoading(2));
 
-        expect(result.current.states[0].value).toBeUndefined();
-        expect(result.current.states[0].loading).toBe(false);
-        expect(result.current.states[0].error).toBe(error1);
+        expect(result.current.states[0]!.value).toBeUndefined();
+        expect(result.current.states[0]!.loading).toBe(false);
+        expect(result.current.states[0]!.error).toBe(error1);
 
-        expect(result.current.states[1].value).toBe(value2);
-        expect(result.current.states[1].loading).toBe(false);
-        expect(result.current.states[1].error).toBeUndefined();
+        expect(result.current.states[1]!.value).toBe(value2);
+        expect(result.current.states[1]!.loading).toBe(false);
+        expect(result.current.states[1]!.error).toBeUndefined();
 
-        expect(result.current.states[2].value).toBeUndefined;
-        expect(result.current.states[2].loading).toBe(true);
-        expect(result.current.states[2].error).toBeUndefined();
+        expect(result.current.states[2]!.value).toBeUndefined;
+        expect(result.current.states[2]!.loading).toBe(true);
+        expect(result.current.states[2]!.error).toBeUndefined();
     });
 });

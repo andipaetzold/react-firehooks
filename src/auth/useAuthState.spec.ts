@@ -1,8 +1,8 @@
 import { renderHook } from "@testing-library/react";
 import { Auth, onAuthStateChanged, User } from "firebase/auth";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { newSymbol } from "../__testfixtures__";
-import { useAuthState } from "./useAuthState";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { useAuthState } from "./useAuthState.js";
 
 vi.mock("firebase/auth", () => ({
     onAuthStateChanged: vi.fn(),

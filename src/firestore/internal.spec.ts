@@ -11,8 +11,8 @@ import {
     Query,
 } from "firebase/firestore";
 import { beforeEach, describe, expect, it, vi } from "vitest";
-import { newSymbol } from "../__testfixtures__";
-import { getDocFromSource, getDocsFromSource, isAggregateSpecEqual, isDocRefEqual, isQueryEqual } from "./internal";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { getDocFromSource, getDocsFromSource, isAggregateSpecEqual, isDocRefEqual, isQueryEqual } from "./internal.js";
 
 vi.mock("firebase/firestore", async () => {
     const mod = await vi.importActual<typeof import("firebase/firestore")>("firebase/firestore");

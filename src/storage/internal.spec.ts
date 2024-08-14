@@ -1,6 +1,6 @@
 import { StorageReference } from "@firebase/storage";
 import { describe, expect, it } from "vitest";
-import { isStorageRefEqual } from "./internal";
+import { isStorageRefEqual } from "./internal.js";
 
 describe("isStorageRefEqual", () => {
     it("returns true for undefined reference", () => {

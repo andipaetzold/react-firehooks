@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
-import { newPromise, newSymbol } from "../__testfixtures__";
-import { useGet } from "./useGet";
+import { newPromise, newSymbol } from "../__testfixtures__/index.js";
+import { useGet } from "./useGet.js";
 import { it, expect, beforeEach, describe, vi } from "vitest";
 
 const result1 = newSymbol<string>("Result 1");

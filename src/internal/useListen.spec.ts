@@ -1,7 +1,7 @@
 import { act, renderHook } from "@testing-library/react";
-import { newSymbol } from "../__testfixtures__";
-import { useListen } from "./useListen";
-import { LoadingState } from "./useLoadingValue";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { useListen } from "./useListen.js";
+import { LoadingState } from "./useLoadingValue.js";
 import { it, expect, beforeEach, describe, vi } from "vitest";
 
 const result1 = newSymbol("Result 1");
@@ -50,7 +50,7 @@ describe("when changing ref", () => {
         expect(onChange).toHaveBeenCalledTimes(1);
 
         // emit value
-        act(() => onChange.mock.calls[0][1](result1));
+        act(() => onChange.mock.calls[0]![1](result1));
         expect(result.current).toStrictEqual([result1, false, undefined]);
 
         // change ref
@@ -69,7 +69,7 @@ describe("when changing ref", () => {
         expect(onChange).toHaveBeenCalledTimes(1);
 
         // emit value
-        act(() => onChange.mock.calls[0][1](result1));
+        act(() => onChange.mock.calls[0]![1](result1));
         expect(result.current).toStrictEqual([result1, false, undefined]);
 
         // change ref
@@ -79,14 +79,17 @@ describe("when changing ref", () => {
         expect(onChangeUnsubscribe).toHaveBeenCalledTimes(1);
 
         // emit value
-        act(() => onChange.mock.calls[1][1](result2));
+        act(() => onChange.mock.calls[1]![1](result2));
         expect(result.current).toStrictEqual([result2, false, undefined]);
     });
 
     it("from undefined ref to defined", () => {
-        const { result, rerender } = renderHook(({ ref }) => useListen(ref, onChange, isEqual, LoadingState), {
-            initialProps: { ref: undefined },
-        });
+        const { result, rerender } = renderHook<unknown, { ref: unknown }>(
+            ({ ref }) => useListen(ref, onChange, isEqual, LoadingState),
+            {
+                initialProps: { ref: undefined },
+            },
+        );
 
         expect(onChangeUnsubscribe).toHaveBeenCalledTimes(0);
         expect(onChange).toHaveBeenCalledTimes(0);
@@ -116,7 +119,7 @@ describe("when changing ref", () => {
 
 it("should return emitted values", () => {
     const { result } = renderHook(() => useListen(refA1, onChange, isEqual, LoadingState));
-    const setValue = onChange.mock.calls[0][1];
+    const setValue = onChange.mock.calls[0]![1];
 
     expect(result.current).toStrictEqual([undefined, true, undefined]);
 
@@ -129,8 +132,8 @@ it("should return emitted values", () => {
 
 it("should return emitted error", () => {
     const { result } = renderHook(() => useListen(refA1, onChange, isEqual, LoadingState));
-    const setValue = onChange.mock.calls[0][1];
-    const setError = onChange.mock.calls[0][2];
+    const setValue = onChange.mock.calls[0]![1];
+    const setError = onChange.mock.calls[0]![2];
 
     expect(result.current).toStrictEqual([undefined, true, undefined]);
 
@@ -147,13 +150,13 @@ it("resubscribes if `onChange` changes", async () => {
     const { result, rerender } = renderHook(({ onChange }) => useListen(refA1, onChange, isEqual, LoadingState), {
         initialProps: { onChange: onChange1 },
     });
-    const setValue1 = onChange1.mock.calls[0][1];
+    const setValue1 = onChange1.mock.calls[0]![1];
     act(() => setValue1(result1));
     expect(result.current).toStrictEqual([result1, false, undefined]);
 
     const onChange2 = vi.fn().mockReturnValue(onChangeUnsubscribe);
     rerender({ onChange: onChange2 });
-    const setValue2 = onChange1.mock.calls[0][1];
+    const setValue2 = onChange1.mock.calls[0]![1];
     act(() => setValue2(result2));
     expect(result.current).toStrictEqual([result2, false, undefined]);
 });

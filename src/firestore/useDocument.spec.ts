@@ -1,7 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import { expect, it, vi, describe, beforeEach } from "vitest";
-import { useDocument } from "./useDocument";
-import { newSymbol } from "../__testfixtures__";
+import { useDocument } from "./useDocument.js";
+import { newSymbol } from "../__testfixtures__/index.js";
 import { DocumentReference, onSnapshot } from "firebase/firestore";
 
 vi.mock("firebase/firestore", async () => ({

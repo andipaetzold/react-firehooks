@@ -1,2 +1,2 @@
-export * from "./newPromise";
-export * from "./newSymbol";
+export * from "./newPromise.js";
+export * from "./newSymbol.js";

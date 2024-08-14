@@ -1,6 +1,6 @@
 import { renderHook } from "@testing-library/react";
-import { newSymbol } from "../__testfixtures__";
-import { useStableValue } from "./useStableValue";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { useStableValue } from "./useStableValue.js";
 import { it, expect } from "vitest";
 
 const value1 = newSymbol("Value 1");
