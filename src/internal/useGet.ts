@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { ValueHookResult } from "../common/index.js";
 import { useIsMounted } from "./useIsMounted.js";
 import { LoadingState, useLoadingValue } from "./useLoadingValue.js";
@@ -18,18 +18,24 @@ export function useGet<Value, Error, Reference>(
     );
 
     const stableRef = useStableValue(reference ?? undefined, isEqual);
+    const ongoingFetchRef = useRef<Reference>();
 
     useEffect(() => {
-        (async () => {
-            if (stableRef === undefined) {
-                setValue();
-            } else {
-                setLoading();
+        if (stableRef === undefined) {
+            setValue();
+        } else {
+            setLoading();
+            ongoingFetchRef.current = stableRef;
 
+            (async () => {
                 try {
                     const data = await getData(stableRef);
 
                     if (!isMounted.current) {
+                        return;
+                    }
+
+                    if (!isEqual(ongoingFetchRef.current, stableRef)) {
                         return;
                     }
 
@@ -39,12 +45,16 @@ export function useGet<Value, Error, Reference>(
                         return;
                     }
 
+                    if (!isEqual(ongoingFetchRef.current, stableRef)) {
+                        return;
+                    }
+
                     // We assume this is always a Error
                     setError(e as Error);
                 }
-            }
-        })();
-    }, [stableRef, getData, isEqual, setValue, setLoading, isMounted, setError]);
+            })();
+        }
+    }, [stableRef, getData, isEqual, setValue, setLoading, setError, isMounted]);
 
     return useMemo(() => [value, loading, error], [value, loading, error]);
 }
