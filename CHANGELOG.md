@@ -1,3 +1,12 @@
+## [4.1.1](https://github.com/andipaetzold/react-firehooks/compare/v4.1.0...v4.1.1) (2024-08-15)
+
+
+### Bug Fixes
+
+* initial state was reset in single subscription hooks in strict mode in dev ([d0db2af](https://github.com/andipaetzold/react-firehooks/commit/d0db2af76434a617d7e87cf9b0a7ff9f716880f4))
+* race condition in multi "*Once" hooks ([e7af873](https://github.com/andipaetzold/react-firehooks/commit/e7af8731a38d823789f97ecaa7569d20e8d8fdcb))
+* race condition in single `*Once` hooks when reference changes ([d835504](https://github.com/andipaetzold/react-firehooks/commit/d835504c253017bf08bb205994949d2dc38abcc3))
+
 # [4.1.0](https://github.com/andipaetzold/react-firehooks/compare/v4.0.3...v4.1.0) (2024-03-14)
 
 
