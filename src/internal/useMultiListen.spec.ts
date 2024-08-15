@@ -1,7 +1,7 @@
-import { act, renderHook } from "@testing-library/react";
-import { newSymbol } from "../__testfixtures__/index.js";
-import { useMultiListen } from "./useMultiListen.js";
-import { it, expect, beforeEach, describe, vi } from "vitest";
+import { act, configure, renderHook } from "@testing-library/react";
+import { newSymbol } from "../__testfixtures__/index.js/index.js";
+import { useMultiListen } from "./useMultiListen.js.js";
+import { it, expect, beforeEach, describe, vi, afterEach } from "vitest";
 
 const result1 = newSymbol("Result 1");
 const result2 = newSymbol("Result 2");
@@ -27,13 +27,26 @@ beforeEach(() => {
     onChange.mockReturnValue(onChangeUnsubscribe);
 });
 
-it("initial state", () => {
-    const { result } = renderHook(() => useMultiListen([refA1, refB1], onChange, isEqual));
-    expect(result.current).toStrictEqual([
-        [undefined, true, undefined],
-        [undefined, true, undefined],
-    ]);
+afterEach(() => {
+    configure({ reactStrictMode: false });
 });
+
+describe.each([{ reactStrictMode: true }, { reactStrictMode: false }])(
+    `strictMode=$reactStrictMode`,
+    ({ reactStrictMode }) => {
+        beforeEach(() => {
+            configure({ reactStrictMode });
+        });
+
+        it("initial state", () => {
+            const { result } = renderHook(() => useMultiListen([refA1, refB1], onChange, isEqual));
+            expect(result.current).toStrictEqual([
+                [undefined, true, undefined],
+                [undefined, true, undefined],
+            ]);
+        });
+    },
+);
 
 describe("when changing refs", () => {
     it("should not resubscribe for equal ref", async () => {
