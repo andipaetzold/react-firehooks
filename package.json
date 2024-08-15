@@ -86,7 +86,7 @@
         "typecheck": "vitest --typecheck",
         "semantic-release": "semantic-release",
         "typedoc": "typedoc",
-        "prepare": "husky install",
+        "prepare": "husky",
         "lint": "eslint src",
         "lint-staged": "lint-staged"
     },
