@@ -1,6 +1,6 @@
 import { act, configure, renderHook } from "@testing-library/react";
-import { newSymbol } from "../__testfixtures__/index.js/index.js";
-import { useMultiListen } from "./useMultiListen.js.js";
+import { newSymbol } from "../__testfixtures__/index.js";
+import { useMultiListen } from "./useMultiListen.js";
 import { it, expect, beforeEach, describe, vi, afterEach } from "vitest";
 
 const result1 = newSymbol("Result 1");
