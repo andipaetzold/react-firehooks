@@ -1,3 +1,10 @@
+# [4.3.0](https://github.com/andipaetzold/react-firehooks/compare/v4.2.0...v4.3.0) (2025-07-21)
+
+
+### Features
+
+* support firebase v12 ([#310](https://github.com/andipaetzold/react-firehooks/issues/310)) ([a5c6ba6](https://github.com/andipaetzold/react-firehooks/commit/a5c6ba6f0595321b8ca3245ba01b1d46bc0021f6))
+
 # [4.2.0](https://github.com/andipaetzold/react-firehooks/compare/v4.1.1...v4.2.0) (2024-10-23)
 
 
