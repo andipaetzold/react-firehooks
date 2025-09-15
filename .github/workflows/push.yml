@@ -6,7 +6,7 @@ on:
 jobs:
     build-test:
         name: Build & Test
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
 
         steps:
             - uses: actions/checkout@v5
@@ -34,7 +34,7 @@ jobs:
 
     release:
         name: Release
-        runs-on: ubuntu-22.04
+        runs-on: ubuntu-24.04
         needs: build-test
 
         # https://github.com/semantic-release/semantic-release/blob/master/docs/recipes/ci-configurations/github-actions.md#node-project-configuration
